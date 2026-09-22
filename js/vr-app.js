@@ -46,41 +46,41 @@ class VRApp {
   playBootAnimation() {
     const overlay = document.createElement('div');
     overlay.id = 'vr-boot-overlay';
-    overlay.style.cssText = 
+    overlay.style.cssText = `
       position: fixed;
       inset: 0;
-      background: #000000;
+      background: #05070A;
       z-index: 10000;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       transition: opacity 0.6s ease;
-    ;
-    overlay.innerHTML = 
-      <div id="boot-dot" style="width: 12px; height: 12px; border-radius: 50%; background: #00E5FF; box-shadow: 0 0 25px #00E5FF; transform: scale(1); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);"></div>
-      <div id="boot-text" style="margin-top: 1.5rem; font-family: var(--font-mono); font-size: 1.25rem; font-weight: 800; color: #FFFFFF; letter-spacing: 0.2em; opacity: 0; transition: opacity 0.5s ease; text-transform: uppercase;">
+    `;
+    overlay.innerHTML = `
+      <div id="boot-dot" style="width: 14px; height: 14px; border-radius: 50%; background: #00E5FF; box-shadow: 0 0 25px #00E5FF; transform: scale(1); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);"></div>
+      <div id="boot-text" style="margin-top: 1.5rem; font-family: var(--font-mono); font-size: 1.15rem; font-weight: 800; color: #FFFFFF; letter-spacing: 0.2em; opacity: 0; transition: opacity 0.5s ease; text-transform: uppercase;">
         INITIALIZING VR PIPELINE...
       </div>
-    ;
+    `;
     document.body.appendChild(overlay);
 
-    vrSound.playHum();
+    if (window.vrSound) window.vrSound.playHum();
 
     setTimeout(() => {
       const dot = document.getElementById('boot-dot');
       const text = document.getElementById('boot-text');
-      if (dot) dot.style.transform = 'scale(5)';
+      if (dot) dot.style.transform = 'scale(4)';
       if (text) {
         text.style.opacity = '1';
-        text.innerHTML = 'VR WORLD INITIALIZED';
+        text.innerHTML = 'VR ARCHITECTURE READY';
       }
-      vrSound.playDataPacket();
+      if (window.vrSound) window.vrSound.playDataPacket();
     }, 600);
 
     setTimeout(() => {
       overlay.style.opacity = '0';
-      vrSound.playSuccess();
+      if (window.vrSound) window.vrSound.playSuccess();
       setTimeout(() => overlay.remove(), 600);
     }, 1800);
   }
@@ -96,25 +96,25 @@ class VRApp {
 
     // Update section pill
     if (this.sectionPillEl) {
-      this.sectionPillEl.innerText = slide.part;
+      this.sectionPillEl.innerText = slide.part || 'Pipeline';
     }
 
     // Render slide container HTML
-    const html = 
-      <div class="slide active" id="slide-">
+    const html = `
+      <div class="slide active" id="${slide.id}">
         <div class="slide-header">
           <div class="slide-tag">
             <span aria-hidden="true">●</span>
-            <span>PART  — </span>
+            <span>${slide.partNumber || ''} — ${slide.part || ''}</span>
           </div>
-          <h1 class="slide-title"></h1>
-          <div class="slide-subtitle"></div>
+          <h1 class="slide-title">${slide.title}</h1>
+          <div class="slide-subtitle">${slide.subtitle || ''}</div>
         </div>
         <div class="slide-body">
-          
+          ${typeof slide.render === 'function' ? slide.render() : ''}
         </div>
       </div>
-    ;
+    `;
 
     this.stageEl.innerHTML = html;
 
@@ -131,14 +131,16 @@ class VRApp {
     this.updateControls();
 
     // Update URL hash
-    window.history.replaceState(null, null, '#slide-' + slide.id);
+    window.history.replaceState(null, null, '#' + slide.id);
 
     // Update speaker notes
     if (this.notesBody) {
-      this.notesBody.innerHTML = 
-        <h3 style="color: var(--accent-cyan); margin-bottom: 0.5rem;">Slide : </h3>
-        <p style="font-size: 1rem; color: var(--text-primary); line-height: 1.6;"></p>
-      ;
+      this.notesBody.innerHTML = `
+        <h3 style="color: var(--neon-cyan); margin-bottom: 0.5rem;">Slide ${this.currentIndex + 1}: ${slide.title}</h3>
+        <div style="font-size: 0.95rem; color: var(--text-primary); line-height: 1.6;">
+          ${slide.notes || 'No speaker notes available for this slide.'}
+        </div>
+      `;
     }
   }
 
@@ -170,14 +172,14 @@ class VRApp {
 
   nextSlide() {
     if (this.currentIndex < this.slides.length - 1) {
-      vrSound.playClick();
+      if (window.vrSound) window.vrSound.playClick();
       this.renderSlide(this.currentIndex + 1);
     }
   }
 
   prevSlide() {
     if (this.currentIndex > 0) {
-      vrSound.playClick();
+      if (window.vrSound) window.vrSound.playClick();
       this.renderSlide(this.currentIndex - 1);
     }
   }
@@ -185,7 +187,7 @@ class VRApp {
   goToSlide(slideNumber) {
     const targetIdx = slideNumber - 1;
     if (targetIdx >= 0 && targetIdx < this.slides.length) {
-      vrSound.playClick();
+      if (window.vrSound) window.vrSound.playClick();
       this.renderSlide(targetIdx);
       this.closeModals();
     }
@@ -195,7 +197,7 @@ class VRApp {
     this.isHeaderHidden = !this.isHeaderHidden;
     document.body.classList.toggle('header-hidden', this.isHeaderHidden);
     localStorage.setItem('vr_header_hidden', String(this.isHeaderHidden));
-    vrSound.playTone(this.isHeaderHidden ? 440 : 660, 'sine', 0.1, 0.06);
+    if (window.vrSound) window.vrSound.playTone(this.isHeaderHidden ? 440 : 660, 'sine', 0.1, 0.06);
     const fBtn = document.getElementById('footer-header-toggle-btn');
     if (fBtn) {
       fBtn.classList.toggle('active', this.isHeaderHidden);
@@ -215,7 +217,7 @@ class VRApp {
   }
 
   toggleAudio() {
-    const isMuted = vrSound.toggleMute();
+    const isMuted = window.vrSound ? window.vrSound.toggleMute() : false;
     const btn = document.getElementById('sound-toggle-btn');
     if (btn) {
       const label = btn.querySelector('.btn-label-text');
@@ -231,13 +233,13 @@ class VRApp {
     }
     const btn = document.getElementById('laser-toggle-btn');
     if (btn) btn.classList.toggle('active', this.isLaserPointerActive);
-    if (this.isLaserPointerActive) vrSound.playLaser();
+    if (this.isLaserPointerActive && window.vrSound) window.vrSound.playLaser();
   }
 
   initLaserPointer() {
     this.laserDot = document.createElement('div');
     this.laserDot.id = 'classroom-laser-dot';
-    this.laserDot.style.cssText = 
+    this.laserDot.style.cssText = `
       position: fixed;
       width: 14px;
       height: 14px;
@@ -249,7 +251,7 @@ class VRApp {
       transform: translate(-50%, -50%);
       display: none;
       transition: transform 0.04s ease-out;
-    ;
+    `;
     document.body.appendChild(this.laserDot);
 
     window.addEventListener('mousemove', (e) => {
@@ -263,26 +265,26 @@ class VRApp {
   buildOverviewGrid() {
     const grid = document.getElementById('overview-grid');
     if (!grid) return;
-    grid.innerHTML = this.slides.map((s, i) => 
-      <div class="overview-thumb " onclick="app.goToSlide()">
-        <div class="overview-thumb-num">SLIDE </div>
-        <div class="overview-thumb-title"></div>
-        <div style="font-size: 0.68rem; color: var(--text-muted); font-family: var(--font-mono);"></div>
+    grid.innerHTML = this.slides.map((s, i) => `
+      <div class="overview-thumb ${i === this.currentIndex ? 'active' : ''}" onclick="app.goToSlide(${i + 1})">
+        <div class="overview-thumb-num">SLIDE ${String(i + 1).padStart(2, '0')}</div>
+        <div class="overview-thumb-title">${s.title}</div>
+        <div style="font-size: 0.68rem; color: var(--text-muted); font-family: var(--font-mono); margin-top: 0.25rem;">${s.part || ''}</div>
       </div>
-    ).join('');
+    `).join('');
   }
 
   toggleOverview() {
     if (this.overviewModal) {
       const isShow = this.overviewModal.classList.toggle('show');
-      if (isShow) vrSound.playClick();
+      if (isShow && window.vrSound) window.vrSound.playClick();
     }
   }
 
   toggleNotes() {
     if (this.notesModal) {
       const isShow = this.notesModal.classList.toggle('show');
-      if (isShow) vrSound.playClick();
+      if (isShow && window.vrSound) window.vrSound.playClick();
     }
   }
 
@@ -293,7 +295,7 @@ class VRApp {
 
   bindEvents() {
     window.addEventListener('keydown', (e) => {
-      if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+      if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
 
       switch (e.key) {
         case 'ArrowRight':

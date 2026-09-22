@@ -106,3 +106,4 @@ class VRAudioEngine {
 }
 
 window.vrSound = new VRAudioEngine();
+window.vrAudio = window.vrSound;
