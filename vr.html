@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VR Architecture: From Head Movement to Photons</title>
+  <meta name="description" content="Interactive classroom presentation and real-time visualization lab on Virtual Reality Architecture, Tracking, Rendering, and Hardware Systems.">
+  <link rel="stylesheet" href="css/vr.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥽</text></svg>">
+</head>
+<body>
+
+  <!-- Floating trigger pill when header is hidden -->
+  <button class="header-reveal-pill" id="header-reveal-btn" onclick="app.toggleHeader()" title="Show Controls (H)" aria-label="Show Controls">
+    <span>⌄ Show Controls (H)</span>
+  </button>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="logo-badge">
+        <span style="font-size: 1.25rem;" aria-hidden="true">🥽</span>
+        <span>VR Architecture</span>
+      </div>
+      <div class="section-pill" id="current-section-pill">Pipeline</div>
+    </div>
+
+    <div class="header-controls">
+      <!-- Boot sequence replay -->
+      <button class="icon-btn" onclick="app.replayBootAnimation()" title="Replay Cinematic Intro" aria-label="Replay Intro">
+        <span>🎬</span>
+        <span class="btn-label-text">Intro</span>
+      </button>
+
+      <!-- Classroom Laser Pointer -->
+      <button class="icon-btn" id="laser-toggle-btn" onclick="app.toggleLaserPointer()" title="Toggle Laser Pointer (L)" aria-label="Toggle Laser Pointer">
+        <span>🔴</span>
+        <span class="btn-label-text">Laser</span>
+      </button>
+
+      <!-- Audio Mute/Unmute -->
+      <button class="icon-btn active" id="sound-toggle-btn" onclick="app.toggleAudio()" title="Toggle Sound FX (M)" aria-label="Toggle Sound Effects">
+        <span>🔊</span>
+        <span class="btn-label-text">Sound</span>
+      </button>
+
+      <!-- Speaker Notes -->
+      <button class="icon-btn" onclick="app.toggleNotes()" title="Speaker Notes (P)" aria-label="Open Speaker Notes">
+        <span>📝</span>
+        <span class="btn-label-text">Notes</span>
+      </button>
+
+      <!-- Slide Grid Overview -->
+      <button class="icon-btn" onclick="app.toggleOverview()" title="Slide Grid (O or Esc)" aria-label="Open Slide Overview">
+        <span>📑</span>
+        <span class="btn-label-text">Overview</span>
+      </button>
+
+      <!-- Fullscreen -->
+      <button class="icon-btn" onclick="app.toggleFullscreen()" title="Fullscreen (F)" aria-label="Toggle Fullscreen">
+        <span>⛶</span>
+        <span class="btn-label-text">Full</span>
+      </button>
+
+      <!-- Hide Header Toggle -->
+      <button class="icon-btn" onclick="app.toggleHeader()" title="Hide Header (H)" aria-label="Hide Header">
+        <span>▲</span>
+        <span class="btn-label-text">Hide</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Presentation Canvas -->
+  <main class="presentation-container">
+    <div class="slide-stage" id="slide-stage" tabindex="-1">
+      <!-- Populated dynamically via vr-app.js -->
+    </div>
+  </main>
+
+  <!-- Navigation Footer -->
+  <footer class="app-footer">
+    <div class="progress-container">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
+    <div class="slide-counter" id="slide-counter">
+      SLIDE <b>01</b> / 18
+    </div>
+
+    <!-- Toggle Header Visibility from Footer -->
+    <button class="icon-btn" id="footer-header-toggle-btn" onclick="app.toggleHeader()" title="Toggle Header Controls (H)" aria-label="Toggle Header Controls" style="font-size: 0.76rem; padding: 0.3rem 0.6rem;">
+      <span>👁️</span>
+      <span class="btn-label-text">Header (H)</span>
+    </button>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" id="prev-btn" onclick="app.prevSlide()" title="Previous Slide (Left Arrow / Backspace)" aria-label="Previous Slide">
+        ←
+      </button>
+      <button class="nav-btn" id="next-btn" onclick="app.nextSlide()" title="Next Slide (Right Arrow / Spacebar)" aria-label="Next Slide">
+        →
+      </button>
+    </div>
+  </footer>
+
+  <!-- Slide Overview Grid Modal -->
+  <div class="modal-overlay" id="overview-modal" onclick="if(event.target === this) app.closeModals()" role="dialog" aria-modal="true" aria-label="All 18 Slides Overview">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div style="font-size: 1.25rem; font-weight: 800; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
+          <span aria-hidden="true">📑</span>
+          <span>VR Architecture — All 18 Slides</span>
+        </div>
+        <button class="icon-btn" onclick="app.closeModals()" aria-label="Close overview">✕ Close</button>
+      </div>
+      <div class="modal-body">
+        <div class="overview-grid" id="overview-grid">
+          <!-- Populated by vr-app.js -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Speaker Notes Modal -->
+  <div class="modal-overlay" id="notes-modal" onclick="if(event.target === this) app.closeModals()" role="dialog" aria-modal="true" aria-label="Presenter Notes">
+    <div class="modal-content" style="max-width: 620px;">
+      <div class="modal-header">
+        <div style="font-size: 1.2rem; font-weight: 800; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
+          <span aria-hidden="true">📝</span>
+          <span>Lecturer & Speaker Notes</span>
+        </div>
+        <button class="icon-btn" onclick="app.closeModals()" aria-label="Close notes">✕ Close</button>
+      </div>
+      <div class="modal-body" id="notes-body">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/vr-audio.js"></script>
+  <script src="js/vr-slides.js"></script>
+  <script src="js/vr-app.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      window.app = new VRApp();
+      window.app.init();
+    });
+  </script>
+
+</body>
+</html>

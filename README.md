@@ -1,74 +1,72 @@
-# ?? Stack & Queue: The Logic Behind ""Who Comes First?""
-### An Interactive, Classroom-First Data Structures Presentation & Visual Lab
+# 🎓 Interactive Computer Science & Systems Presentations
+### Classroom-First Visual Laboratories & Lecture Presentation Suites
 
 > **A labor of love and deep pedagogical dedication:**  
-> This interactive presentation was crafted with immense effort to turn abstract computer science concepts into vivid, intuitive, and tactile mental models for students in lectures, classrooms, and online learning environments. Instead of dry code-heavy slides, every concept is paired with real-world scenarios, interactive simulators, live memory conduits, and synthesized classroom audio effects.
+> These interactive web presentations were crafted with immense effort to turn abstract computer science and engineering concepts into vivid, intuitive, and tactile mental models for students in lectures, classrooms, and online learning environments. Instead of dry code-heavy slides, every concept is paired with real-world scenarios, interactive simulators, live conduits, and synthesized classroom audio effects.
 
 ---
 
-## ?? Key Highlights & Innovations
+## 🚀 Available Presentation Suites
 
-- **30 Classroom-Ready Interactive Slides**: Full curriculum covering introductory intuition, LIFO vs. FIFO mental anchors, stack implementations, linear and circular queue models, operating system schedulers, game state stacks, compiler parenthesis parsers, and trace debugging.
-- **Strict 16:9 Aspect Ratio**: Engineered to lock cleanly into standard 16:9 presentation dimensions on projectors, smartboards, and laptop displays without vertical scrollbars or awkward letterboxing.
-- **Pure Zero-Dependency Architecture**: Built entirely with modern vanilla HTML5, CSS3, and ES6 JavaScript. No build tools, 
-pm, Node.js, or complex bundlers required�simply open index.html in any web browser!
+### 1. 🥽 VR Architecture: From Head Movement to Photons (`vr.html`)
+An end-to-end interactive visual laboratory exploring how modern Virtual Reality systems transform physical human movement into photons in under 20 milliseconds.
 
----
-
-## ?? Interactive Simulators & Labs
-
-1. **Stack Canister Visualizer (Slide 5)**:
-   - Dynamic vertical canister with live `PUSH`, `POP`, and `PEEK` operations.
-   - Real-time `TOP` pointer tracking and custom element insertion.
-   - Built-in `Stack Overflow` and `Stack Underflow` boundary protection with audio buzzers.
-2. **Animated Queue Conduit (Slide 13)**:
-   - Horizontal pipeline with visible **`[?? EXIT (FRONT)]`** and **`[?? ENTRY (REAR)]`** portals.
-   - Visible element index markers (`Index 0` to `Index 5`) and dynamic pointer tags (`? FRONT`, `? REAR`).
-   - Smooth element shifting animations: elements slide out to the left on `DEQUEUE`, and new elements slide in from the right on `ENQUEUE`.
-   - Real-time diagnostic dashboard displaying element size, pointer indices, and health status.
-3. **Network Print Spooler Simulator (Slide 14)**:
-   - Simulates OS background job queues.
-   - Demonstrates chronological FIFO processing vs. urgent document preemption with a dedicated reset button.
-4. **Emergency Room Priority Triage (Slide 16)**:
-   - Demonstrates the necessity of Priority Queues over basic FIFO when urgency keys supersede arrival timestamps.
-   - Includes priority sorting and reset controls.
-5. **Circular Queue Modulo Ring Buffer (Slide 22)**:
-   - Interactive 6-slot circular ring visualizer demonstrating `(rear + 1) % SIZE` and `(front + 1) % SIZE`.
-   - Visually proves memory recycling without costly O(N) element shifts.
-6. **Live Trace Debugger (Slide 26)**:
-   - Step-by-step execution tracer allowing students to predict and verify stack state transitions.
-7. **Parentheses Balance Validator (Slide 29)**:
-   - Live compiler syntax verification algorithm testing arbitrary bracket expressions with immediate feedback.
+- **18 Interactive Slides**:
+  1. **VR Architecture**: The Immersive Illusion (Interactive 3D Room & Headset)
+  2. **The Motion Pipeline**: 6-Step live data flow from mechanical movement to pixel light
+  3. **VR System Architecture**: 5-layer system inspection (Human, Sensors, Engine, GPU, Optics)
+  4. **Hardware Layer**: Interactive exploded component explorer (IMU, SLAM cameras, SoC, Panels, Pancake Optics, Spatial DSP)
+  5. **Head-Coupled Display (HCD)**: 3-DOF vs. 6-DOF simulation with 3D perspective cube and motion parallax
+  6. **Tracking Systems**: Inside-Out SLAM vs. Outside-In Lighthouse laser sweeping with occlusion simulation
+  7. **VR Rendering Pipeline**: Step-by-step 9-stage pipeline with frustum culling and Asynchronous TimeWarp (ATW)
+  8. **Stereo Rendering & IPD**: Left/Right binocular parallax and live IPD dial (55mm to 72mm)
+  9. **Game Engine & Hardware**: Live CPU/GPU frame-time budget simulator (11.1ms @ 90Hz deadline)
+  10. **Client-Server Architecture**: Distributed VR topology and latency paradox
+  11. **Multiplayer VR Relay**: Live 3-player packet drop, ping, and dead reckoning emulator
+  12. **Cluster Rendering**: Multi-GPU Master-Worker architecture, hardware FrameLock (Genlock), and DataLock
+  13. **Cluster Rendering in Action**: 3-Screen panoramic CAVE simulator with asymmetric off-axis projection
+  14. **Latency & Motion-to-Photon**: <20ms budget stack and live interactive 15ms vs. 75ms lag nausea simulator
+  15. **The Complete VR Pipeline**: Grand synthesis map with animated real-time packet trace
+  16. **Case Studies & Tradeoffs**: Mobile Standalone (Quest 3) vs. Tethered PC VR (Valve Index) vs. CAVE
+  17. **Classroom Challenge**: 3-question interactive student quiz with instant feedback and audio
+  18. **The Grand VR Mental Model**: Summary, 3 cardinal rules of VR, and presenter conclusion
 
 ---
 
-## ?? Classroom Presentation Features
+### 2. 🥞 Stack & Queue: The Logic Behind "Who Comes First?" (`index.html`)
+A visual, intuition-first data structures presentation exploring LIFO and FIFO pipelines.
 
-- **4 High-Contrast Presentation Themes**:
-  - **Cyber Indigo (Dark)**: Modern, sleek dark mode with vibrant neon cyan and amber accents.
-  - **Academic Light (Lecture)**: Specially harmonized for daytime classrooms and bright lecture hall projectors.
-  - **Sunset Glow (Warm)**: High-contrast warm aesthetic.
-  - **Matrix Neon (Laser)**: High-tech terminal aesthetic.
-- **Classroom Laser Pointer (Press `L`)**:
-  - Turns the cursor into a bright glowing red laser dot for pointing out items on projection screens.
-- **Web Audio API Sound Engine (Press `M` to mute/unmute)**:
-  - Procedurally synthesized audio tones (chimes for enqueue, pops for dequeue, sliding whooshes, error buzzers, and celebratory chimes)�no external audio files needed!
-- **Clean / Zen View (Press `H`)**:
-  - One-touch toggle to hide all header controls, instantly expanding the 16:9 stage to maximize projector screen real estate.
-- **Presenter & Speaker Notes (Press `P`)**:
-  - Built-in presenter script and pedagogical talking points for educators.
-- **Slide Grid Overview (Press `O` or `Esc`)**:
-  - Fast visual thumbnail navigation modal to jump directly to any slide.
+- **30 Interactive Slides**:
+  - Interactive Stack Canister (`PUSH`, `POP`, `PEEK`, Overflow/Underflow protection)
+  - Animated Queue Conduit with visible `EXIT` and `ENTRY` portals
+  - Network Print Spooler Simulator with FIFO priority
+  - Emergency Room Priority Triage simulator
+  - Circular Queue Modulo Ring Buffer visualizer (`(rear + 1) % SIZE`)
+  - Live Trace Debugger for stack states
+  - Compiler Parentheses Balance Validator algorithm
 
 ---
 
-## ?? Keyboard Shortcuts Reference
+## 🎨 Classroom Presentation Features
+
+- **Strict 16:9 Aspect Ratio**: Engineered to lock cleanly into standard 16:9 presentation dimensions on projectors, smartboards, and laptop displays without vertical scrollbars.
+- **Pure Zero-Dependency Architecture**: Built entirely with modern vanilla HTML5, CSS3, and ES6 JavaScript. No build tools, npm, Node.js, or complex bundlers required—simply open `vr.html` or `index.html` in any web browser!
+- **Classroom Laser Pointer (Press `L`)**: Turns the cursor into a bright glowing red laser dot for pointing out items on projection screens.
+- **Web Audio API Sound Engine (Press `M` to mute/unmute)**: Procedurally synthesized audio tones (chimes, data packets, error buzzers, and clicks)—no external audio files needed!
+- **Clean / Zen View (Press `H`)**: One-touch toggle to hide all header controls, instantly expanding the 16:9 stage to maximize projector screen real estate.
+- **Presenter & Speaker Notes (Press `P`)**: Built-in presenter script and pedagogical talking points for educators.
+- **Slide Grid Overview (Press `O` or `Esc`)**: Fast visual thumbnail navigation modal to jump directly to any slide.
+- **Fullscreen Mode (Press `F`)**: Seamless distraction-free lecture presentation.
+
+---
+
+## ⌨️ Keyboard Shortcuts Reference
 
 | Key | Action |
 | :--- | :--- |
-| `?` / `Space` / `PageDown` | Advance to next slide |
-| `?` / `Backspace` / `PageUp` | Return to previous slide |
-| `Home` / `End` | Jump to Slide 1 / Slide 30 |
+| `→` / `Space` / `PageDown` | Advance to next slide |
+| `←` / `Backspace` / `PageUp` | Return to previous slide |
+| `Home` / `End` | Jump to Slide 1 / Final Slide |
 | `H` | **Toggle Header Visibility (Zen Mode)** |
 | `L` | **Toggle Classroom Laser Pointer** |
 | `M` | **Toggle Audio Sound Effects** |
@@ -78,30 +76,35 @@ pm, Node.js, or complex bundlers required�simply open index.html in any web brow
 
 ---
 
-## ?? Repository Structure
+## 📁 Repository Structure
 
-`
-+-- index.html          # Main HTML presentation shell & interactive controls
-+-- css/
-�   +-- styles.css      # CSS design system (4 themes, 16:9 ratio, responsive layouts)
-+-- js/
-�   +-- app.js          # Master presentation controller & keyboard/touch orchestrator
-�   +-- audio.js        # Web Audio API sound synthesis engine
-�   +-- slides.js       # Complete 30-slide curriculum & interactive simulators
-+-- stack-queue.pptx    # PowerPoint companion deck
-+-- README.md           # Documentation & teaching guide
-`
+```text
+├── vr.html             # VR Architecture Presentation (18 slides)
+├── index.html          # Stack & Queue Data Structures Presentation (30 slides)
+├── css/
+│   ├── vr.css          # Futuristic dark theme & 3D CSS perspective rooms
+│   └── styles.css      # Data structures CSS design system (4 lecture themes)
+├── js/
+│   ├── vr-app.js       # VR presentation controller & shortcut manager
+│   ├── vr-audio.js     # Synthesized audio effects engine
+│   ├── vr-slides.js    # All 18 interactive VR slides and simulators
+│   ├── app.js          # Stack/Queue presentation controller
+│   ├── audio.js        # Stack/Queue audio synthesizer
+│   └── slides.js       # Stack/Queue 30-slide curriculum
+├── stack-queue.pptx    # PowerPoint companion deck
+└── README.md           # Documentation & teaching guide
+```
 
 ---
 
-## ?? Getting Started
+## 🏁 Getting Started
 
 1. Clone or download the repository:
-   `ash
+   ```bash
    git clone https://github.com/prasadkankhar10/stack_queue.git
-   `
-2. Simply double-click `index.html` to open it in any web browser (Chrome, Edge, Firefox, Safari).
-3. Connect your laptop to your projector or smartboard, press **`F`** for fullscreen, **`H`** to hide the header, and begin teaching!
+   ```
+2. Double-click **`vr.html`** or **`index.html`** to open in any web browser.
+3. Connect your laptop to your classroom projector or smartboard, press **`F`** for fullscreen, **`H`** to hide the header, and begin teaching!
 
 ---
 
