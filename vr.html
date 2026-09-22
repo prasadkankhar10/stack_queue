@@ -138,6 +138,13 @@
   </div>
 
   <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    if (typeof THREE === 'undefined') {
+      document.write('<script src="js/three.min.js"><\/script>');
+    }
+  </script>
+  <script src="js/vr-3d-utils.js"></script>
   <script src="js/vr-audio.js"></script>
   <script src="js/vr-slides.js"></script>
   <script src="js/vr-app.js"></script>

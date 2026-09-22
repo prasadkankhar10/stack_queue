@@ -1,11 +1,2 @@
-# Office temporary lock files
-$*
-~$*
-
-# OS files
-.DS_Store
-Thumbs.db
-desktop.ini
-
-# Logs
-*.log
+js/three.min.js
+*.py

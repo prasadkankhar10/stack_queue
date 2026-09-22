@@ -91,6 +91,13 @@ class VRApp {
 
   renderSlide(index) {
     if (index < 0 || index >= this.slides.length) return;
+    
+    // Clean up previous 3D scene animation loops
+    if (typeof this.currentSceneCleanup === 'function') {
+      try { this.currentSceneCleanup(); } catch(e) {}
+      this.currentSceneCleanup = null;
+    }
+
     this.currentIndex = index;
     const slide = this.slides[index];
 
