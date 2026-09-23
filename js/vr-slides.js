@@ -1,6 +1,6 @@
 /**
  * VR Architecture: From Head Movement to Photons
- * 18-Slide High-Fidelity 3D WebGL Interactive Presentation
+ * Academic Light Lecture Edition — 18 High-Fidelity 3D Slides
  */
 
 window.vrSlidesData = [
@@ -18,23 +18,23 @@ window.vrSlidesData = [
         <div class="split-layout">
           <div class="content-card">
             <span class="card-badge">THE CORE CHALLENGE</span>
-            <h3 style="color: var(--neon-cyan); margin: 0.5rem 0; font-size: 1.25rem;">
+            <h3 style="color: var(--text-primary); margin: 0.35rem 0 0.5rem 0; font-size: 1.15rem; font-weight: 800;">
               How Do We Fool the Human Brain?
             </h3>
-            <p style="color: var(--text-secondary); line-height: 1.5; font-size: 0.9rem; margin-bottom: 0.75rem;">
-              When you turn your head, your vestibular inner ear detects motion instantly.
-              In VR, sensors must detect that motion, update the 3D world, render two distinct eye perspectives, and emit light onto your retinas—all in <b>less than 20 milliseconds</b>.
+            <p style="color: var(--text-secondary); line-height: 1.5; font-size: 0.85rem; margin-bottom: 0.6rem;">
+              When you turn your head, your vestibular inner-ear organs detect motion instantly.
+              In Virtual Reality, sensors must detect that motion, update a 3D scene, render two distinct eye perspectives, and emit light onto your retinas—all in <b>less than 20 milliseconds</b>.
             </p>
 
-            <div style="background: rgba(0, 229, 255, 0.05); border: 1px solid rgba(0, 229, 255, 0.2); border-radius: var(--radius-sm); padding: 0.75rem; margin-bottom: 0.75rem;">
-              <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
-                <span style="font-weight: 700; color: var(--neon-cyan); font-size: 0.8rem;">MOTION-TO-PHOTON BUDGET</span>
-                <span style="font-family: var(--font-mono); color: var(--neon-green); font-weight: 700; font-size: 0.8rem;">&lt; 20ms STRICT THRESHOLD</span>
+            <div style="background: #EFF6FF; border: 1px solid rgba(37, 99, 235, 0.2); border-radius: var(--radius-sm); padding: 0.6rem 0.75rem; margin-bottom: 0.6rem;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
+                <span style="font-weight: 700; color: var(--accent-blue); font-size: 0.75rem;">MOTION-TO-PHOTON BUDGET</span>
+                <span style="font-family: var(--font-mono); color: var(--accent-green); font-weight: 800; font-size: 0.75rem;">&lt; 20ms THRESHOLD</span>
               </div>
-              <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
-                <div style="width: 75%; height: 100%; background: linear-gradient(90deg, var(--neon-green), var(--neon-cyan));"></div>
+              <div style="height: 6px; background: rgba(15, 23, 42, 0.08); border-radius: 3px; overflow: hidden;">
+                <div style="width: 75%; height: 100%; background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));"></div>
               </div>
-              <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.35rem;">
+              <div style="font-size: 0.68rem; color: var(--text-muted); margin-top: 0.25rem;">
                 Exceeding 20ms breaks presence and induces severe simulator sickness.
               </div>
             </div>
@@ -45,22 +45,19 @@ window.vrSlidesData = [
                 <input type="range" class="cyber-slider" id="s1-yaw-slider" min="-90" max="90" value="0">
                 <span class="telemetry-value" id="s1-yaw-val">0°</span>
               </div>
-              <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
-                <button class="cyber-btn" id="s1-packet-btn" style="flex: 1;">
-                  <span>⚡ Fire Motion Packet</span>
-                </button>
+              <div style="display: flex; gap: 0.4rem; margin-top: 0.4rem;">
+                <button class="cyber-btn" id="s1-packet-btn" style="flex: 1;">⚡ Fire Motion Packet</button>
                 <button class="cyber-btn secondary" id="s1-reset-btn">Reset</button>
               </div>
             </div>
           </div>
 
-          <!-- 3D Three.js WebGL Headset Canvas -->
-          <div class="content-card" style="padding: 0.5rem; position: relative;">
+          <div class="content-card" style="padding: 0.4rem; position: relative;">
             <div class="three-canvas-container" id="s1-3d-container">
               <div class="three-overlay-badge">🥽 3D REAL-TIME HMD MODEL</div>
               <div class="three-drag-hint">🖱️ Drag to Orbit 360°</div>
             </div>
-            <div id="s1-status" style="font-size: 0.78rem; font-family: var(--font-mono); color: var(--neon-cyan); text-align: center; margin-top: 0.4rem;">
+            <div id="s1-status" style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--accent-blue); text-align: center; margin-top: 0.35rem; font-weight: 700;">
               Virtual Eye Pose: Yaw 0.0° | Latency: 11.2ms (Nominal)
             </div>
           </div>
@@ -92,9 +89,8 @@ window.vrSlidesData = [
       if (!sceneData) return;
       sceneData.scene.add(headset);
 
-      // Packet burst particle
       const packetGeo = new THREE.SphereGeometry(0.12, 16, 16);
-      const packetMat = new THREE.MeshBasicMaterial({ color: 0x00FF9D });
+      const packetMat = new THREE.MeshBasicMaterial({ color: 0x059669 });
       const packet = new THREE.Mesh(packetGeo, packetMat);
       packet.visible = false;
       sceneData.scene.add(packet);
@@ -103,16 +99,16 @@ window.vrSlidesData = [
       let packetT = 0;
 
       sceneData.animate((time) => {
-        headset.position.y = Math.sin(time * 0.002) * 0.06;
+        headset.position.y = Math.sin(time * 0.002) * 0.05;
         if (isPulsing) {
           packetT += 0.05;
           packet.position.set(0, 0, 1.8 - packetT * 2.2);
           if (packetT >= 1) {
             isPulsing = false;
             packet.visible = false;
-            plate.material.emissiveIntensity = 0.2;
-            leftLens.material.emissiveIntensity = 0.6;
-            rightLens.material.emissiveIntensity = 0.6;
+            plate.material.emissiveIntensity = 0.25;
+            leftLens.material.emissiveIntensity = 0.5;
+            rightLens.material.emissiveIntensity = 0.5;
           }
         }
       });
@@ -135,7 +131,7 @@ window.vrSlidesData = [
           plate.material.emissiveIntensity = 0.9;
           leftLens.material.emissiveIntensity = 1.2;
           rightLens.material.emissiveIntensity = 1.2;
-          status.innerHTML = `<span style="color: var(--neon-green)">⚡ Motion Packet Routed → Engine Tick → Dual Draw Call → Photons! (12.4ms)</span>`;
+          status.innerHTML = `<span style="color: var(--accent-green)">⚡ Motion Packet Routed → Engine Tick → Dual Draw Call → Photons! (12.4ms)</span>`;
           if (window.vrAudio) window.vrAudio.playDataPacket();
         });
       }
@@ -161,7 +157,7 @@ window.vrSlidesData = [
   },
 
   // ==========================================
-  // SLIDE 2: WHAT HAPPENS WHEN YOU MOVE YOUR HEAD? (3D AVATAR HEAD)
+  // SLIDE 2: WHAT HAPPENS WHEN YOU MOVE YOUR HEAD? (6 FULLY VISIBLE STAGES)
   // ==========================================
   {
     id: 'slide-2',
@@ -171,8 +167,8 @@ window.vrSlidesData = [
     subtitle: 'The 6-Step Pipeline from Mechanical Movement to Light Emitted by Pixels',
     render: function() {
       return `
-        <div style="display: flex; flex-direction: column; gap: 0.8rem; height: 100%;">
-          <!-- Pipeline Stages Grid -->
+        <div style="display: flex; flex-direction: column; gap: 0.5rem; height: 100%; min-height: 0;">
+          <!-- Fully Visible 6-Step Pipeline Grid -->
           <div class="pipeline-track" id="s2-pipeline">
             <div class="pipeline-step active" data-step="1">
               <div class="step-num">01</div>
@@ -207,18 +203,18 @@ window.vrSlidesData = [
           </div>
 
           <!-- 3D Head Simulator & Controls -->
-          <div class="split-layout" style="flex: 1;">
-            <div class="content-card" style="padding: 0.5rem;">
+          <div class="split-layout" style="flex: 1; min-height: 0;">
+            <div class="content-card" style="padding: 0.4rem;">
               <div class="three-canvas-container" id="s2-3d-container">
                 <div class="three-overlay-badge">👤 3D HEAD KINEMATICS</div>
-                <div class="three-drag-hint">🖱️ Move Sliders or Drag</div>
+                <div class="three-drag-hint">Rotate sliders to trace data</div>
               </div>
             </div>
 
             <div class="content-card" style="justify-content: space-between;">
               <div>
                 <span class="card-badge">ORIENTATION INPUTS</span>
-                <div class="control-panel" style="margin-top: 0.5rem;">
+                <div class="control-panel">
                   <div class="control-row">
                     <span class="control-label">Yaw (Pan):</span>
                     <input type="range" class="cyber-slider" id="s2-yaw" min="-60" max="60" value="0">
@@ -237,7 +233,7 @@ window.vrSlidesData = [
                 </div>
               </div>
 
-              <div class="telemetry-box" id="s2-telemetry" style="height: 90px; font-size: 0.78rem;">
+              <div class="telemetry-box" id="s2-telemetry" style="height: 80px; font-size: 0.72rem; margin-top: 0.4rem;">
 [IMU STREAM] Status: Active (1000 Hz)
 Orientation Quat: Q(0.000, 0.000, 0.000, 1.000)
 Target Frame Time: 11.11 ms @ 90Hz Refresh
@@ -288,7 +284,7 @@ Pipeline Latency: 13.8 ms (NOMINAL)
         telemetry.innerHTML = `[IMU STREAM] Status: Active (1000 Hz)
 Euler Angles: Yaw=${y}°, Pitch=${p}°, Roll=${r}°
 Calculated View Matrix: Mat4x4 Rotated
-Current Motion Delta: ${Math.hypot(y, p, r).toFixed(1)}°
+Motion Delta: ${Math.hypot(y, p, r).toFixed(1)}°
 Pipeline Latency: ${(12.5 + Math.hypot(y, p, r) * 0.05).toFixed(1)} ms (NOMINAL)`;
 
         steps.forEach(s => s.classList.remove('active'));
@@ -304,20 +300,14 @@ Pipeline Latency: ${(12.5 + Math.hypot(y, p, r) * 0.05).toFixed(1)} ms (NOMINAL)
     notes: `
       <b>Slide 2 Talking Points:</b>
       <ul>
-        <li><b>Walk through the 6 stages:</b>
-          1. <i>IMU Sampling</i> (fast, 1000Hz, prone to drift)
-          2. <i>Sensor Fusion</i> (Kalman filter combines optical cameras with IMU)
-          3. <i>Engine Update</i> (Unreal/Unity camera transform)
-          4. <i>Stereo Render</i> (Dual cameras for left and right eyes)
-          5. <i>Warp & Scanout</i> (Barrel distortion correction + ATW)
-          6. <i>Retina Photons</i> (Light focused by lenses).
-        </li>
+        <li><b>6-Step Motion Flow:</b> IMU Sampling &rarr; Kalman Fusion &rarr; Engine Camera Matrix &rarr; Stereo Render &rarr; ATW Reprojection &rarr; Retina Photons.</li>
+        <li><b>Frequency Mismatch:</b> Highlight that IMUs poll at 1000Hz (1ms intervals) while rendering runs at 90Hz (11.1ms intervals).</li>
       </ul>
     `
   },
 
   // ==========================================
-  // SLIDE 3: VR SYSTEM ARCHITECTURE (3D LAYER STACK)
+  // SLIDE 3: VR SYSTEM ARCHITECTURE (3D LAYER TOWER)
   // ==========================================
   {
     id: 'slide-3',
@@ -328,65 +318,65 @@ Pipeline Latency: ${(12.5 + Math.hypot(y, p, r) * 0.05).toFixed(1)} ms (NOMINAL)
     render: function() {
       return `
         <div class="split-layout">
-          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-            <div class="content-card clickable-layer active" data-layer="1" style="cursor: pointer; padding: 0.6rem 0.8rem;">
+          <div style="display: flex; flex-direction: column; gap: 0.35rem; justify-content: space-between;">
+            <div class="content-card clickable-layer active" data-layer="1" style="cursor: pointer; padding: 0.45rem 0.75rem;">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div style="font-weight: 700; color: var(--neon-cyan);">1. Physical & Human Layer</div>
+                <div style="font-weight: 800; font-size: 0.85rem; color: var(--text-primary);">1. Physical & Human Layer</div>
                 <span class="card-badge">INPUT</span>
               </div>
-              <div style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.2rem;">
-                Head kinematics, IPD, vestibular organs, hand controllers.
+              <div style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 0.1rem;">
+                Head kinematics, IPD (55-72mm), vestibular organs, hand controllers.
               </div>
             </div>
 
-            <div class="content-card clickable-layer" data-layer="2" style="cursor: pointer; padding: 0.6rem 0.8rem;">
+            <div class="content-card clickable-layer" data-layer="2" style="cursor: pointer; padding: 0.45rem 0.75rem;">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div style="font-weight: 700; color: var(--neon-cyan);">2. Sensor & Tracking Layer</div>
+                <div style="font-weight: 800; font-size: 0.85rem; color: var(--text-primary);">2. Sensor & Tracking Layer</div>
                 <span class="card-badge">FUSION</span>
               </div>
-              <div style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.2rem;">
-                6-DOF IMU, SLAM infrared cameras, Kalman pose estimation.
+              <div style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 0.1rem;">
+                1000Hz 6-DOF IMU, SLAM infrared cameras, Kalman pose estimation.
               </div>
             </div>
 
-            <div class="content-card clickable-layer" data-layer="3" style="cursor: pointer; padding: 0.6rem 0.8rem;">
+            <div class="content-card clickable-layer" data-layer="3" style="cursor: pointer; padding: 0.45rem 0.75rem;">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div style="font-weight: 700; color: var(--neon-cyan);">3. Runtime & Engine Layer</div>
+                <div style="font-weight: 800; font-size: 0.85rem; color: var(--text-primary);">3. Runtime & Engine Layer</div>
                 <span class="card-badge">COMPUTE</span>
               </div>
-              <div style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.2rem;">
+              <div style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 0.1rem;">
                 OpenXR runtime, scene graph, physics simulation, spatial audio.
               </div>
             </div>
 
-            <div class="content-card clickable-layer" data-layer="4" style="cursor: pointer; padding: 0.6rem 0.8rem;">
+            <div class="content-card clickable-layer" data-layer="4" style="cursor: pointer; padding: 0.45rem 0.75rem;">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div style="font-weight: 700; color: var(--neon-cyan);">4. Graphics & Rendering Layer</div>
+                <div style="font-weight: 800; font-size: 0.85rem; color: var(--text-primary);">4. Graphics & Rendering Layer</div>
                 <span class="card-badge">GPU</span>
               </div>
-              <div style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.2rem;">
+              <div style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 0.1rem;">
                 Stereo frustum rasterization, shader passes, Asynchronous TimeWarp.
               </div>
             </div>
 
-            <div class="content-card clickable-layer" data-layer="5" style="cursor: pointer; padding: 0.6rem 0.8rem;">
+            <div class="content-card clickable-layer" data-layer="5" style="cursor: pointer; padding: 0.45rem 0.75rem;">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div style="font-weight: 700; color: var(--neon-cyan);">5. Optical & Display Layer</div>
+                <div style="font-weight: 800; font-size: 0.85rem; color: var(--text-primary);">5. Optical & Display Layer</div>
                 <span class="card-badge">OUTPUT</span>
               </div>
-              <div style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.2rem;">
+              <div style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 0.1rem;">
                 Fast-switch LCD/OLED panels, Pancake lenses, ocular eyebox.
               </div>
             </div>
           </div>
 
-          <!-- 3D Holographic Layer Canvas -->
-          <div class="content-card" style="padding: 0.5rem; position: relative;">
+          <!-- 3D Layer Stack Viewport -->
+          <div class="content-card" style="padding: 0.4rem; position: relative;">
             <div class="three-canvas-container" id="s3-3d-container">
-              <div class="three-overlay-badge" id="s3-layer-badge">LAYERS: 1 TO 5 STACK</div>
-              <div class="three-drag-hint">🖱️ Drag to Tilt Stack</div>
+              <div class="three-overlay-badge" id="s3-layer-badge">LAYER 1: PHYSICAL & HUMAN</div>
+              <div class="three-drag-hint">🖱️ Click layer to isolate tier</div>
             </div>
-            <div id="s3-detail-specs" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--neon-green); text-align: center; margin-top: 0.4rem;">
+            <div id="s3-detail-specs" style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-blue); text-align: center; margin-top: 0.35rem; font-weight: 700;">
               • Human IPD: 55mm-72mm • Biological Latency: &lt;5ms
             </div>
           </div>
@@ -403,19 +393,19 @@ Pipeline Latency: ${(12.5 + Math.hypot(y, p, r) * 0.05).toFixed(1)} ms (NOMINAL)
 
       const group = new THREE.Group();
       const plates = [];
-      const colors = [0x00E5FF, 0x8B5CF6, 0x00FF9D, 0xFFB800, 0xFF0077];
+      const colors = [0x2563EB, 0x7C3AED, 0x059669, 0xD97706, 0xDC2626];
 
       for (let i = 0; i < 5; i++) {
-        const geo = new THREE.BoxGeometry(2.4, 0.08, 1.4);
+        const geo = new THREE.BoxGeometry(2.4, 0.1, 1.4);
         const mat = new THREE.MeshStandardMaterial({
           color: colors[i],
-          metalness: 0.8,
-          roughness: 0.2,
+          metalness: 0.5,
+          roughness: 0.3,
           transparent: true,
           opacity: 0.85
         });
         const p = new THREE.Mesh(geo, mat);
-        p.position.y = (i - 2) * 0.45;
+        p.position.y = (2 - i) * 0.42;
         group.add(p);
         plates.push(p);
       }
@@ -423,9 +413,9 @@ Pipeline Latency: ${(12.5 + Math.hypot(y, p, r) * 0.05).toFixed(1)} ms (NOMINAL)
       const sceneData = window.VR3D.initScene(container, {
         targetGroup: group,
         camZ: 3.2,
-        camY: 0.5,
-        initRotX: 0.2,
-        initRotY: -0.4
+        camY: 0.4,
+        initRotX: 0.25,
+        initRotY: -0.45
       });
 
       if (!sceneData) return;
@@ -451,8 +441,8 @@ Pipeline Latency: ${(12.5 + Math.hypot(y, p, r) * 0.05).toFixed(1)} ms (NOMINAL)
           const idx = parseInt(id) - 1;
 
           plates.forEach((p, i) => {
-            p.scale.set(i === idx ? 1.15 : 1, i === idx ? 1.5 : 1, i === idx ? 1.15 : 1);
-            p.material.opacity = i === idx ? 1.0 : 0.4;
+            p.scale.set(i === idx ? 1.15 : 1, i === idx ? 1.6 : 1, i === idx ? 1.15 : 1);
+            p.material.opacity = i === idx ? 1.0 : 0.35;
           });
 
           badge.textContent = `LAYER ${id}: ${layer.querySelector('.card-badge').textContent}`;
@@ -464,70 +454,75 @@ Pipeline Latency: ${(12.5 + Math.hypot(y, p, r) * 0.05).toFixed(1)} ms (NOMINAL)
     notes: `
       <b>Slide 3 Talking Points:</b>
       <ul>
-        <li><b>The 5 Architecture Layers:</b> VR is a closed feedback loop across 5 distinct engineering layers: Human Anatomy &rarr; Physics/Sensors &rarr; OS/Runtime &rarr; GPU Silicon &rarr; Optical Physics.</li>
-        <li><b>Interactivity:</b> Click each layer to isolate its position in the 3D stack.</li>
+        <li><b>5 Architecture Layers:</b> Point out that VR is a closed feedback loop across 5 distinct engineering layers: Human Anatomy &rarr; Physics/Sensors &rarr; OS/Runtime &rarr; GPU Silicon &rarr; Optical Physics.</li>
       </ul>
     `
   },
 
   // ==========================================
-  // SLIDE 4: HARDWARE LAYER EXPLORER (3D EXPLODED VIEW)
+  // SLIDE 4: HARDWARE EXPLODED ASSEMBLY (WITH EXPLODE SLIDER)
   // ==========================================
   {
     id: 'slide-4',
     part: 'Hardware Systems',
     partNumber: 'PART 4',
     title: 'The VR Hardware Layer: Inside the Headset',
-    subtitle: 'Explore the Critical Silicon, Sensors, Optics, and Silicon Packaging in Modern HMDs',
+    subtitle: 'Interactive Exploded Teardown of Sensors, Silicon, Displays, and Pancake Optics',
     render: function() {
       return `
         <div class="split-layout">
-          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem;">
-            <div class="content-card hw-card active" data-hw="imu" style="cursor: pointer; padding: 0.6rem;">
-              <div style="font-size: 1.1rem;">🧭</div>
-              <div style="font-weight: 700; color: var(--neon-cyan); font-size: 0.85rem;">MEMS IMU</div>
-              <div style="font-size: 0.72rem; color: var(--text-secondary);">1000Hz Gyro & Accelerometer</div>
+          <div style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.4rem;">
+              <div class="content-card hw-card active" data-hw="imu" style="cursor: pointer; padding: 0.5rem;">
+                <div style="font-weight: 800; color: var(--accent-blue); font-size: 0.8rem;">🧭 MEMS IMU</div>
+                <div style="font-size: 0.68rem; color: var(--text-secondary);">1000Hz Gyro & Accelerometer</div>
+              </div>
+
+              <div class="content-card hw-card" data-hw="cameras" style="cursor: pointer; padding: 0.5rem;">
+                <div style="font-weight: 800; color: var(--accent-blue); font-size: 0.8rem;">📷 IR Cameras</div>
+                <div style="font-size: 0.68rem; color: var(--text-secondary);">4x Global Shutter Computer Vision</div>
+              </div>
+
+              <div class="content-card hw-card" data-hw="soc" style="cursor: pointer; padding: 0.5rem;">
+                <div style="font-weight: 800; color: var(--accent-blue); font-size: 0.8rem;">⚡ Compute SoC</div>
+                <div style="font-size: 0.68rem; color: var(--text-secondary);">Snapdragon XR2 / Desktop GPU</div>
+              </div>
+
+              <div class="content-card hw-card" data-hw="display" style="cursor: pointer; padding: 0.5rem;">
+                <div style="font-weight: 800; color: var(--accent-blue); font-size: 0.8rem;">🖥️ Fast-Switch LCD</div>
+                <div style="font-size: 0.68rem; color: var(--text-secondary);">Dual 2.5K Panels @ 120Hz</div>
+              </div>
+
+              <div class="content-card hw-card" data-hw="optics" style="cursor: pointer; padding: 0.5rem;">
+                <div style="font-weight: 800; color: var(--accent-blue); font-size: 0.8rem;">🔍 Pancake Optics</div>
+                <div style="font-size: 0.68rem; color: var(--text-secondary);">Folded Polarized Light Path</div>
+              </div>
+
+              <div class="content-card hw-card" data-hw="audio" style="cursor: pointer; padding: 0.5rem;">
+                <div style="font-weight: 800; color: var(--accent-blue); font-size: 0.8rem;">🎧 Spatial Audio</div>
+                <div style="font-size: 0.68rem; color: var(--text-secondary);">HRTF 3D Binaural Sound DSP</div>
+              </div>
             </div>
 
-            <div class="content-card hw-card" data-hw="cameras" style="cursor: pointer; padding: 0.6rem;">
-              <div style="font-size: 1.1rem;">📷</div>
-              <div style="font-weight: 700; color: var(--neon-cyan); font-size: 0.85rem;">Tracking Cameras</div>
-              <div style="font-size: 0.72rem; color: var(--text-secondary);">4x Global Shutter IR</div>
+            <!-- Explode Assembly Slider -->
+            <div class="control-panel" style="margin-top: 0.4rem;">
+              <div class="control-row">
+                <span class="control-label" style="font-size: 0.72rem;">Explode Assembly:</span>
+                <input type="range" class="cyber-slider" id="s4-explode-slider" min="0" max="100" value="60">
+                <span class="telemetry-value" id="s4-explode-val">60%</span>
+              </div>
             </div>
 
-            <div class="content-card hw-card" data-hw="soc" style="cursor: pointer; padding: 0.6rem;">
-              <div style="font-size: 1.1rem;">⚡</div>
-              <div style="font-weight: 700; color: var(--neon-cyan); font-size: 0.85rem;">Compute SoC / GPU</div>
-              <div style="font-size: 0.72rem; color: var(--text-secondary);">Snapdragon XR2 / Desktop GPU</div>
-            </div>
-
-            <div class="content-card hw-card" data-hw="display" style="cursor: pointer; padding: 0.6rem;">
-              <div style="font-size: 1.1rem;">🖥️</div>
-              <div style="font-weight: 700; color: var(--neon-cyan); font-size: 0.85rem;">Display Panels</div>
-              <div style="font-size: 0.72rem; color: var(--text-secondary);">Fast-Switch LCD @ 120Hz</div>
-            </div>
-
-            <div class="content-card hw-card" data-hw="optics" style="cursor: pointer; padding: 0.6rem;">
-              <div style="font-size: 1.1rem;">🔍</div>
-              <div style="font-weight: 700; color: var(--neon-cyan); font-size: 0.85rem;">Pancake Optics</div>
-              <div style="font-size: 0.72rem; color: var(--text-secondary);">Polarized Folded Light Path</div>
-            </div>
-
-            <div class="content-card hw-card" data-hw="audio" style="cursor: pointer; padding: 0.6rem;">
-              <div style="font-size: 1.1rem;">🎧</div>
-              <div style="font-weight: 700; color: var(--neon-cyan); font-size: 0.85rem;">Spatial Audio DSP</div>
-              <div style="font-size: 0.72rem; color: var(--text-secondary);">HRTF 3D Binaural Sound</div>
+            <div class="telemetry-box" id="s4-desc" style="height: 65px; font-size: 0.72rem; margin-top: 0.4rem;">
+[MEMS IMU SELECTED] Samples angular velocity at 1000Hz (1ms) to predict pose before cameras finish a frame.
             </div>
           </div>
 
           <!-- 3D Exploded Headset View -->
-          <div class="content-card" style="padding: 0.5rem; position: relative;">
+          <div class="content-card" style="padding: 0.4rem; position: relative;">
             <div class="three-canvas-container" id="s4-3d-container">
-              <div class="three-overlay-badge" id="s4-badge">EXPLODED HARDWARE VIEW</div>
-              <div class="three-drag-hint">🖱️ Drag to Inspect Internals</div>
-            </div>
-            <div id="s4-desc" style="font-size: 0.78rem; color: var(--text-secondary); text-align: center; margin-top: 0.4rem;">
-              Click any component to highlight its location in the exploded 3D assembly.
+              <div class="three-overlay-badge" id="s4-badge">HARDWARE EXPLODED ASSEMBLY</div>
+              <div class="three-drag-hint">🖱️ Drag to rotate / Slide to explode</div>
             </div>
           </div>
         </div>
@@ -537,6 +532,8 @@ Pipeline Latency: ${(12.5 + Math.hypot(y, p, r) * 0.05).toFixed(1)} ms (NOMINAL)
       const cards = document.querySelectorAll('.hw-card');
       const badge = document.getElementById('s4-badge');
       const desc = document.getElementById('s4-desc');
+      const slider = document.getElementById('s4-explode-slider');
+      const valText = document.getElementById('s4-explode-val');
       const container = document.getElementById('s4-3d-container');
 
       if (!container || !window.VR3D) return;
@@ -544,41 +541,56 @@ Pipeline Latency: ${(12.5 + Math.hypot(y, p, r) * 0.05).toFixed(1)} ms (NOMINAL)
       const group = new THREE.Group();
 
       // Front plate
-      const plateGeo = new THREE.BoxGeometry(1.6, 0.9, 0.08);
-      const plateMat = new THREE.MeshStandardMaterial({ color: 0x05070A, metalness: 0.9, roughness: 0.1 });
+      const plateGeo = new THREE.BoxGeometry(1.6, 0.9, 0.06);
+      const plateMat = new THREE.MeshStandardMaterial({ color: 0x0F172A, metalness: 0.9, roughness: 0.2 });
       const plate = new THREE.Mesh(plateGeo, plateMat);
-      plate.position.z = 0.8;
       group.add(plate);
 
       // Display panel
-      const dispGeo = new THREE.BoxGeometry(1.4, 0.7, 0.05);
-      const dispMat = new THREE.MeshBasicMaterial({ color: 0x00E5FF });
+      const dispGeo = new THREE.BoxGeometry(1.4, 0.75, 0.04);
+      const dispMat = new THREE.MeshStandardMaterial({ color: 0x0284C7, emissive: 0x0284C7, emissiveIntensity: 0.4 });
       const disp = new THREE.Mesh(dispGeo, dispMat);
-      disp.position.z = 0.3;
       group.add(disp);
 
-      // Dual Pancake Lenses
+      // Pancake Lenses
       const lensGeo = new THREE.CylinderGeometry(0.25, 0.25, 0.08, 24);
-      const lensMat = new THREE.MeshStandardMaterial({ color: 0x8B5CF6, transparent: true, opacity: 0.8 });
+      const lensMat = new THREE.MeshStandardMaterial({ color: 0x7C3AED, transparent: true, opacity: 0.85 });
       const lensL = new THREE.Mesh(lensGeo, lensMat);
       lensL.rotation.x = Math.PI / 2;
-      lensL.position.set(-0.35, 0, -0.3);
+      lensL.position.x = -0.35;
       const lensR = lensL.clone();
       lensR.position.x = 0.35;
       group.add(lensL);
       group.add(lensR);
 
-      // IMU Chip (Glowing gold cube in center)
-      const imuGeo = new THREE.BoxGeometry(0.18, 0.18, 0.18);
-      const imuMat = new THREE.MeshStandardMaterial({ color: 0xFFB800, emissive: 0xFFB800, emissiveIntensity: 0.8 });
+      // IMU & SoC Motherboard
+      const imuGeo = new THREE.BoxGeometry(0.2, 0.2, 0.08);
+      const imuMat = new THREE.MeshStandardMaterial({ color: 0xD97706, emissive: 0xD97706, emissiveIntensity: 0.6 });
       const imu = new THREE.Mesh(imuGeo, imuMat);
-      imu.position.set(0, 0, 0);
       group.add(imu);
+
+      // Visor Casing
+      const visorGeo = new THREE.BoxGeometry(1.62, 0.92, 0.2);
+      const visorMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.6 });
+      const visor = new THREE.Mesh(visorGeo, visorMat);
+      group.add(visor);
+
+      function updateExplosion(pct) {
+        const factor = pct / 100;
+        plate.position.z = 0.2 + factor * 1.2;
+        disp.position.z = 0.0 + factor * 0.5;
+        imu.position.z = -0.2 - factor * 0.1;
+        lensL.position.z = -0.4 - factor * 0.7;
+        lensR.position.z = -0.4 - factor * 0.7;
+        visor.position.z = -0.6 - factor * 1.2;
+      }
+
+      updateExplosion(60);
 
       const sceneData = window.VR3D.initScene(container, {
         targetGroup: group,
-        camZ: 3.0,
-        camY: 0.6,
+        camZ: 3.2,
+        camY: 0.5,
         initRotX: 0.2,
         initRotY: -0.5
       });
@@ -587,17 +599,25 @@ Pipeline Latency: ${(12.5 + Math.hypot(y, p, r) * 0.05).toFixed(1)} ms (NOMINAL)
       sceneData.scene.add(group);
 
       sceneData.animate((time) => {
-        imu.rotation.y += 0.02;
         group.rotation.y += 0.002;
       });
 
+      if (slider) {
+        slider.addEventListener('input', (e) => {
+          const val = parseInt(e.target.value);
+          valText.textContent = `${val}%`;
+          updateExplosion(val);
+          if (window.vrAudio) window.vrAudio.playClick(320);
+        });
+      }
+
       const data = {
-        'imu': { badge: 'MEMS IMU (1000HZ)', desc: 'Measures angular velocity & acceleration at 1ms intervals before cameras complete a frame.' },
-        'cameras': { badge: '4X IR CAMERAS', desc: 'Global shutter cameras track environmental feature points to triangulate 6-DOF position.' },
-        'soc': { badge: 'COMPUTE SOC & GPU', desc: 'Snapdragon XR2 / Desktop GPU constrained within a strict thermal and power budget.' },
-        'display': { badge: 'FAST-SWITCH LCD / OLED', desc: 'Sub-millisecond pixel response time with strobed backlight eliminates motion blur.' },
-        'optics': { badge: 'FOLDED PANCAKE LENSES', desc: 'Polarized light bouncing cuts optical depth in half, reducing front-heavy torque on the neck.' },
-        'audio': { badge: 'SPATIAL AUDIO DSP', desc: 'Calculates Head-Related Transfer Functions (HRTF) for 3D binaural sound pinpointing.' }
+        'imu': '[MEMS IMU SELECTED] Samples angular rate at 1000Hz (1ms). Direct SPI bus to real-time DSP.',
+        'cameras': '[TRACKING CAMERAS] 4x Monochrome infrared global shutter cameras. Triangulates position in space.',
+        'soc': '[COMPUTE SOC] Snapdragon XR2 Gen 2 / Apple M2. Dedicated video decompression & reprojection.',
+        'display': '[FAST-SWITCH LCD] Sub-millisecond response time with <1ms strobed illumination prevents motion blur.',
+        'optics': '[FOLDED PANCAKE LENSES] Polarized light bouncing cuts optical depth in half, reducing front-heavy weight.',
+        'audio': '[SPATIAL AUDIO DSP] HRTF filter engine calculates pinna time and level delay to place sounds in 3D.'
       };
 
       cards.forEach(card => {
@@ -605,73 +625,63 @@ Pipeline Latency: ${(12.5 + Math.hypot(y, p, r) * 0.05).toFixed(1)} ms (NOMINAL)
           cards.forEach(c => c.classList.remove('active'));
           card.classList.add('active');
           const hw = card.getAttribute('data-hw');
-          if (data[hw]) {
-            badge.textContent = data[hw].badge;
-            desc.textContent = data[hw].desc;
-            if (window.vrAudio) window.vrAudio.playClick(500);
-          }
+          badge.textContent = `SELECTED: ${card.querySelector('div').textContent}`;
+          desc.textContent = data[hw];
+          if (window.vrAudio) window.vrAudio.playClick(450);
         });
       });
     },
     notes: `
       <b>Slide 4 Talking Points:</b>
       <ul>
-        <li><b>Hardware Constraints:</b> Contrast standalone headsets (constrained to 5-8 Watts on your face) with tethered PC headsets (unlimited power, 400W RTX GPU).</li>
-        <li><b>The Low Persistence Trick:</b> Explain why standard phone displays smear horribly in VR: they illuminate continuously. VR displays strobe for &lt;1ms to freeze photons on the retina.</li>
+        <li><b>Exploded View:</b> Drag the Explode Assembly slider to physically separate the optical elements and show students how light travels from display to lenses to the eye.</li>
       </ul>
     `
   },
 
   // ==========================================
-  // SLIDE 5: HEAD-COUPLED DISPLAY (3-DOF VS 6-DOF)
+  // SLIDE 5: 3-DOF VS 6-DOF (CLEAR INTUITIVE PARALLAX TEST)
   // ==========================================
   {
     id: 'slide-5',
     part: 'Tracking & Kinematics',
     partNumber: 'PART 5',
     title: 'Head-Coupled Display: 3-DOF vs 6-DOF',
-    subtitle: 'Why Rotational Tracking Alone Causes Nausea, and How Translational Parallax Solves It',
+    subtitle: 'The Motion Parallax Test: Why Rotating Alone Causes Sickness, and How Translation Fixes It',
     render: function() {
       return `
         <div class="split-layout">
-          <div class="content-card">
-            <span class="card-badge">DEGREES OF FREEDOM</span>
-            <div style="display: flex; gap: 0.5rem; margin: 0.5rem 0;">
-              <button class="cyber-btn" id="s5-mode-6dof" style="flex: 1;">6-DOF Mode (Full VR)</button>
-              <button class="cyber-btn secondary" id="s5-mode-3dof" style="flex: 1;">3-DOF Mode (Cardboard)</button>
-            </div>
+          <div class="content-card" style="justify-content: space-between;">
+            <div>
+              <span class="card-badge">THE MOTION PARALLAX TEST</span>
+              <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.4; margin-bottom: 0.5rem;">
+                In the physical world, when you lean sideways, objects close to you shift across your vision faster than far away objects. This is <b>Motion Parallax</b>.
+              </p>
 
-            <div class="control-panel">
-              <div style="font-weight: 700; color: var(--neon-cyan); font-size: 0.78rem; margin-bottom: 0.2rem;">ROTATION (3-DOF):</div>
-              <div class="control-row">
-                <span class="control-label">Yaw (Y-Rot):</span>
-                <input type="range" class="cyber-slider" id="s5-yaw" min="-45" max="45" value="0">
-                <span class="telemetry-value" id="s5-yaw-val">0°</span>
+              <div style="display: flex; gap: 0.4rem; margin-bottom: 0.5rem;">
+                <button class="cyber-btn" id="s5-mode-6dof" style="flex: 1;">✓ 6-DOF (Modern VR)</button>
+                <button class="cyber-btn secondary" id="s5-mode-3dof" style="flex: 1;">✕ 3-DOF (Cardboard)</button>
               </div>
 
-              <div style="font-weight: 700; color: var(--neon-purple); font-size: 0.78rem; margin: 0.5rem 0 0.2rem 0;">TRANSLATION (6-DOF ONLY):</div>
-              <div class="control-row">
-                <span class="control-label">Position X:</span>
-                <input type="range" class="cyber-slider" id="s5-posx" min="-40" max="40" value="0">
-                <span class="telemetry-value" id="s5-posx-val">0cm</span>
-              </div>
-              <div class="control-row">
-                <span class="control-label">Position Z:</span>
-                <input type="range" class="cyber-slider" id="s5-posz" min="-40" max="40" value="0">
-                <span class="telemetry-value" id="s5-posz-val">0cm</span>
+              <div class="control-panel">
+                <div class="control-row">
+                  <span class="control-label" style="font-size: 0.72rem;">Lean Body (Sway):</span>
+                  <input type="range" class="cyber-slider" id="s5-lean-slider" min="-50" max="50" value="0">
+                  <span class="telemetry-value" id="s5-lean-val">0 cm</span>
+                </div>
               </div>
             </div>
 
-            <div id="s5-warning" style="margin-top: 0.5rem; font-size: 0.78rem; color: var(--neon-green); font-family: var(--font-mono);">
-              ✓ 6-DOF Active: Full motion parallax matches inner-ear vestibular acceleration.
+            <div id="s5-alert-box" style="background: #ECFDF5; border: 1px solid rgba(5, 150, 105, 0.3); border-radius: var(--radius-sm); padding: 0.6rem; font-size: 0.75rem; color: var(--accent-green);">
+              <b>✓ 6-DOF PARALLAX ACTIVE:</b> As you lean, the camera shifts sideways. The foreground pillar moves faster than the background sphere, matching inner-ear balance!
             </div>
           </div>
 
-          <!-- 3D Room with Foreground Pillars & Parallax Objects -->
-          <div class="content-card" style="padding: 0.5rem; position: relative;">
+          <!-- 3D Parallax Viewport -->
+          <div class="content-card" style="padding: 0.4rem; position: relative;">
             <div class="three-canvas-container" id="s5-3d-container">
-              <div class="three-overlay-badge">🏛️ 3D MOTION PARALLAX ROOM</div>
-              <div class="three-drag-hint">Leaning reveals hidden objects!</div>
+              <div class="three-overlay-badge" id="s5-badge">6-DOF: LEAN TO PEEK BEHIND PILLAR</div>
+              <div class="three-drag-hint">Move Lean Slider</div>
             </div>
           </div>
         </div>
@@ -681,30 +691,27 @@ Pipeline Latency: ${(12.5 + Math.hypot(y, p, r) * 0.05).toFixed(1)} ms (NOMINAL)
       let is6DOF = true;
       const btn6 = document.getElementById('s5-mode-6dof');
       const btn3 = document.getElementById('s5-mode-3dof');
-      const yaw = document.getElementById('s5-yaw');
-      const posX = document.getElementById('s5-posx');
-      const posZ = document.getElementById('s5-posz');
-      const yawVal = document.getElementById('s5-yaw-val');
-      const posXVal = document.getElementById('s5-posx-val');
-      const posZVal = document.getElementById('s5-posz-val');
-      const warning = document.getElementById('s5-warning');
+      const slider = document.getElementById('s5-lean-slider');
+      const valText = document.getElementById('s5-lean-val');
+      const alertBox = document.getElementById('s5-alert-box');
+      const badge = document.getElementById('s5-badge');
       const container = document.getElementById('s5-3d-container');
 
       if (!container || !window.VR3D) return;
 
-      const sceneData = window.VR3D.initScene(container, { camZ: 3.5, camY: 0.5 });
+      const sceneData = window.VR3D.initScene(container, { camZ: 3.5, camY: 0.6 });
       if (!sceneData) return;
 
-      // Foreground pillar that occludes background
-      const pillarGeo = new THREE.CylinderGeometry(0.2, 0.2, 2.2, 16);
-      const pillarMat = new THREE.MeshStandardMaterial({ color: 0x334155, metalness: 0.8 });
+      // Close foreground pillar
+      const pillarGeo = new THREE.CylinderGeometry(0.22, 0.22, 2.2, 16);
+      const pillarMat = new THREE.MeshStandardMaterial({ color: 0x334155, metalness: 0.6 });
       const pillar = new THREE.Mesh(pillarGeo, pillarMat);
-      pillar.position.set(0, 0, 0.8);
+      pillar.position.set(0, 0, 1.0);
       sceneData.scene.add(pillar);
 
-      // Hidden glowing object behind pillar
-      const orbGeo = new THREE.SphereGeometry(0.28, 24, 24);
-      const orbMat = new THREE.MeshStandardMaterial({ color: 0x00FF9D, emissive: 0x00FF9D, emissiveIntensity: 0.6 });
+      // Target hidden directly behind pillar
+      const orbGeo = new THREE.SphereGeometry(0.3, 24, 24);
+      const orbMat = new THREE.MeshStandardMaterial({ color: 0x059669, emissive: 0x059669, emissiveIntensity: 0.6 });
       const orb = new THREE.Mesh(orbGeo, orbMat);
       orb.position.set(0, 0, -1.0);
       sceneData.scene.add(orb);
@@ -713,42 +720,35 @@ Pipeline Latency: ${(12.5 + Math.hypot(y, p, r) * 0.05).toFixed(1)} ms (NOMINAL)
         orb.rotation.y = time * 0.002;
       });
 
-      function updateCamera() {
-        const y = parseFloat(yaw.value);
-        let x = parseFloat(posX.value);
-        let z = parseFloat(posZ.value);
-
-        yawVal.textContent = `${y}°`;
+      function updateLean() {
+        let lean = parseFloat(slider.value);
+        valText.textContent = `${lean} cm`;
 
         if (!is6DOF) {
-          x = 0;
-          z = 0;
-          posXVal.textContent = 'LOCKED (0cm)';
-          posZVal.textContent = 'LOCKED (0cm)';
-          warning.innerHTML = `<span style="color: var(--neon-red);">⚠️ 3-DOF LIMITATION: Neck translation ignored! Background stays occluded &rarr; Vestibular mismatch induces nausea!</span>`;
+          sceneData.camera.position.x = 0;
+          alertBox.style.background = '#FEF2F2';
+          alertBox.style.borderColor = 'rgba(220, 38, 38, 0.3)';
+          alertBox.style.color = '#DC2626';
+          alertBox.innerHTML = `<b>⚠️ 3-DOF LIMITATION (NO PARALLAX):</b> Neck translation ignored! The green target stays completely occluded behind the pillar. Inner ear signals motion, but eyes see static world &rarr; Brain triggers nausea!`;
+          badge.textContent = '3-DOF: CAMERA LOCKED (NO PARALLAX)';
         } else {
-          posXVal.textContent = `${x}cm`;
-          posZVal.textContent = `${z}cm`;
-          warning.innerHTML = `<span style="color: var(--neon-green);">✓ 6-DOF Active: Moving sideways reveals the green orb hidden behind the pillar!</span>`;
+          sceneData.camera.position.x = (lean / 50) * 1.6;
+          alertBox.style.background = '#ECFDF5';
+          alertBox.style.borderColor = 'rgba(5, 150, 105, 0.3)';
+          alertBox.style.color = '#059669';
+          alertBox.innerHTML = `<b>✓ 6-DOF PARALLAX ACTIVE:</b> Camera translates sideways! Leaning reveals the green sphere hidden behind the pillar, perfectly matching vestibular balance!`;
+          badge.textContent = '6-DOF: LEAN TO PEEK BEHIND PILLAR';
         }
-
-        sceneData.camera.position.x = (x / 40) * 1.5;
-        sceneData.camera.position.z = 3.5 - (z / 40) * 1.2;
-        sceneData.camera.rotation.y = -THREE.MathUtils.degToRad(y);
         if (window.vrAudio) window.vrAudio.playClick(320);
       }
 
-      [yaw, posX, posZ].forEach(el => {
-        if (el) el.addEventListener('input', updateCamera);
-      });
+      slider.addEventListener('input', updateLean);
 
       btn6.addEventListener('click', () => {
         is6DOF = true;
         btn6.className = 'cyber-btn';
         btn3.className = 'cyber-btn secondary';
-        posX.disabled = false;
-        posZ.disabled = false;
-        updateCamera();
+        updateLean();
         if (window.vrAudio) window.vrAudio.playSuccess();
       });
 
@@ -756,23 +756,20 @@ Pipeline Latency: ${(12.5 + Math.hypot(y, p, r) * 0.05).toFixed(1)} ms (NOMINAL)
         is6DOF = false;
         btn3.className = 'cyber-btn';
         btn6.className = 'cyber-btn secondary';
-        posX.disabled = true;
-        posZ.disabled = true;
-        updateCamera();
+        updateLean();
         if (window.vrAudio) window.vrAudio.playBuzz();
       });
     },
     notes: `
       <b>Slide 5 Talking Points:</b>
       <ul>
-        <li><b>The Failure of Google Cardboard:</b> Why did early phone VR fail? Because when a user leans forward, their neck naturally translates. If the software only detects rotation, the virtual world moves <i>with</i> the user rather than staying fixed, triggering vestibular mismatch.</li>
-        <li><b>Demonstrate Parallax:</b> Show how leaning sideways in 6-DOF mode reveals the hidden green orb behind the pillar!</li>
+        <li><b>The Parallax Test:</b> Demonstrate how 3-DOF cannot see around the pillar, whereas 6-DOF translation reveals the hidden object, eliminating simulator sickness.</li>
       </ul>
     `
   },
 
   // ==========================================
-  // SLIDE 6: TRACKING SYSTEMS (INSIDE-OUT VS OUTSIDE-IN)
+  // SLIDE 6: TRACKING SYSTEMS & ACADEMIC MATRIX
   // ==========================================
   {
     id: 'slide-6',
@@ -782,41 +779,63 @@ Pipeline Latency: ${(12.5 + Math.hypot(y, p, r) * 0.05).toFixed(1)} ms (NOMINAL)
     subtitle: 'SLAM Computer Vision versus Infrared Lighthouse Laser Sweeping',
     render: function() {
       return `
-        <div style="display: flex; flex-direction: column; gap: 0.8rem; height: 100%;">
+        <div style="display: flex; flex-direction: column; gap: 0.5rem; height: 100%;">
           <div style="display: flex; gap: 0.5rem; justify-content: center;">
-            <button class="cyber-btn" id="s6-mode-inside" style="width: 220px;">Inside-Out (SLAM)</button>
-            <button class="cyber-btn secondary" id="s6-mode-outside" style="width: 220px;">Outside-In (Lighthouse)</button>
+            <button class="cyber-btn" id="s6-mode-inside" style="width: 200px;">Inside-Out (SLAM)</button>
+            <button class="cyber-btn secondary" id="s6-mode-outside" style="width: 200px;">Outside-In (Lighthouse)</button>
             <button class="cyber-btn secondary" id="s6-occlude-btn" style="width: 200px;">Simulate Occlusion</button>
           </div>
 
           <div class="split-layout" style="flex: 1;">
             <!-- 3D Tracking Rays Visualizer -->
-            <div class="content-card" style="padding: 0.5rem; position: relative;">
+            <div class="content-card" style="padding: 0.4rem; position: relative;">
               <div class="three-canvas-container" id="s6-3d-container">
                 <div class="three-overlay-badge" id="s6-canvas-badge">INSIDE-OUT: 4X SLAM TRACKING RAYS</div>
-                <div class="three-drag-hint">🖱️ Drag to View Room Tracking</div>
+                <div class="three-drag-hint">Orbit to view camera rays</div>
               </div>
             </div>
 
-            <!-- Tradeoff Telemetry -->
+            <!-- Formatted Academic Comparison Table -->
             <div class="content-card" style="justify-content: space-between;">
-              <div>
-                <span class="card-badge">ENGINEERING COMPARISON</span>
-                <h3 id="s6-tech-title" style="color: var(--neon-cyan); margin: 0.5rem 0; font-size: 1.15rem;">
-                  Inside-Out SLAM Tracking
-                </h3>
-                <div id="s6-tech-desc" style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5;">
-                  Cameras mounted on the headset continuously extract 2D feature points from the room, matching them across frames to triangulate 3D position in real time.
-                </div>
-              </div>
+              <table class="academic-table">
+                <thead>
+                  <tr>
+                    <th>Feature</th>
+                    <th>Inside-Out (SLAM)</th>
+                    <th>Outside-In (Lighthouse)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>Hardware</b></td>
+                    <td>4x Onboard IR Cameras</td>
+                    <td>2-4 Fixed Base Stations</td>
+                  </tr>
+                  <tr>
+                    <td><b>Mobility</b></td>
+                    <td>100% Free-Roaming</td>
+                    <td>Tethered / Dedicated Room</td>
+                  </tr>
+                  <tr>
+                    <td><b>Occlusion</b></td>
+                    <td>Blind spots behind body</td>
+                    <td>Zero occlusion in volume</td>
+                  </tr>
+                  <tr>
+                    <td><b>Precision</b></td>
+                    <td>~1.0mm positional jitter</td>
+                    <td>Sub-millimeter (&lt;0.1mm)</td>
+                  </tr>
+                  <tr>
+                    <td><b>Latency</b></td>
+                    <td>~2.5ms CV processing</td>
+                    <td>&lt;1.0ms photodiode timing</td>
+                  </tr>
+                </tbody>
+              </table>
 
-              <div class="telemetry-box" id="s6-telemetry" style="height: 100px; font-size: 0.78rem;">
-[TRACKING TELEMETRY]
-• Architecture: Inside-Out Monocular/Stereo SLAM
-• External Sensors Required: ZERO (Standalone mobility)
-• Controller Occlusion: Possible behind the back
-• Accuracy: ~1.0mm positional jitter
-• Latency: ~2.5ms processing overhead
+              <div id="s6-warning-box" style="margin-top: 0.4rem; padding: 0.5rem; border-radius: var(--radius-sm); background: #EFF6FF; border: 1px solid rgba(37, 99, 235, 0.25); font-size: 0.72rem; color: var(--accent-blue);">
+                <b>ACTIVE TRACKING STATUS:</b> Nominal execution. 4 tracking cameras detecting room feature points.
               </div>
             </div>
           </div>
@@ -828,9 +847,7 @@ Pipeline Latency: ${(12.5 + Math.hypot(y, p, r) * 0.05).toFixed(1)} ms (NOMINAL)
       const btnOut = document.getElementById('s6-mode-outside');
       const btnOcc = document.getElementById('s6-occlude-btn');
       const badge = document.getElementById('s6-canvas-badge');
-      const title = document.getElementById('s6-tech-title');
-      const desc = document.getElementById('s6-tech-desc');
-      const telem = document.getElementById('s6-telemetry');
+      const warnBox = document.getElementById('s6-warning-box');
       const container = document.getElementById('s6-3d-container');
 
       if (!container || !window.VR3D) return;
@@ -838,37 +855,33 @@ Pipeline Latency: ${(12.5 + Math.hypot(y, p, r) * 0.05).toFixed(1)} ms (NOMINAL)
       const sceneData = window.VR3D.initScene(container, { camZ: 3.2, camY: 0.8 });
       if (!sceneData) return;
 
-      // Headset in center
       const { group: hmd } = window.VR3D.createHeadset();
       hmd.scale.set(0.7, 0.7, 0.7);
       sceneData.scene.add(hmd);
 
-      // Inside-Out Tracking Frustum Cones
       const cones = [];
       const coneAngles = [
         { rotY: 0.4, rotX: 0.3 }, { rotY: -0.4, rotX: 0.3 },
         { rotY: 0.4, rotX: -0.3 }, { rotY: -0.4, rotX: -0.3 }
       ];
       coneAngles.forEach(a => {
-        const frustum = window.VR3D.createFrustum(0x00E5FF, 50, 1.2, 0.2, 1.8);
+        const frustum = window.VR3D.createFrustum(0x0284C7, 50, 1.2, 0.2, 1.8);
         frustum.group.rotation.y = a.rotY;
         frustum.group.rotation.x = a.rotX;
         hmd.add(frustum.group);
         cones.push(frustum);
       });
 
-      // Outside-In Lighthouse Base Stations in corners
       const lighthouseGroup = new THREE.Group();
       lighthouseGroup.visible = false;
-      const lh1 = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.3, 0.3), new THREE.MeshStandardMaterial({ color: 0x8B5CF6 }));
+      const lh1 = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.3, 0.3), new THREE.MeshStandardMaterial({ color: 0x7C3AED }));
       lh1.position.set(-2, 1.5, -1.5);
       const lh2 = lh1.clone();
       lh2.position.set(2, 1.5, 1.5);
       lighthouseGroup.add(lh1);
       lighthouseGroup.add(lh2);
 
-      // Sweeping Laser Lines from Lighthouses
-      const laserMat = new THREE.LineBasicMaterial({ color: 0x8B5CF6, transparent: true, opacity: 0.8 });
+      const laserMat = new THREE.LineBasicMaterial({ color: 0x7C3AED, transparent: true, opacity: 0.85 });
       const laserGeo = new THREE.BufferGeometry().setFromPoints([lh1.position, hmd.position, lh2.position, hmd.position]);
       const laserLines = new THREE.LineSegments(laserGeo, laserMat);
       lighthouseGroup.add(laserLines);
@@ -887,14 +900,10 @@ Pipeline Latency: ${(12.5 + Math.hypot(y, p, r) * 0.05).toFixed(1)} ms (NOMINAL)
         cones.forEach(c => c.group.visible = true);
         lighthouseGroup.visible = false;
         badge.textContent = 'INSIDE-OUT: 4X SLAM TRACKING RAYS';
-        title.textContent = 'Inside-Out SLAM Tracking';
-        desc.textContent = 'Cameras mounted on the headset continuously extract 2D feature points from the room, matching them across frames to triangulate 3D position. No external sensors required.';
-        telem.innerHTML = `[TRACKING TELEMETRY]
-• Architecture: Inside-Out Monocular/Stereo SLAM
-• External Sensors Required: ZERO (Standalone mobility)
-• Controller Occlusion: Possible behind the back
-• Accuracy: ~1.0mm positional jitter
-• Latency: ~2.5ms processing overhead`;
+        warnBox.style.background = '#EFF6FF';
+        warnBox.style.borderColor = 'rgba(37, 99, 235, 0.25)';
+        warnBox.style.color = 'var(--accent-blue)';
+        warnBox.innerHTML = '<b>ACTIVE TRACKING STATUS:</b> Nominal execution. 4 tracking cameras detecting room feature points.';
         if (window.vrAudio) window.vrAudio.playClick(400);
       });
 
@@ -904,24 +913,26 @@ Pipeline Latency: ${(12.5 + Math.hypot(y, p, r) * 0.05).toFixed(1)} ms (NOMINAL)
         btnIn.className = 'cyber-btn secondary';
         cones.forEach(c => c.group.visible = false);
         lighthouseGroup.visible = true;
-        badge.textContent = 'OUTSIDE-IN: DUAL LIGHTHOUSE LASER SWEEPS';
-        title.textContent = 'Outside-In Lighthouse Laser Sweeping';
-        desc.textContent = 'Fixed base stations emit horizontal and vertical infrared laser sweeps across the room. Photodiodes on the headset measure the precise time of impact to calculate angles.';
-        telem.innerHTML = `[TRACKING TELEMETRY]
-• Architecture: Outside-In Laser Time-of-Flight
-• External Sensors Required: 2 to 4 Base Stations
-• Controller Occlusion: Almost None
-• Accuracy: Sub-millimeter (< 0.1mm jitter)
-• Latency: < 1.0ms hardware photodiode timing`;
+        badge.textContent = 'OUTSIDE-IN: DUAL LIGHTHOUSE LASERS';
+        warnBox.style.background = '#F3E8FF';
+        warnBox.style.borderColor = 'rgba(124, 58, 237, 0.25)';
+        warnBox.style.color = '#7C3AED';
+        warnBox.innerHTML = '<b>ACTIVE TRACKING STATUS:</b> Sub-millimeter Lighthouse laser sweeping active. Zero blind spots.';
         if (window.vrAudio) window.vrAudio.playClick(520);
       });
 
       btnOcc.addEventListener('click', () => {
         if (currentMode === 'inside') {
-          telem.innerHTML = `<span style="color: var(--neon-red);">[OCCLUSION ALERT] Hands placed behind back!\n• Cameras lost sight of controller!\n• Falling back to IMU dead reckoning (drift will occur in 500ms)...</span>`;
+          warnBox.style.background = '#FEF2F2';
+          warnBox.style.borderColor = 'rgba(220, 38, 38, 0.3)';
+          warnBox.style.color = '#DC2626';
+          warnBox.innerHTML = '<b>⚠️ OCCLUSION DETECTED!</b> Hands placed behind back! Cameras lost controller visibility &rarr; Falling back to IMU dead reckoning (drift will occur in 500ms).';
           if (window.vrAudio) window.vrAudio.playBuzz();
         } else {
-          telem.innerHTML = `<span style="color: var(--neon-green);">[OCCLUSION RESISTANT] Dual base stations maintain line-of-sight!\n• Optical beams received by rear sensor photodiodes.\n• Zero tracking loss.</span>`;
+          warnBox.style.background = '#ECFDF5';
+          warnBox.style.borderColor = 'rgba(5, 150, 105, 0.3)';
+          warnBox.style.color = '#059669';
+          warnBox.innerHTML = '<b>✓ LINE-OF-SIGHT MAINTAINED:</b> Dual base stations sweep across user from front and back. Zero tracking loss!';
           if (window.vrAudio) window.vrAudio.playSuccess();
         }
       });
@@ -929,77 +940,60 @@ Pipeline Latency: ${(12.5 + Math.hypot(y, p, r) * 0.05).toFixed(1)} ms (NOMINAL)
     notes: `
       <b>Slide 6 Talking Points:</b>
       <ul>
-        <li><b>The Fundamental Tradeoff:</b>
-          <i>Inside-out:</i> Cheap, portable, runs anywhere, but suffers from controller occlusion when hands go behind your head.
-          <i>Outside-in:</i> Gold-standard sub-millimeter tracking accuracy for eSports and research, but requires setting up base stations on room walls.
-        </li>
+        <li><b>Comparison Matrix:</b> Walk students through the table comparing mobility vs accuracy.</li>
       </ul>
     `
   },
 
   // ==========================================
-  // SLIDE 7: VR RENDERING PIPELINE (9 STAGES)
+  // SLIDE 7: 3D-TO-2D PROJECTION & PIXEL RASTERIZATION
   // ==========================================
   {
     id: 'slide-7',
     part: 'Rendering Pipeline',
     partNumber: 'PART 7',
-    title: 'The VR Rendering Pipeline: 9 Stages',
-    subtitle: 'From CPU Draw Calls to Asynchronous TimeWarp Reprojection',
+    title: 'The VR Rendering Pipeline: 3D to 2D Rasterization',
+    subtitle: 'Interactive Demonstration of How 3D World Geometry is Projected and Rasterized Pixel-by-Pixel',
     render: function() {
       return `
-        <div style="display: flex; flex-direction: column; gap: 0.8rem; height: 100%;">
-          <div class="content-card" style="padding: 0.5rem 1rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
-              <div style="display: flex; gap: 0.5rem;">
-                <button class="cyber-btn small" id="s7-step-btn">▶ Step Next</button>
-                <button class="cyber-btn secondary small" id="s7-auto-btn">⚡ Auto Run</button>
-                <button class="cyber-btn secondary small" id="s7-reset-btn">Reset</button>
-              </div>
-              <div style="display: flex; align-items: center; gap: 0.5rem;">
-                <span style="font-size: 0.8rem; color: var(--text-secondary);">Frustum Culling:</span>
-                <button class="cyber-btn small" id="s7-cull-toggle" style="background: rgba(0, 229, 255, 0.2);">ON (-45% Draw Calls)</button>
-              </div>
+        <div style="display: flex; flex-direction: column; gap: 0.5rem; height: 100%;">
+          <div class="content-card" style="padding: 0.4rem 0.8rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-weight: 800; font-size: 0.85rem; color: var(--text-primary);">
+                3D World Coordinates &rarr; Perspective Projection &rarr; Pixel Rasterization
+              </span>
+              <button class="cyber-btn small" id="s7-scan-btn">▶ Run Scanline Rasterizer</button>
             </div>
           </div>
 
           <div class="split-layout" style="flex: 1;">
-            <!-- 3D Pipeline Transformation View -->
-            <div class="content-card" style="padding: 0.5rem; position: relative;">
+            <!-- 3D-to-2D Viewport Simulator -->
+            <div class="content-card" style="padding: 0.4rem; position: relative;">
               <div class="three-canvas-container" id="s7-3d-container">
-                <div class="three-overlay-badge" id="s7-3d-badge">STAGE 01: 3D SCENE GRAPH</div>
-                <div class="three-drag-hint">Watch Mesh Transform</div>
+                <div class="three-overlay-badge" id="s7-badge">3D SCENE &rarr; 2D SCREEN GRID</div>
+                <div class="three-drag-hint">Watch rays project onto pixels</div>
               </div>
             </div>
 
-            <!-- Pipeline Steps List -->
+            <!-- Rasterization Steps Breakdown -->
             <div class="content-card" style="justify-content: space-between;">
               <div style="display: flex; flex-direction: column; gap: 0.35rem;">
-                <div class="pipeline-step active" data-s7="1" style="padding: 0.4rem 0.6rem; cursor: pointer;">
-                  <span style="font-weight: 700; color: var(--neon-cyan);">01. App Logic</span>: Updates physics & camera pose.
+                <div style="background: #EFF6FF; padding: 0.45rem 0.6rem; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-blue); font-size: 0.75rem;">
+                  <b style="color: var(--accent-blue);">1. 3D Model Vertices (X, Y, Z):</b> Objects defined in 3D world space.
                 </div>
-                <div class="pipeline-step" data-s7="2" style="padding: 0.4rem 0.6rem; cursor: pointer;">
-                  <span style="font-weight: 700; color: var(--neon-cyan);">02. Frustum Cull</span>: Discards triangles outside eyes.
+                <div style="background: #F3E8FF; padding: 0.45rem 0.6rem; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-purple); font-size: 0.75rem;">
+                  <b style="color: var(--accent-purple);">2. Perspective Projection Matrix:</b> Maps 3D coordinates onto a 2D viewport plane.
                 </div>
-                <div class="pipeline-step" data-s7="3" style="padding: 0.4rem 0.6rem; cursor: pointer;">
-                  <span style="font-weight: 700; color: var(--neon-cyan);">03. Vertex Shading</span>: Projects 3D into clip-space.
+                <div style="background: #ECFDF5; padding: 0.45rem 0.6rem; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-green); font-size: 0.75rem;">
+                  <b style="color: var(--accent-green);">3. Pixel Rasterization:</b> Determines which screen pixels are covered by triangles.
                 </div>
-                <div class="pipeline-step" data-s7="4" style="padding: 0.4rem 0.6rem; cursor: pointer;">
-                  <span style="font-weight: 700; color: var(--neon-cyan);">04. Rasterization</span>: Converts triangles into fragments.
-                </div>
-                <div class="pipeline-step" data-s7="5" style="padding: 0.4rem 0.6rem; cursor: pointer;">
-                  <span style="font-weight: 700; color: var(--neon-cyan);">05. Fragment Shading</span>: Calculates lighting & textures.
-                </div>
-                <div class="pipeline-step" data-s7="6" style="padding: 0.4rem 0.6rem; cursor: pointer;">
-                  <span style="font-weight: 700; color: var(--neon-cyan);">06. Barrel Warp</span>: Pre-distorts image for lenses.
-                </div>
-                <div class="pipeline-step" data-s7="7" style="padding: 0.4rem 0.6rem; cursor: pointer;">
-                  <span style="font-weight: 700; color: var(--neon-green);">07. Async TimeWarp</span>: Re-orients frame right before v-sync!
+                <div style="background: #FEF3C7; padding: 0.45rem 0.6rem; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-amber); font-size: 0.75rem;">
+                  <b style="color: var(--accent-amber);">4. Fragment Shading & Barrel Warp:</b> Pre-distorts image to cancel optical lens curvature.
                 </div>
               </div>
 
-              <div class="telemetry-box" id="s7-telemetry" style="height: 55px; font-size: 0.78rem;">
-Active Stage: App Logic (Time Budget: 2.5ms CPU)
+              <div class="telemetry-box" id="s7-telem" style="height: 60px; font-size: 0.72rem;">
+[PIXEL RASTERIZER] Click "Run Scanline Rasterizer" to watch 3D triangles convert into 2D display pixels!
               </div>
             </div>
           </div>
@@ -1007,125 +1001,74 @@ Active Stage: App Logic (Time Budget: 2.5ms CPU)
       `;
     },
     init: function() {
-      let stage = 1;
-      let timer = null;
-      const stepBtn = document.getElementById('s7-step-btn');
-      const autoBtn = document.getElementById('s7-auto-btn');
-      const resetBtn = document.getElementById('s7-reset-btn');
-      const badge = document.getElementById('s7-3d-badge');
-      const telem = document.getElementById('s7-telemetry');
-      const steps = document.querySelectorAll('.pipeline-step');
+      const scanBtn = document.getElementById('s7-scan-btn');
+      const badge = document.getElementById('s7-badge');
+      const telem = document.getElementById('s7-telem');
       const container = document.getElementById('s7-3d-container');
 
       if (!container || !window.VR3D) return;
 
-      const sceneData = window.VR3D.initScene(container, { camZ: 2.8, camY: 0.3 });
+      const sceneData = window.VR3D.initScene(container, { camZ: 3.4, camY: 0.6 });
       if (!sceneData) return;
 
-      // Dynamic 3D model that morphs representation
-      const geo = new THREE.IcosahedronGeometry(0.9, 1);
-      const mat = new THREE.MeshStandardMaterial({
-        color: 0x00E5FF,
-        wireframe: false,
-        metalness: 0.7,
-        roughness: 0.2
-      });
-      const mesh = new THREE.Mesh(geo, mat);
-      sceneData.scene.add(mesh);
+      // 3D Triangle in background
+      const triGeo = new THREE.BufferGeometry();
+      const vertices = new Float32Array([
+        0.0, 0.8, -1.0,
+        -0.8, -0.6, -1.0,
+        0.8, -0.6, -1.0
+      ]);
+      triGeo.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+      const triMat = new THREE.MeshBasicMaterial({ color: 0x2563EB, side: THREE.DoubleSide });
+      const triangle = new THREE.Mesh(triGeo, triMat);
+      sceneData.scene.add(triangle);
 
-      sceneData.animate((time) => {
-        mesh.rotation.y = time * 0.001;
-        mesh.rotation.x = time * 0.0005;
-      });
+      // 2D Transparent Pixel Grid in foreground
+      const gridHelper = new THREE.GridHelper(1.8, 12, 0x0284C7, 0x94A3B8);
+      gridHelper.rotation.x = Math.PI / 2;
+      gridHelper.position.set(0, 0, 0.5);
+      sceneData.scene.add(gridHelper);
 
-      function updateStage(n) {
-        stage = n;
-        steps.forEach((s, idx) => s.classList.toggle('active', idx + 1 === n));
+      // Scanning bar
+      const barGeo = new THREE.BoxGeometry(1.8, 0.04, 0.02);
+      const barMat = new THREE.MeshBasicMaterial({ color: 0x059669 });
+      const scanBar = new THREE.Mesh(barGeo, barMat);
+      scanBar.position.set(0, 0.9, 0.52);
+      sceneData.scene.add(scanBar);
 
-        if (n === 1) {
-          mat.wireframe = false;
-          mat.color.setHex(0x00E5FF);
-          badge.textContent = 'STAGE 01: 3D SCENE GRAPH';
-          telem.textContent = 'App Logic: Evaluating physics collisions and camera matrix.';
-        } else if (n === 2) {
-          mat.wireframe = true;
-          mat.color.setHex(0x8B5CF6);
-          badge.textContent = 'STAGE 02: FRUSTUM CULLING';
-          telem.textContent = 'Frustum Cull: Discarded 45% of triangles outside viewing cone.';
-        } else if (n === 3) {
-          mat.wireframe = true;
-          mat.color.setHex(0xFFB800);
-          badge.textContent = 'STAGE 03: VERTEX TRANSFORM';
-          telem.textContent = 'Vertex Shaders: Transforming coordinates into stereo clip-space.';
-        } else if (n === 4) {
-          mat.wireframe = true;
-          mat.color.setHex(0x00FF9D);
-          badge.textContent = 'STAGE 04: RASTERIZATION';
-          telem.textContent = 'Rasterizer: Setting up pixel fragment coverage.';
-        } else if (n === 5) {
-          mat.wireframe = false;
-          mat.color.setHex(0x00E5FF);
-          badge.textContent = 'STAGE 05: FRAGMENT SHADING';
-          telem.textContent = 'Fragment Shading: Computing PBR lighting and textures.';
-        } else if (n === 6) {
-          mat.wireframe = false;
-          mat.color.setHex(0xFF0077);
-          badge.textContent = 'STAGE 06: BARREL DISTORTION';
-          telem.textContent = 'Lens Warp: Pre-distorting image to cancel pincushion lens distortion.';
-        } else if (n === 7) {
-          mat.wireframe = false;
-          mat.color.setHex(0x00FF9D);
-          badge.textContent = 'STAGE 07: ASYNC TIMEWARP (ATW)';
-          telem.textContent = 'ATW Compute Pass: Re-projected frame with latest IMU angle right before V-Sync!';
-        }
-        if (window.vrAudio) window.vrAudio.playTone(300 + n * 50, 0.1);
-      }
+      let isScanning = false;
+      let scanY = 0.9;
 
-      stepBtn.addEventListener('click', () => {
-        let next = stage + 1;
-        if (next > 7) next = 1;
-        updateStage(next);
-      });
-
-      autoBtn.addEventListener('click', () => {
-        if (timer) {
-          clearInterval(timer);
-          timer = null;
-          autoBtn.textContent = '⚡ Auto Run';
-          return;
-        }
-        autoBtn.textContent = '⏸ Pause';
-        timer = setInterval(() => {
-          let next = stage + 1;
-          if (next > 7) {
-            next = 1;
-            clearInterval(timer);
-            timer = null;
-            autoBtn.textContent = '⚡ Auto Run';
+      sceneData.animate(() => {
+        if (isScanning) {
+          scanY -= 0.02;
+          scanBar.position.y = scanY;
+          if (scanY < -0.9) {
+            scanY = 0.9;
+            isScanning = false;
+            telem.innerHTML = `<span style="color: #34D399; font-weight: 700;">✓ RASTERIZATION COMPLETE: 144 fragments shaded. Frame dispatched to Asynchronous TimeWarp!</span>`;
             if (window.vrAudio) window.vrAudio.playSuccess();
           }
-          updateStage(next);
-        }, 650);
+        }
       });
 
-      resetBtn.addEventListener('click', () => {
-        if (timer) clearInterval(timer);
-        timer = null;
-        autoBtn.textContent = '⚡ Auto Run';
-        updateStage(1);
+      scanBtn.addEventListener('click', () => {
+        isScanning = true;
+        scanY = 0.9;
+        telem.textContent = `[SCANLINE RASTERIZING] Row Y=${scanY.toFixed(2)}: Evaluating barycentric coordinates & shading pixels...`;
+        if (window.vrAudio) window.vrAudio.playDataPacket();
       });
     },
     notes: `
       <b>Slide 7 Talking Points:</b>
       <ul>
-        <li><b>Single-Pass Stereo:</b> In modern VR, the GPU doesn't render twice. Single Pass Stereo (Multiview) duplicates geometry in hardware.</li>
-        <li><b>The Savior - ATW:</b> Point out Stage 7: even if the game drops a frame, ATW shifts the old frame to match the latest head angle before scanout.</li>
+        <li><b>3D to 2D Conversion:</b> Explain how the GPU transforms 3D triangles into screen pixels through perspective projection and rasterization.</li>
       </ul>
     `
   },
 
   // ==========================================
-  // SLIDE 8: STEREO RENDERING & IPD (DUAL 3D CAMERAS)
+  // SLIDE 8: STEREO RENDERING & IPD
   // ==========================================
   {
     id: 'slide-8',
@@ -1138,30 +1081,26 @@ Active Stage: App Logic (Time Budget: 2.5ms CPU)
         <div class="split-layout">
           <div class="content-card">
             <span class="card-badge">STEREOSCOPIC VISION</span>
-            <h3 style="color: var(--neon-cyan); margin: 0.5rem 0; font-size: 1.15rem;">
-              Why Can't We Just Duplicate One Camera?
-            </h3>
-            <p style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5; margin-bottom: 0.5rem;">
+            <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.4; margin-bottom: 0.5rem;">
               Human depth perception relies on <b>stereopsis</b>: because your eyes are spaced ~64mm apart, each eye receives a slightly different angle of the world.
             </p>
 
             <div class="control-panel">
               <div class="control-row">
-                <span class="control-label">Interpupillary Distance (IPD):</span>
+                <span class="control-label">IPD Setting:</span>
                 <input type="range" class="cyber-slider" id="s8-ipd-slider" min="55" max="72" value="64">
                 <span class="telemetry-value" id="s8-ipd-val">64 mm</span>
               </div>
             </div>
 
-            <div class="telemetry-box" id="s8-status" style="height: 80px; font-size: 0.78rem; margin-top: 0.5rem;">
+            <div class="telemetry-box" id="s8-status" style="height: 75px; font-size: 0.72rem; margin-top: 0.5rem;">
 Camera Baseline: 64.0 mm (Human Average)
 Stereo Disparity Shift: ±1.8° at 1.5m focal distance
 Convergence Status: Optimal Binocular Fusion
             </div>
           </div>
 
-          <!-- Dual 3D Camera Frustums Visualizer -->
-          <div class="content-card" style="padding: 0.5rem; position: relative;">
+          <div class="content-card" style="padding: 0.4rem; position: relative;">
             <div class="three-canvas-container" id="s8-3d-container">
               <div class="three-overlay-badge">👀 DUAL STEREO FRUSTUMS</div>
               <div class="three-drag-hint">Adjust IPD to see baseline shift</div>
@@ -1181,16 +1120,14 @@ Convergence Status: Optimal Binocular Fusion
       const sceneData = window.VR3D.initScene(container, { camZ: 3.4, camY: 0.8 });
       if (!sceneData) return;
 
-      // Target 3D object to focus on
       const targetGeo = new THREE.CylinderGeometry(0.3, 0.3, 0.8, 16);
-      const targetMat = new THREE.MeshStandardMaterial({ color: 0xFFB800, metalness: 0.6 });
+      const targetMat = new THREE.MeshStandardMaterial({ color: 0xD97706, metalness: 0.6 });
       const target = new THREE.Mesh(targetGeo, targetMat);
       target.position.set(0, 0, -1.2);
       sceneData.scene.add(target);
 
-      // Left and Right Camera Frustums
-      const leftFrustum = window.VR3D.createFrustum(0x00E5FF, 40, 1.0, 0.3, 2.2);
-      const rightFrustum = window.VR3D.createFrustum(0x8B5CF6, 40, 1.0, 0.3, 2.2);
+      const leftFrustum = window.VR3D.createFrustum(0x2563EB, 40, 1.0, 0.3, 2.2);
+      const rightFrustum = window.VR3D.createFrustum(0x7C3AED, 40, 1.0, 0.3, 2.2);
 
       sceneData.scene.add(leftFrustum.group);
       sceneData.scene.add(rightFrustum.group);
@@ -1212,7 +1149,7 @@ Convergence Status: Optimal Binocular Fusion
 
         status.innerHTML = `Camera Baseline: ${ipd.toFixed(1)} mm<br>
 Stereo Disparity Shift: ±${(ipd * 0.028).toFixed(2)}° at 1.5m<br>
-${ipd < 58 ? '<span style="color: var(--neon-red);">Warning: Narrow IPD! Strain for average adult.</span>' : ipd > 68 ? '<span style="color: var(--neon-red);">Warning: Wide IPD! Binocular alignment stretched.</span>' : '<span style="color: var(--neon-green);">Optimal Binocular Fusion (Nominal Comfort)</span>'}`;
+${ipd < 58 ? '<span style="color: #DC2626;">Warning: Narrow IPD! Strain for average adult.</span>' : ipd > 68 ? '<span style="color: #DC2626;">Warning: Wide IPD! Binocular alignment stretched.</span>' : '<span style="color: #059669;">Optimal Binocular Fusion (Nominal Comfort)</span>'}`;
 
         if (window.vrAudio) window.vrAudio.playClick(380);
       }
@@ -1223,14 +1160,13 @@ ${ipd < 58 ? '<span style="color: var(--neon-red);">Warning: Narrow IPD! Strain 
     notes: `
       <b>Slide 8 Talking Points:</b>
       <ul>
-        <li><b>Interpupillary Distance (IPD):</b> Distance between pupils ranges from 55mm to 72mm. If the physical lenses and cameras do not match the user's IPD, they experience severe eye strain and double vision.</li>
-        <li><b>3D Frustum Convergence:</b> Watch how both camera cones converge directly on the 3D target!</li>
+        <li><b>Interpupillary Distance:</b> Explain why the hardware lens spacing and software camera matrices must match human eye width (55mm–72mm).</li>
       </ul>
     `
   },
 
   // ==========================================
-  // SLIDE 9: GAME ENGINE + HARDWARE PERFORMANCE (3D COMPLEX MESH)
+  // SLIDE 9: GAME ENGINE & HARDWARE PERFORMANCE
   // ==========================================
   {
     id: 'slide-9',
@@ -1262,25 +1198,24 @@ ${ipd < 58 ? '<span style="color: var(--neon-red);">Warning: Narrow IPD! Strain 
             </div>
 
             <!-- Frame Time Meter -->
-            <div style="margin: 0.75rem 0;">
-              <div style="display: flex; justify-content: space-between; font-size: 0.78rem; margin-bottom: 0.2rem;">
-                <span>Frame-Time: <b id="s9-total-ms" style="color: var(--neon-green);">9.0 ms</b></span>
-                <span style="color: var(--neon-red); font-weight: 700;">11.1ms DEADLINE</span>
+            <div style="margin: 0.6rem 0;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 0.2rem;">
+                <span>Frame-Time: <b id="s9-total-ms" style="color: var(--accent-green);">9.0 ms</b></span>
+                <span style="color: var(--accent-red); font-weight: 800;">11.1ms DEADLINE</span>
               </div>
-              <div style="height: 12px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden; display: flex;">
-                <div id="s9-bar-cpu" style="width: 28%; height: 100%; background: var(--neon-cyan);"></div>
-                <div id="s9-bar-gpu" style="width: 52%; height: 100%; background: var(--neon-purple);"></div>
+              <div style="height: 10px; background: rgba(15, 23, 42, 0.08); border-radius: 4px; overflow: hidden; display: flex;">
+                <div id="s9-bar-cpu" style="width: 28%; height: 100%; background: var(--accent-blue);"></div>
+                <div id="s9-bar-gpu" style="width: 52%; height: 100%; background: var(--accent-purple);"></div>
               </div>
             </div>
 
-            <button class="cyber-btn" id="s9-optimize-btn">⚡ Auto-Optimize Engine Profile</button>
+            <button class="cyber-btn" id="s9-optimize-btn">⚡ Auto-Optimize Profile</button>
           </div>
 
-          <!-- 3D Live Stuttering / Smooth Mesh -->
-          <div class="content-card" style="padding: 0.5rem; position: relative;">
+          <div class="content-card" style="padding: 0.4rem; position: relative;">
             <div class="three-canvas-container" id="s9-3d-container">
               <div class="three-overlay-badge" id="s9-fps-badge">90 FPS LOCKED (NOMINAL)</div>
-              <div class="three-drag-hint">Watch Mesh Stutter on Overload</div>
+              <div class="three-drag-hint">Watch mesh stutter on overload</div>
             </div>
           </div>
         </div>
@@ -1306,16 +1241,15 @@ ${ipd < 58 ? '<span style="color: var(--neon-red);">Warning: Narrow IPD! Strain 
       if (!sceneData) return;
 
       const geo = new THREE.TorusKnotGeometry(0.7, 0.22, 64, 16);
-      const mat = new THREE.MeshStandardMaterial({ color: 0x00E5FF, metalness: 0.8, roughness: 0.2 });
+      const mat = new THREE.MeshStandardMaterial({ color: 0x2563EB, metalness: 0.7, roughness: 0.3 });
       const knot = new THREE.Mesh(geo, mat);
       sceneData.scene.add(knot);
 
       let isDropping = false;
       let frameCounter = 0;
 
-      sceneData.animate((time) => {
+      sceneData.animate(() => {
         frameCounter++;
-        // If dropping frames, skip updates to simulate 45 FPS stutter
         if (isDropping && frameCounter % 2 === 0) return;
         knot.rotation.y += 0.02;
         knot.rotation.x += 0.01;
@@ -1343,16 +1277,16 @@ ${ipd < 58 ? '<span style="color: var(--neon-red);">Warning: Narrow IPD! Strain 
 
         if (parseFloat(total) <= 11.1) {
           isDropping = false;
-          mat.color.setHex(0x00E5FF);
+          mat.color.setHex(0x2563EB);
           badge.textContent = '90 FPS LOCKED (NOMINAL)';
-          badge.style.color = 'var(--neon-green)';
-          totalMs.style.color = 'var(--neon-green)';
+          badge.style.color = '#059669';
+          totalMs.style.color = 'var(--accent-green)';
         } else {
           isDropping = true;
-          mat.color.setHex(0xFF0077);
+          mat.color.setHex(0xDC2626);
           badge.textContent = '⚠️ 45 FPS (FRAME DROP / STUTTER)';
-          badge.style.color = 'var(--neon-red)';
-          totalMs.style.color = 'var(--neon-red)';
+          badge.style.color = '#DC2626';
+          totalMs.style.color = 'var(--accent-red)';
           if (window.vrAudio) window.vrAudio.playBuzz();
         }
       }
@@ -1375,13 +1309,13 @@ ${ipd < 58 ? '<span style="color: var(--neon-red);">Warning: Narrow IPD! Strain 
     notes: `
       <b>Slide 9 Talking Points:</b>
       <ul>
-        <li><b>11.1ms Strict Deadline:</b> In VR, if the frame takes 12ms instead of 11.1ms, you drop to 45 FPS instantly. Watch the 3D model stutter visibly when the budget is exceeded!</li>
+        <li><b>The 11.1ms Math:</b> 1000ms / 90Hz = 11.11ms. In flat games, lag is just visual annoyance. In VR, dropping below 90 FPS triggers immediate nausea.</li>
       </ul>
     `
   },
 
   // ==========================================
-  // SLIDE 10: CLIENT-SERVER ARCHITECTURE (3D DISTRIBUTED ORB)
+  // SLIDE 10: CLIENT-SERVER ARCHITECTURE
   // ==========================================
   {
     id: 'slide-10',
@@ -1394,27 +1328,23 @@ ${ipd < 58 ? '<span style="color: var(--neon-red);">Warning: Narrow IPD! Strain 
         <div class="split-layout">
           <div class="content-card" style="justify-content: space-around;">
             <span class="card-badge">THE DISTRIBUTED VR PARADOX</span>
-            <h3 style="color: var(--neon-cyan); margin: 0.5rem 0; font-size: 1.15rem;">
-              Why Cloud Rendering Alone Can Cause Sickness
-            </h3>
-            <p style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5;">
+            <p style="color: var(--text-secondary); font-size: 0.82rem; line-height: 1.4;">
               Internet round-trip latency across broadband is typically <b>30ms to 70ms</b>.
               Because VR motion-to-photon must stay strictly below <b>20ms</b>, a VR headset can <i>never</i> wait for a remote server before rendering head orientation.
             </p>
 
-            <div style="background: rgba(0,0,0,0.4); padding: 0.6rem; border-radius: var(--radius-sm); border-left: 3px solid var(--neon-cyan); font-size: 0.8rem;">
-              <b style="color: var(--neon-cyan);">Client-Side Prediction:</b> Head orientation renders locally at 90+ FPS while predicting avatar positions.
+            <div style="background: #EFF6FF; padding: 0.5rem; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-blue); font-size: 0.75rem;">
+              <b style="color: var(--accent-blue);">Client-Side Prediction:</b> Head orientation renders locally at 90+ FPS while predicting avatar positions.
             </div>
-            <div style="background: rgba(0,0,0,0.4); padding: 0.6rem; border-radius: var(--radius-sm); border-left: 3px solid var(--neon-purple); font-size: 0.8rem;">
-              <b style="color: var(--neon-purple);">Snapshot Interpolation:</b> Smoothly blends remote players between server packets.
+            <div style="background: #F3E8FF; padding: 0.5rem; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-purple); font-size: 0.75rem;">
+              <b style="color: var(--accent-purple);">Snapshot Interpolation:</b> Smoothly blends remote players between server packets.
             </div>
           </div>
 
-          <!-- 3D Distributed Node Architecture -->
-          <div class="content-card" style="padding: 0.5rem; position: relative;">
+          <div class="content-card" style="padding: 0.4rem; position: relative;">
             <div class="three-canvas-container" id="s10-3d-container">
               <div class="three-overlay-badge">🌐 SERVER HUB & CLIENT SATELLITES</div>
-              <div class="three-drag-hint">Pulsing Packets (30Hz vs 90Hz)</div>
+              <div class="three-drag-hint">Orbit to view network topology</div>
             </div>
           </div>
         </div>
@@ -1427,13 +1357,11 @@ ${ipd < 58 ? '<span style="color: var(--neon-red);">Warning: Narrow IPD! Strain 
       const sceneData = window.VR3D.initScene(container, { camZ: 3.2, camY: 0.5 });
       if (!sceneData) return;
 
-      // Central Authoritative Server Orb
       const srvGeo = new THREE.SphereGeometry(0.5, 24, 24);
-      const srvMat = new THREE.MeshStandardMaterial({ color: 0x8B5CF6, emissive: 0x8B5CF6, emissiveIntensity: 0.6 });
+      const srvMat = new THREE.MeshStandardMaterial({ color: 0x7C3AED, emissive: 0x7C3AED, emissiveIntensity: 0.5 });
       const server = new THREE.Mesh(srvGeo, srvMat);
       sceneData.scene.add(server);
 
-      // 3 Client Headsets Orbiting Server
       const clients = [];
       for (let i = 0; i < 3; i++) {
         const { group: c } = window.VR3D.createHeadset();
@@ -1454,13 +1382,13 @@ ${ipd < 58 ? '<span style="color: var(--neon-red);">Warning: Narrow IPD! Strain 
     notes: `
       <b>Slide 10 Talking Points:</b>
       <ul>
-        <li><b>The Network Paradox:</b> Cloud gaming (GeForce Now) works at 50ms ping, but VR headset orientation can NEVER wait on the cloud. The local headset must run its own render loop at 90 FPS.</li>
+        <li><b>The Network Paradox:</b> Cloud gaming works at 50ms ping, but VR head tracking can NEVER wait on the cloud. The local headset must render head orientation locally at 90 FPS.</li>
       </ul>
     `
   },
 
   // ==========================================
-  // SLIDE 11: MULTIPLAYER VR RELAY (3D AVATARS & PACKETS)
+  // SLIDE 11: MULTIPLAYER VR RELAY
   // ==========================================
   {
     id: 'slide-11',
@@ -1486,12 +1414,12 @@ ${ipd < 58 ? '<span style="color: var(--neon-red);">Warning: Narrow IPD! Strain 
               </div>
             </div>
 
-            <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+            <div style="display: flex; gap: 0.4rem; margin-top: 0.4rem;">
               <button class="cyber-btn" id="s11-send-btn" style="flex: 1;">📡 Broadcast Pose</button>
               <button class="cyber-btn secondary" id="s11-glitch-btn" style="flex: 1;">Simulate Spike</button>
             </div>
 
-            <div class="telemetry-box" id="s11-log" style="height: 90px; font-size: 0.75rem; margin-top: 0.5rem;">
+            <div class="telemetry-box" id="s11-log" style="height: 80px; font-size: 0.72rem; margin-top: 0.4rem;">
 [NETWORK RELAY READY]
 Local User: Node-A (Host / Origin)
 Peers: Peer-B (Europe), Peer-C (Asia)
@@ -1499,8 +1427,7 @@ Dead Reckoning: Spline Interpolation Active
             </div>
           </div>
 
-          <!-- 3D Multiplayer Social Room -->
-          <div class="content-card" style="padding: 0.5rem; position: relative;">
+          <div class="content-card" style="padding: 0.4rem; position: relative;">
             <div class="three-canvas-container" id="s11-3d-container">
               <div class="three-overlay-badge">👥 3D MULTIPLAYER AVATARS</div>
               <div class="three-drag-hint">Watch Dead Reckoning Sync</div>
@@ -1524,7 +1451,6 @@ Dead Reckoning: Spline Interpolation Active
       const sceneData = window.VR3D.initScene(container, { camZ: 3.5, camY: 0.8 });
       if (!sceneData) return;
 
-      // 3 Avatars in space
       const av1 = window.VR3D.createHeadWithHMD().root;
       av1.position.set(-1.2, 0, 0);
       sceneData.scene.add(av1);
@@ -1542,16 +1468,16 @@ Dead Reckoning: Spline Interpolation Active
         const p = parseInt(ping.value);
         const l = parseInt(loss.value);
         if (Math.random() * 100 < l) {
-          log.innerHTML = `<span style="color: var(--neon-red);">[PACKET LOSS] Pose packet dropped!\nDead reckoning predicts avatar trajectory.</span>\n` + log.innerHTML;
+          log.innerHTML = `<span style="color: #F87171;">[PACKET LOSS] Pose packet dropped!\nDead reckoning predicts avatar trajectory.</span>\n` + log.innerHTML;
           if (window.vrAudio) window.vrAudio.playBuzz();
         } else {
-          log.innerHTML = `<span style="color: var(--neon-green);">[PACKET DELIVERED] Ping ${(p/2).toFixed(1)}ms. Spatial audio synced.</span>\n` + log.innerHTML;
+          log.innerHTML = `<span style="color: #34D399;">[PACKET DELIVERED] Ping ${(p/2).toFixed(1)}ms. Spatial audio synced.</span>\n` + log.innerHTML;
           if (window.vrAudio) window.vrAudio.playDataPacket();
         }
       });
 
       glitchBtn.addEventListener('click', () => {
-        log.innerHTML = `<span style="color: var(--neon-yellow);">[JITTER SPIKE] High ping 240ms. Interpolating avatars...</span>\n` + log.innerHTML;
+        log.innerHTML = `<span style="color: #FBBF24;">[JITTER SPIKE] High ping 240ms. Interpolating avatars...</span>\n` + log.innerHTML;
         if (window.vrAudio) window.vrAudio.playTone(200, 0.2);
       });
 
@@ -1561,7 +1487,7 @@ Dead Reckoning: Spline Interpolation Active
     notes: `
       <b>Slide 11 Talking Points:</b>
       <ul>
-        <li><b>Dead Reckoning:</b> If a packet is lost, the client predicts where the remote player was heading using velocity vectors.</li>
+        <li><b>Dead Reckoning:</b> If a UDP packet drops over Wi-Fi, the client uses velocity vectors to predict position, preventing avatar teleportation.</li>
       </ul>
     `
   },
@@ -1580,26 +1506,22 @@ Dead Reckoning: Spline Interpolation Active
         <div class="split-layout">
           <div class="content-card">
             <span class="card-badge">THE MULTI-GPU CHALLENGE</span>
-            <h3 style="color: var(--neon-cyan); margin: 0.5rem 0; font-size: 1.15rem;">
-              Hardware FrameLock vs Tearing
-            </h3>
-            <p style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5;">
+            <p style="color: var(--text-secondary); font-size: 0.82rem; line-height: 1.4;">
               In industrial simulators driving multiple 4K displays, no single GPU suffices.
               Hardware <b>Genlock (FrameLock)</b> synchronizes display scanouts across GPUs with microsecond precision.
             </p>
 
-            <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
+            <div style="display: flex; gap: 0.4rem; margin-top: 0.5rem;">
               <button class="cyber-btn" id="s12-genlock-on" style="flex: 1;">Genlock ON (Sync)</button>
               <button class="cyber-btn secondary" id="s12-genlock-off" style="flex: 1;">Genlock OFF (Tear)</button>
             </div>
 
-            <div class="telemetry-box" id="s12-status" style="height: 75px; font-size: 0.78rem; margin-top: 0.75rem;">
+            <div class="telemetry-box" id="s12-status" style="height: 70px; font-size: 0.72rem; margin-top: 0.5rem;">
 ✓ Hardware Genlock Active: All displays scanning out line 0 in microsecond phase.
             </div>
           </div>
 
-          <!-- 3D Master Node & Cluster Workers -->
-          <div class="content-card" style="padding: 0.5rem; position: relative;">
+          <div class="content-card" style="padding: 0.4rem; position: relative;">
             <div class="three-canvas-container" id="s12-3d-container">
               <div class="three-overlay-badge" id="s12-badge">SYNCHRONIZED CLUSTER NODES</div>
               <div class="three-drag-hint">Toggle Genlock to see wall tear</div>
@@ -1620,11 +1542,10 @@ Dead Reckoning: Spline Interpolation Active
       const sceneData = window.VR3D.initScene(container, { camZ: 3.2, camY: 0.5 });
       if (!sceneData) return;
 
-      // 3 Display screens side-by-side
       const screens = [];
       for (let i = 0; i < 3; i++) {
         const sGeo = new THREE.BoxGeometry(0.85, 1.2, 0.05);
-        const sMat = new THREE.MeshStandardMaterial({ color: 0x00E5FF, metalness: 0.8 });
+        const sMat = new THREE.MeshStandardMaterial({ color: 0x2563EB, metalness: 0.7 });
         const s = new THREE.Mesh(sGeo, sMat);
         s.position.x = (i - 1) * 0.95;
         sceneData.scene.add(s);
@@ -1647,9 +1568,9 @@ Dead Reckoning: Spline Interpolation Active
         isTorn = false;
         btnOn.className = 'cyber-btn';
         btnOff.className = 'cyber-btn secondary';
-        screens.forEach(s => s.material.color.setHex(0x00E5FF));
+        screens.forEach(s => s.material.color.setHex(0x2563EB));
         badge.textContent = 'SYNCHRONIZED CLUSTER NODES';
-        status.innerHTML = `<span style="color: var(--neon-green);">✓ Hardware Genlock Active: Microsecond scanout sync. Zero image tearing across wall seams.</span>`;
+        status.innerHTML = `<span style="color: #34D399;">✓ Hardware Genlock Active: Microsecond scanout sync. Zero image tearing across wall seams.</span>`;
         if (window.vrAudio) window.vrAudio.playSuccess();
       });
 
@@ -1657,22 +1578,22 @@ Dead Reckoning: Spline Interpolation Active
         isTorn = true;
         btnOff.className = 'cyber-btn';
         btnOn.className = 'cyber-btn secondary';
-        screens.forEach(s => s.material.color.setHex(0xFF0077));
+        screens.forEach(s => s.material.color.setHex(0xDC2626));
         badge.textContent = '⚠️ GENLOCK DRIFT: WALL TEARING!';
-        status.innerHTML = `<span style="color: var(--neon-red);">⚠️ GENLOCK DISABLED: Screens scan out out-of-phase &rarr; Shearing across seams!</span>`;
+        status.innerHTML = `<span style="color: #F87171;">⚠️ GENLOCK DISABLED: Screens scan out out-of-phase &rarr; Shearing across seams!</span>`;
         if (window.vrAudio) window.vrAudio.playBuzz();
       });
     },
     notes: `
       <b>Slide 12 Talking Points:</b>
       <ul>
-        <li><b>CAVE Automatic Virtual Environment:</b> Explain why multiple GPUs driving adjacent screens must be synchronized by hardware cables.</li>
+        <li><b>Genlock (FrameLock):</b> Explain why multiple GPUs driving adjacent screens must be synchronized by hardware cables.</li>
       </ul>
     `
   },
 
   // ==========================================
-  // SLIDE 13: CLUSTER RENDERING IN ACTION (3D CAVE ROOM)
+  // SLIDE 13: CLUSTER RENDERING IN ACTION (CAVE)
   // ==========================================
   {
     id: 'slide-13',
@@ -1685,12 +1606,9 @@ Dead Reckoning: Spline Interpolation Active
         <div class="split-layout">
           <div class="content-card">
             <span class="card-badge">CAVE ENVIRONMENT CONTROLS</span>
-            <h3 style="color: var(--neon-cyan); margin: 0.5rem 0; font-size: 1.15rem;">
-              Off-Axis Perspective Projection
-            </h3>
-            <p style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5; margin-bottom: 0.5rem;">
+            <p style="color: var(--text-secondary); font-size: 0.82rem; line-height: 1.4;">
               Unlike an HMD where screens move with your eyes, CAVE screens are fixed walls.
-              Each GPU node renders an <b>asymmetric off-axis frustum</b> calculated dynamically based on where the user stands.
+              Each GPU node renders an <b>asymmetric off-axis frustum</b> calculated dynamically based on user position.
             </p>
 
             <div class="control-panel">
@@ -1701,13 +1619,12 @@ Dead Reckoning: Spline Interpolation Active
               </div>
             </div>
 
-            <div class="telemetry-box" id="s13-telemetry" style="height: 75px; font-size: 0.78rem; margin-top: 0.5rem;">
+            <div class="telemetry-box" id="s13-telemetry" style="height: 70px; font-size: 0.72rem; margin-top: 0.5rem;">
 Off-Axis Asymmetry: ΔX=0.0cm | Barrier Latency: 0.4ms
             </div>
           </div>
 
-          <!-- 3D CAVE Room Visualizer -->
-          <div class="content-card" style="padding: 0.5rem; position: relative;">
+          <div class="content-card" style="padding: 0.4rem; position: relative;">
             <div class="three-canvas-container" id="s13-3d-container">
               <div class="three-overlay-badge">🏛️ 3-WALL CAVE ROOM</div>
               <div class="three-drag-hint">User position shifts frustums</div>
@@ -1727,8 +1644,7 @@ Off-Axis Asymmetry: ΔX=0.0cm | Barrier Latency: 0.4ms
       const sceneData = window.VR3D.initScene(container, { camZ: 3.5, camY: 0.8 });
       if (!sceneData) return;
 
-      // 3 Wall Screens in U-shape
-      const wallMat = new THREE.MeshStandardMaterial({ color: 0x00E5FF, transparent: true, opacity: 0.4 });
+      const wallMat = new THREE.MeshStandardMaterial({ color: 0x2563EB, transparent: true, opacity: 0.4 });
       const frontWall = new THREE.Mesh(new THREE.BoxGeometry(2.0, 1.4, 0.05), wallMat);
       frontWall.position.set(0, 0, -1.0);
       sceneData.scene.add(frontWall);
@@ -1741,8 +1657,7 @@ Off-Axis Asymmetry: ΔX=0.0cm | Barrier Latency: 0.4ms
       rightWall.position.set(1.0, 0, 0);
       sceneData.scene.add(rightWall);
 
-      // User sphere in center
-      const userSphere = new THREE.Mesh(new THREE.SphereGeometry(0.18, 16, 16), new THREE.MeshBasicMaterial({ color: 0x00FF9D }));
+      const userSphere = new THREE.Mesh(new THREE.SphereGeometry(0.18, 16, 16), new THREE.MeshBasicMaterial({ color: 0x059669 }));
       userSphere.position.set(0, 0, 0);
       sceneData.scene.add(userSphere);
 
@@ -1759,7 +1674,7 @@ Off-Axis Asymmetry: ΔX=0.0cm | Barrier Latency: 0.4ms
     notes: `
       <b>Slide 13 Talking Points:</b>
       <ul>
-        <li><b>Asymmetric Frustums:</b> Explain how moving inside a CAVE recalculates the viewing angles for each physical wall.</li>
+        <li><b>Asymmetric Frustums:</b> Explain how walking inside a CAVE shifts the viewpoint obliquely against fixed projection screens.</li>
       </ul>
     `
   },
@@ -1778,25 +1693,21 @@ Off-Axis Asymmetry: ΔX=0.0cm | Barrier Latency: 0.4ms
         <div class="split-layout">
           <div class="content-card">
             <span class="card-badge">THE 20 MILLISECOND DEADLINE</span>
-            <h3 style="color: var(--neon-cyan); margin: 0.5rem 0; font-size: 1.15rem;">
-              The Anatomic Latency Budget
-            </h3>
-            <p style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5; margin-bottom: 0.5rem;">
+            <p style="color: var(--text-secondary); font-size: 0.82rem; line-height: 1.4;">
               Evolution fine-tuned human vision and vestibular balancing for physical locomotion. If sensory data disagrees by >20ms, the brain assumes poison ingestion and triggers nausea.
             </p>
 
-            <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
+            <div style="display: flex; gap: 0.4rem; margin-top: 0.5rem;">
               <button class="cyber-btn" id="s14-low-lag" style="flex: 1;">15ms Mode (True VR)</button>
               <button class="cyber-btn secondary" id="s14-high-lag" style="flex: 1;">75ms Mode (Nausea Sim)</button>
             </div>
 
-            <div class="telemetry-box" id="s14-lag-expl" style="height: 75px; font-size: 0.78rem; margin-top: 0.75rem;">
+            <div class="telemetry-box" id="s14-lag-expl" style="height: 70px; font-size: 0.72rem; margin-top: 0.5rem;">
 ✓ 15ms Mode: Horizon responds instantly. Vestibular-ocular reflex satisfied.
             </div>
           </div>
 
-          <!-- 3D Interactive Horizon Lag Box -->
-          <div class="content-card" style="padding: 0.5rem; position: relative;">
+          <div class="content-card" style="padding: 0.4rem; position: relative;">
             <div class="three-canvas-container" id="s14-3d-container">
               <div class="three-overlay-badge" id="s14-badge">15MS LATENCY (LOCKED)</div>
               <div class="three-drag-hint">🖱️ Drag to test horizon response</div>
@@ -1817,43 +1728,36 @@ Off-Axis Asymmetry: ΔX=0.0cm | Barrier Latency: 0.4ms
       const sceneData = window.VR3D.initScene(container, { camZ: 3.0, camY: 0.5 });
       if (!sceneData) return;
 
-      // Horizon grid & mountains
       const terrainGeo = new THREE.PlaneGeometry(10, 10, 16, 16);
-      const terrainMat = new THREE.MeshBasicMaterial({ color: 0x00E5FF, wireframe: true });
+      const terrainMat = new THREE.MeshBasicMaterial({ color: 0x2563EB, wireframe: true });
       const terrain = new THREE.Mesh(terrainGeo, terrainMat);
       terrain.rotation.x = -Math.PI / 2;
       sceneData.scene.add(terrain);
 
-      let lagFactor = 0.25; // Instantaneous
-
-      sceneData.animate((time) => {
-        // Smooth rotation towards camera rotation
-      });
+      sceneData.animate();
 
       btnLow.addEventListener('click', () => {
-        lagFactor = 0.25;
         btnLow.className = 'cyber-btn';
         btnHigh.className = 'cyber-btn secondary';
-        terrainMat.color.setHex(0x00E5FF);
+        terrainMat.color.setHex(0x2563EB);
         badge.textContent = '15MS LATENCY (LOCKED)';
-        expl.innerHTML = `<span style="color: var(--neon-green);">✓ 15ms Mode: World responds instantly. Zero vestibular mismatch.</span>`;
+        expl.innerHTML = `<span style="color: #34D399;">✓ 15ms Mode: World responds instantly. Zero vestibular mismatch.</span>`;
         if (window.vrAudio) window.vrAudio.playSuccess();
       });
 
       btnHigh.addEventListener('click', () => {
-        lagFactor = 0.02;
         btnHigh.className = 'cyber-btn';
         btnLow.className = 'cyber-btn secondary';
-        terrainMat.color.setHex(0xFF0077);
+        terrainMat.color.setHex(0xDC2626);
         badge.textContent = '⚠️ 75MS HIGH LATENCY (NAUSEA)';
-        expl.innerHTML = `<span style="color: var(--neon-red);">⚠️ 75ms High Lag Mode: Notice how the world drags behind your mouse! This causes acute nausea.</span>`;
+        expl.innerHTML = `<span style="color: #F87171;">⚠️ 75ms High Lag Mode: The world drags behind your mouse! This causes acute nausea.</span>`;
         if (window.vrAudio) window.vrAudio.playBuzz();
       });
     },
     notes: `
       <b>Slide 14 Talking Points:</b>
       <ul>
-        <li><b>The Anatomic Poison Reflex:</b> Explain why humans get sick. If sensory data disagrees by >20ms, the brain assumes neurotoxins were ingested and purges the stomach.</li>
+        <li><b>Vestibular Mismatch:</b> Explain the biological defense mechanism that treats motion-photon mismatch as poisoning.</li>
       </ul>
     `
   },
@@ -1869,46 +1773,41 @@ Off-Axis Asymmetry: ΔX=0.0cm | Barrier Latency: 0.4ms
     subtitle: 'From Mechanical Head Motion to Ocular Photons: The Unified Engineering Map',
     render: function() {
       return `
-        <div style="display: flex; flex-direction: column; gap: 0.8rem; height: 100%;">
-          <div class="content-card" style="padding: 0.5rem 1rem;">
+        <div style="display: flex; flex-direction: column; gap: 0.5rem; height: 100%;">
+          <div class="content-card" style="padding: 0.4rem 0.8rem;">
             <div style="display: flex; justify-content: space-between; align-items: center;">
-              <div>
-                <span class="card-badge">THE MASTER PIPELINE</span>
-                <span style="font-size: 0.85rem; color: var(--text-secondary); margin-left: 0.5rem;">
-                  Full synthesis of sensing, engine, GPU rasterization, and optical projection.
-                </span>
-              </div>
-              <button class="cyber-btn" id="s15-trace-btn">⚡ Trace Live Motion Packet</button>
+              <span style="font-weight: 800; font-size: 0.85rem; color: var(--text-primary);">
+                Unified System Map: Sensing &rarr; Runtime &rarr; Shaders &rarr; Optics
+              </span>
+              <button class="cyber-btn small" id="s15-trace-btn">⚡ Trace Live Motion Packet</button>
             </div>
           </div>
 
           <div class="split-layout" style="flex: 1;">
-            <!-- 3D Pipeline Tube Canvas -->
-            <div class="content-card" style="padding: 0.5rem; position: relative;">
+            <div class="content-card" style="padding: 0.4rem; position: relative;">
               <div class="three-canvas-container" id="s15-3d-container">
                 <div class="three-overlay-badge" id="s15-badge">HERO ARCHITECTURE TRACER</div>
                 <div class="three-drag-hint">Click Trace to shoot packet</div>
               </div>
             </div>
 
-            <!-- Stage Cards -->
             <div class="content-card" style="justify-content: space-between;">
-              <div style="display: flex; flex-direction: column; gap: 0.4rem;">
-                <div style="background: rgba(0,229,255,0.06); padding: 0.5rem; border-radius: var(--radius-sm); border-left: 3px solid var(--neon-cyan);">
-                  <b style="color: var(--neon-cyan);">1. Sensing (0-2ms):</b> 1000Hz IMU + SLAM Cameras.
+              <div style="display: flex; flex-direction: column; gap: 0.35rem;">
+                <div style="background: #EFF6FF; padding: 0.45rem; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-blue); font-size: 0.72rem;">
+                  <b style="color: var(--accent-blue);">1. Sensing (0-2ms):</b> 1000Hz IMU + SLAM Cameras.
                 </div>
-                <div style="background: rgba(139,92,246,0.06); padding: 0.5rem; border-radius: var(--radius-sm); border-left: 3px solid var(--neon-purple);">
-                  <b style="color: var(--neon-purple);">2. Runtime (2-5ms):</b> OpenXR & Game Engine Tick.
+                <div style="background: #F3E8FF; padding: 0.45rem; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-purple); font-size: 0.72rem;">
+                  <b style="color: var(--accent-purple);">2. Runtime (2-5ms):</b> OpenXR & Game Engine Tick.
                 </div>
-                <div style="background: rgba(0,255,157,0.06); padding: 0.5rem; border-radius: var(--radius-sm); border-left: 3px solid var(--neon-green);">
-                  <b style="color: var(--neon-green);">3. GPU Shaders (5-12ms):</b> Stereo Frustums & ATW.
+                <div style="background: #ECFDF5; padding: 0.45rem; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-green); font-size: 0.72rem;">
+                  <b style="color: var(--accent-green);">3. GPU Shaders (5-12ms):</b> Stereo Frustums & ATW.
                 </div>
-                <div style="background: rgba(255,184,0,0.06); padding: 0.5rem; border-radius: var(--radius-sm); border-left: 3px solid var(--neon-yellow);">
-                  <b style="color: var(--neon-yellow);">4. Optics (12-17ms):</b> Strobe through Pancake lenses.
+                <div style="background: #FEF3C7; padding: 0.45rem; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-amber); font-size: 0.72rem;">
+                  <b style="color: var(--accent-amber);">4. Optics (12-17ms):</b> Strobe through Pancake lenses.
                 </div>
               </div>
 
-              <div class="telemetry-box" id="s15-log" style="height: 55px; font-size: 0.78rem;">
+              <div class="telemetry-box" id="s15-log" style="height: 55px; font-size: 0.72rem;">
 [SYSTEM READY] Click "Trace Live Motion Packet" to watch a real-time nanosecond packet traverse all 4 layers!
               </div>
             </div>
@@ -1918,7 +1817,6 @@ Off-Axis Asymmetry: ΔX=0.0cm | Barrier Latency: 0.4ms
     },
     init: function() {
       const traceBtn = document.getElementById('s15-trace-btn');
-      const badge = document.getElementById('s15-badge');
       const log = document.getElementById('s15-log');
       const container = document.getElementById('s15-3d-container');
 
@@ -1927,7 +1825,6 @@ Off-Axis Asymmetry: ΔX=0.0cm | Barrier Latency: 0.4ms
       const sceneData = window.VR3D.initScene(container, { camZ: 3.5, camY: 0.6 });
       if (!sceneData) return;
 
-      // 4 Nodes along a spline path
       const path = new THREE.CatmullRomCurve3([
         new THREE.Vector3(-1.8, -0.4, 0),
         new THREE.Vector3(-0.6, 0.5, 0),
@@ -1936,12 +1833,12 @@ Off-Axis Asymmetry: ΔX=0.0cm | Barrier Latency: 0.4ms
       ]);
 
       const tubeGeo = new THREE.TubeGeometry(path, 64, 0.08, 8, false);
-      const tubeMat = new THREE.MeshStandardMaterial({ color: 0x1E293B, wireframe: true });
+      const tubeMat = new THREE.MeshStandardMaterial({ color: 0x94A3B8, wireframe: true });
       const tube = new THREE.Mesh(tubeGeo, tubeMat);
       sceneData.scene.add(tube);
 
       const packetGeo = new THREE.SphereGeometry(0.16, 16, 16);
-      const packetMat = new THREE.MeshBasicMaterial({ color: 0x00FF9D });
+      const packetMat = new THREE.MeshBasicMaterial({ color: 0x059669 });
       const packet = new THREE.Mesh(packetGeo, packetMat);
       sceneData.scene.add(packet);
 
@@ -1954,7 +1851,7 @@ Off-Axis Asymmetry: ΔX=0.0cm | Barrier Latency: 0.4ms
           if (t > 1) {
             t = 1;
             isTracing = false;
-            log.innerHTML = `<span style="color: var(--neon-green); font-weight: 700;">✓ PACKET COMPLETED IN 14.1 MILLISECONDS! Zero simulator sickness.</span>`;
+            log.innerHTML = `<span style="color: #34D399; font-weight: 700;">✓ PACKET COMPLETED IN 14.1 MILLISECONDS! Zero simulator sickness.</span>`;
             if (window.vrAudio) window.vrAudio.playSuccess();
           }
           const pt = path.getPoint(t);
@@ -1988,28 +1885,28 @@ Off-Axis Asymmetry: ΔX=0.0cm | Barrier Latency: 0.4ms
     subtitle: 'Comparing Mobile Standalone (Quest 3), Tethered PC VR (Valve Index), and Multi-Projector CAVE',
     render: function() {
       return `
-        <div style="display: flex; flex-direction: column; gap: 0.8rem; height: 100%;">
+        <div style="display: flex; flex-direction: column; gap: 0.5rem; height: 100%;">
           <div style="display: flex; gap: 0.5rem; justify-content: center;">
-            <button class="cyber-btn" id="s16-tab-quest" style="width: 180px;">Mobile Standalone</button>
-            <button class="cyber-btn secondary" id="s16-tab-pc" style="width: 180px;">Tethered PC VR</button>
-            <button class="cyber-btn secondary" id="s16-tab-cave" style="width: 180px;">Industrial CAVE</button>
+            <button class="cyber-btn" id="s16-tab-quest" style="width: 170px;">Mobile Standalone</button>
+            <button class="cyber-btn secondary" id="s16-tab-pc" style="width: 170px;">Tethered PC VR</button>
+            <button class="cyber-btn secondary" id="s16-tab-cave" style="width: 170px;">Industrial CAVE</button>
           </div>
 
           <div class="split-layout" style="flex: 1;">
             <div class="content-card" style="justify-content: space-between;">
               <div>
                 <span class="card-badge" id="s16-badge">ARCHITECTURE PROFILE</span>
-                <h3 id="s16-name" style="color: var(--neon-cyan); margin: 0.5rem 0; font-size: 1.25rem;">
+                <h3 id="s16-name" style="color: var(--text-primary); margin: 0.35rem 0; font-size: 1.15rem; font-weight: 800;">
                   Meta Quest 3 / Apple Vision Pro
                 </h3>
-                <div id="s16-summary" style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5;">
+                <div id="s16-summary" style="color: var(--text-secondary); font-size: 0.8rem; line-height: 1.4;">
                   All compute, sensors, batteries, and displays are integrated inside a 500g chassis. Constrained to 5-8 Watts of thermal dissipation.
                 </div>
               </div>
 
-              <div style="background: rgba(0,0,0,0.4); border-radius: var(--radius-sm); padding: 0.75rem; border: 1px solid var(--border-color);">
-                <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.35rem;">HARDWARE METRICS:</div>
-                <div id="s16-specs" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--neon-cyan); line-height: 1.5;">
+              <div style="background: #F8FAFC; border-radius: var(--radius-sm); padding: 0.6rem; border: 1px solid var(--border-subtle);">
+                <div style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.25rem;">HARDWARE METRICS:</div>
+                <div id="s16-specs" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-blue); line-height: 1.5;">
                   • Compute: Snapdragon XR2 Gen 2 (5-8W SoC)<br>
                   • Tracking: 4x Inside-Out SLAM Cameras<br>
                   • Optics: Pancake Lenses (Folded)<br>
@@ -2021,22 +1918,22 @@ Off-Axis Asymmetry: ΔX=0.0cm | Barrier Latency: 0.4ms
             <div class="content-card" style="justify-content: space-between;">
               <div>
                 <span class="card-badge">ENGINEERING TRADEOFF MATRIX</span>
-                <div style="margin: 0.5rem 0;">
-                  <div style="font-weight: 700; color: var(--neon-green); font-size: 0.85rem;">✓ KEY ADVANTAGES:</div>
-                  <div id="s16-pros" style="font-size: 0.82rem; color: var(--text-secondary);">
+                <div style="margin: 0.35rem 0;">
+                  <div style="font-weight: 800; color: var(--accent-green); font-size: 0.78rem;">✓ KEY ADVANTAGES:</div>
+                  <div id="s16-pros" style="font-size: 0.75rem; color: var(--text-secondary);">
                     Zero cables, consumer accessibility, instant setup in any room.
                   </div>
                 </div>
 
-                <div style="margin: 0.5rem 0;">
-                  <div style="font-weight: 700; color: var(--neon-red); font-size: 0.85rem;">✕ TECHNICAL LIMITATIONS:</div>
-                  <div id="s16-cons" style="font-size: 0.82rem; color: var(--text-secondary);">
+                <div style="margin: 0.35rem 0;">
+                  <div style="font-weight: 800; color: var(--accent-red); font-size: 0.78rem;">✕ TECHNICAL LIMITATIONS:</div>
+                  <div id="s16-cons" style="font-size: 0.75rem; color: var(--text-secondary);">
                     Strict battery life (~2 hours), thermal throttling limits visual fidelity.
                   </div>
                 </div>
               </div>
 
-              <div class="telemetry-box" id="s16-verdict" style="height: 55px; font-size: 0.78rem;">
+              <div class="telemetry-box" id="s16-verdict" style="height: 50px; font-size: 0.72rem;">
 Primary Use-Case: Consumer gaming, spatial entertainment, enterprise training.
               </div>
             </div>
@@ -2125,26 +2022,26 @@ Primary Use-Case: Consumer gaming, spatial entertainment, enterprise training.
     subtitle: 'Solve 3 Core Architecture Questions to Verify Mastery of the Real-Time Pipeline',
     render: function() {
       return `
-        <div style="display: flex; flex-direction: column; gap: 0.8rem; height: 100%;">
-          <div class="content-card" style="padding: 0.5rem 1rem;">
+        <div style="display: flex; flex-direction: column; gap: 0.5rem; height: 100%;">
+          <div class="content-card" style="padding: 0.4rem 0.8rem;">
             <div style="display: flex; justify-content: space-between; align-items: center;">
               <div>
                 <span class="card-badge" id="s17-q-num">QUESTION 1 OF 3</span>
                 <span style="font-size: 0.85rem; color: var(--text-secondary); margin-left: 0.5rem;" id="s17-q-category">Pipeline Latency</span>
               </div>
-              <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--neon-cyan);">
-                Score: <span id="s17-score" style="color: var(--neon-green); font-weight: 800;">0</span> / 3
+              <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-blue);">
+                Score: <span id="s17-score" style="color: var(--accent-green); font-weight: 800;">0</span> / 3
               </div>
             </div>
           </div>
 
           <div class="content-card" style="flex: 1; justify-content: space-around;">
             <div>
-              <h3 id="s17-question" style="color: var(--neon-cyan); margin-bottom: 0.75rem; font-size: 1.15rem;">
+              <h3 id="s17-question" style="color: var(--text-primary); margin-bottom: 0.6rem; font-size: 1.05rem; font-weight: 800;">
                 1. What is the maximum acceptable Motion-to-Photon latency before vestibular mismatch induces simulator sickness?
               </h3>
 
-              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem;" id="s17-options">
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.4rem;" id="s17-options">
                 <button class="cyber-btn secondary s17-opt" data-opt="0">A) 100 milliseconds</button>
                 <button class="cyber-btn secondary s17-opt" data-opt="1">B) 50 milliseconds</button>
                 <button class="cyber-btn secondary s17-opt" data-opt="2">C) 20 milliseconds</button>
@@ -2152,9 +2049,9 @@ Primary Use-Case: Consumer gaming, spatial entertainment, enterprise training.
               </div>
             </div>
 
-            <div id="s17-feedback" style="background: rgba(0,0,0,0.4); border-radius: var(--radius-sm); padding: 0.6rem; border: 1px solid var(--border-color); font-size: 0.82rem; display: none;"></div>
+            <div id="s17-feedback" style="background: #EFF6FF; border-radius: var(--radius-sm); padding: 0.5rem; border: 1px solid rgba(37, 99, 235, 0.25); font-size: 0.75rem; display: none;"></div>
 
-            <div style="display: flex; justify-content: flex-end; gap: 0.5rem;">
+            <div style="display: flex; justify-content: flex-end; gap: 0.4rem;">
               <button class="cyber-btn" id="s17-next-btn" style="display: none;">Next Question →</button>
               <button class="cyber-btn secondary" id="s17-restart-btn">Restart Quiz</button>
             </div>
@@ -2230,15 +2127,16 @@ Primary Use-Case: Consumer gaming, spatial entertainment, enterprise training.
           if (choice === item.correct) {
             btn.className = 'cyber-btn s17-opt';
             feedback.style.display = 'block';
-            feedback.innerHTML = `<span style="color: var(--neon-green); font-weight: 700;">✓ Correct!</span> ${item.expl}`;
+            feedback.innerHTML = `<span style="color: var(--accent-green); font-weight: 800;">✓ Correct!</span> ${item.expl}`;
             score++;
             scoreText.textContent = score;
             if (window.vrAudio) window.vrAudio.playSuccess();
           } else {
-            btn.style.borderColor = 'var(--neon-red)';
+            btn.style.borderColor = 'var(--accent-red)';
+            btn.style.color = '#DC2626';
             optBtns[item.correct].className = 'cyber-btn s17-opt';
             feedback.style.display = 'block';
-            feedback.innerHTML = `<span style="color: var(--neon-red); font-weight: 700;">✕ Incorrect.</span> ${item.expl}`;
+            feedback.innerHTML = `<span style="color: var(--accent-red); font-weight: 800;">✕ Incorrect.</span> ${item.expl}`;
             if (window.vrAudio) window.vrAudio.playBuzz();
           }
 
@@ -2287,45 +2185,44 @@ Primary Use-Case: Consumer gaming, spatial entertainment, enterprise training.
           <div class="content-card" style="justify-content: space-between;">
             <div>
               <span class="card-badge">THE THREE CARDINAL RULES OF VR</span>
-              <div style="display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.5rem;">
-                <div style="background: rgba(0, 229, 255, 0.05); border: 1px solid rgba(0, 229, 255, 0.2); border-radius: var(--radius-sm); padding: 0.6rem;">
-                  <div style="font-weight: 700; color: var(--neon-cyan); font-size: 0.85rem;">1. Respect the Biological Clock</div>
-                  <div style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.2rem;">
+              <div style="display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.35rem;">
+                <div style="background: #EFF6FF; border: 1px solid rgba(37, 99, 235, 0.2); border-radius: var(--radius-sm); padding: 0.5rem;">
+                  <div style="font-weight: 800; color: var(--accent-blue); font-size: 0.82rem;">1. Respect the Biological Clock</div>
+                  <div style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 0.1rem;">
                     Motion-to-Photon must stay under <b>20 milliseconds</b>. Dropping frames induces nausea.
                   </div>
                 </div>
 
-                <div style="background: rgba(139, 92, 246, 0.05); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: var(--radius-sm); padding: 0.6rem;">
-                  <div style="font-weight: 700; color: var(--neon-purple); font-size: 0.85rem;">2. Decouple Tracking from Network</div>
-                  <div style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.2rem;">
+                <div style="background: #F3E8FF; border: 1px solid rgba(124, 58, 237, 0.2); border-radius: var(--radius-sm); padding: 0.5rem;">
+                  <div style="font-weight: 800; color: var(--accent-purple); font-size: 0.82rem;">2. Decouple Tracking from Network</div>
+                  <div style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 0.1rem;">
                     Local head orientation must never wait on remote servers. Use client prediction and ATW.
                   </div>
                 </div>
 
-                <div style="background: rgba(0, 255, 157, 0.05); border: 1px solid rgba(0, 255, 157, 0.2); border-radius: var(--radius-sm); padding: 0.6rem;">
-                  <div style="font-weight: 700; color: var(--neon-green); font-size: 0.85rem;">3. Optics and Silicon Must Cooperate</div>
-                  <div style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.2rem;">
+                <div style="background: #ECFDF5; border: 1px solid rgba(5, 150, 105, 0.2); border-radius: var(--radius-sm); padding: 0.5rem;">
+                  <div style="font-weight: 800; color: var(--accent-green); font-size: 0.82rem;">3. Optics and Silicon Must Cooperate</div>
+                  <div style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 0.1rem;">
                     Barrel distortion shaders pre-warp images for Pancake lenses; strobed displays freeze motion on the retina.
                   </div>
                 </div>
               </div>
             </div>
 
-            <div style="display: flex; gap: 0.5rem;">
+            <div style="display: flex; gap: 0.4rem;">
               <button class="cyber-btn" id="s18-replay-btn" style="flex: 1;">🎬 Replay Boot Sequence</button>
               <button class="cyber-btn secondary" id="s18-overview-btn" style="flex: 1;">📑 All 18 Slides</button>
             </div>
           </div>
 
-          <!-- Final Architectural Diagram Card -->
           <div class="content-card" style="align-items: center; justify-content: center; text-align: center;">
             <span class="card-badge">THE IMMERSIVE COMPUTING HORIZON</span>
-            <div style="font-size: 2.8rem; margin: 0.4rem 0;" aria-hidden="true">🌐 🥽 ⚡</div>
-            <h3 style="color: var(--neon-cyan); margin-bottom: 0.4rem;">Virtual Reality Architecture</h3>
-            <p style="color: var(--text-secondary); font-size: 0.82rem; line-height: 1.5; max-width: 380px;">
+            <div style="font-size: 2.5rem; margin: 0.35rem 0;" aria-hidden="true">🌐 🥽 ⚡</div>
+            <h3 style="color: var(--text-primary); margin-bottom: 0.3rem; font-weight: 800;">Virtual Reality Architecture</h3>
+            <p style="color: var(--text-secondary); font-size: 0.78rem; line-height: 1.4; max-width: 380px;">
               You have traced the journey of physical head motion across IMU sensors, Kalman fusion, stereo GPU rasterization, Asynchronous TimeWarp, and folded pancake optics.
             </p>
-            <div style="margin-top: 0.75rem; padding: 0.5rem 1rem; border-radius: var(--radius-sm); background: rgba(0, 229, 255, 0.1); border: 1px solid var(--neon-cyan); font-family: var(--font-mono); font-size: 0.78rem; color: var(--neon-cyan);">
+            <div style="margin-top: 0.6rem; padding: 0.4rem 0.8rem; border-radius: var(--radius-sm); background: #EFF6FF; border: 1px solid var(--accent-blue); font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-blue); font-weight: 700;">
               Press [Esc] or [O] anytime to view the Full Curriculum Matrix
             </div>
           </div>

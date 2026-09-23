@@ -1,10 +1,10 @@
 /**
  * VR Architecture 3D Interactive Utilities using Three.js
- * Provides clean scene setup, responsive cameras, materials, models, and orbit controls.
+ * Academic Theme: High-luminance daylight lighting, crisp contrast, 3D-to-2D rasterizer, and exploded assembly.
  */
 
 window.VR3D = {
-  // Initialize standard Three.js canvas in any container
+  // Initialize standard Three.js canvas in any container (Academic Light Theme)
   initScene: function(containerId, opts = {}) {
     const container = typeof containerId === 'string' ? document.getElementById(containerId) : containerId;
     if (!container || !window.THREE) return null;
@@ -14,9 +14,10 @@ window.VR3D = {
     const height = container.clientHeight || 260;
 
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x05070A, opts.fogDensity || 0.035);
+    scene.background = new THREE.Color(opts.bgColor || 0xF8FAFC);
+    scene.fog = new THREE.FogExp2(opts.bgColor || 0xF8FAFC, opts.fogDensity || 0.025);
 
-    const camera = new THREE.PerspectiveCamera(opts.fov || 48, width / height, 0.1, 100);
+    const camera = new THREE.PerspectiveCamera(opts.fov || 46, width / height, 0.1, 100);
     camera.position.set(opts.camX || 0, opts.camY || 1.1, opts.camZ || 3.4);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
@@ -25,23 +26,23 @@ window.VR3D = {
     renderer.shadowMap.enabled = true;
     container.appendChild(renderer.domElement);
 
-    // Ambient & Directional Lighting
-    const amb = new THREE.AmbientLight(0x223344, 1.4);
+    // Daylight Academic Lighting
+    const amb = new THREE.AmbientLight(0xFFFFFF, 1.4);
     scene.add(amb);
 
-    const dirLight = new THREE.DirectionalLight(0x00E5FF, 1.6);
-    dirLight.position.set(3, 5, 4);
-    scene.add(dirLight);
+    const sun = new THREE.DirectionalLight(0xFFFFFF, 1.2);
+    sun.position.set(4, 6, 5);
+    scene.add(sun);
 
-    const purpleLight = new THREE.DirectionalLight(0x8B5CF6, 1.2);
-    purpleLight.position.set(-3, -2, -2);
-    scene.add(purpleLight);
+    const blueFill = new THREE.DirectionalLight(0x2563EB, 0.6);
+    blueFill.position.set(-4, -2, -3);
+    scene.add(blueFill);
 
-    // Grid Floor
+    // Subtle Classroom Grid Floor
     if (!opts.noGrid) {
-      const grid = new THREE.GridHelper(12, 24, 0x00E5FF, 0x1E293B);
+      const grid = new THREE.GridHelper(12, 24, 0x2563EB, 0xCBD5E1);
       grid.position.y = opts.gridY || -1;
-      grid.material.opacity = 0.35;
+      grid.material.opacity = 0.55;
       grid.material.transparent = true;
       scene.add(grid);
     }
@@ -151,28 +152,28 @@ window.VR3D = {
     const visorGeo = new THREE.BoxGeometry(1.6, 0.9, 0.9);
     const visorMat = new THREE.MeshStandardMaterial({
       color: 0x1E293B,
-      metalness: 0.8,
-      roughness: 0.2
+      metalness: 0.6,
+      roughness: 0.3
     });
     const visor = new THREE.Mesh(visorGeo, visorMat);
     group.add(visor);
 
-    // Front Glass Plate (High gloss dark panel with cyan reflection)
+    // Front Glass Plate (Glossy dark panel with royal blue reflection)
     const plateGeo = new THREE.BoxGeometry(1.56, 0.86, 0.05);
     const plateMat = new THREE.MeshStandardMaterial({
-      color: 0x05070A,
+      color: 0x0F172A,
       metalness: 0.9,
       roughness: 0.1,
-      emissive: 0x00E5FF,
-      emissiveIntensity: 0.2
+      emissive: 0x2563EB,
+      emissiveIntensity: 0.25
     });
     const plate = new THREE.Mesh(plateGeo, plateMat);
     plate.position.z = 0.46;
     group.add(plate);
 
-    // 4 Corner Tracking Cameras (Small black lenses with glowing cyan rings)
+    // 4 Corner Tracking Cameras
     const camGeo = new THREE.CylinderGeometry(0.06, 0.06, 0.04, 16);
-    const camMat = new THREE.MeshBasicMaterial({ color: 0x00E5FF });
+    const camMat = new THREE.MeshBasicMaterial({ color: 0x0284C7 });
     const camCoords = [
       [-0.7, 0.35, 0.47], [0.7, 0.35, 0.47],
       [-0.7, -0.35, 0.47], [0.7, -0.35, 0.47]
@@ -186,17 +187,17 @@ window.VR3D = {
 
     // Face Cushion Foam
     const foamGeo = new THREE.BoxGeometry(1.5, 0.8, 0.2);
-    const foamMat = new THREE.MeshStandardMaterial({ color: 0x0F172A, roughness: 0.9 });
+    const foamMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.9 });
     const foam = new THREE.Mesh(foamGeo, foamMat);
     foam.position.z = -0.48;
     group.add(foam);
 
-    // Dual Inner Lenses (Glowing blue glass rings)
+    // Dual Inner Lenses (Crystal blue glass rings)
     const lensGeo = new THREE.CylinderGeometry(0.24, 0.24, 0.06, 24);
     const lensMat = new THREE.MeshStandardMaterial({
-      color: 0x00E5FF,
-      emissive: 0x00E5FF,
-      emissiveIntensity: 0.6,
+      color: 0x0284C7,
+      emissive: 0x0284C7,
+      emissiveIntensity: 0.5,
       transparent: true,
       opacity: 0.85
     });
@@ -210,33 +211,25 @@ window.VR3D = {
 
     // Head Strap Ring
     const strapGeo = new THREE.TorusGeometry(0.85, 0.07, 12, 32, Math.PI);
-    const strapMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.7 });
+    const strapMat = new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.7 });
     const strap = new THREE.Mesh(strapGeo, strapMat);
     strap.rotation.x = Math.PI / 2;
     strap.position.set(0, 0, -0.4);
     group.add(strap);
 
-    // Top Strap
-    const topStrapGeo = new THREE.CylinderGeometry(0.06, 0.06, 0.9, 8);
-    const topStrap = new THREE.Mesh(topStrapGeo, strapMat);
-    topStrap.rotation.x = Math.PI / 2;
-    topStrap.position.set(0, 0.45, -0.45);
-    group.add(topStrap);
-
-    return { group, plate, leftLens, rightLens, visor };
+    return { group, plate, leftLens, rightLens, visor, foam };
   },
 
   // Create Headset worn on Stylized Human Head
   createHeadWithHMD: function() {
     const root = new THREE.Group();
 
-    // Stylized Head (Smooth wireframe / matcap head sphere)
+    // Stylized Head
     const headGeo = new THREE.SphereGeometry(0.75, 32, 24);
     const headMat = new THREE.MeshStandardMaterial({
-      color: 0x1E293B,
-      roughness: 0.4,
-      metalness: 0.3,
-      wireframe: false
+      color: 0xCBD5E1,
+      roughness: 0.5,
+      metalness: 0.2
     });
     const head = new THREE.Mesh(headGeo, headMat);
     head.scale.set(0.9, 1.15, 1.0);
@@ -252,14 +245,13 @@ window.VR3D = {
   },
 
   // Create Wireframe Viewing Frustum Pyramid
-  createFrustum: function(color = 0x00E5FF, fov = 45, aspect = 1.0, near = 0.2, far = 2.5) {
+  createFrustum: function(color = 0x2563EB, fov = 45, aspect = 1.0, near = 0.2, far = 2.5) {
     const group = new THREE.Group();
     const hNear = 2 * Math.tan(THREE.MathUtils.degToRad(fov / 2)) * near;
     const wNear = hNear * aspect;
     const hFar = 2 * Math.tan(THREE.MathUtils.degToRad(fov / 2)) * far;
     const wFar = hFar * aspect;
 
-    // Line segments
     const pts = [
       // Apex to near
       new THREE.Vector3(0, 0, 0), new THREE.Vector3(-wNear/2, hNear/2, -near),
@@ -279,7 +271,7 @@ window.VR3D = {
     ];
 
     const geo = new THREE.BufferGeometry().setFromPoints(pts);
-    const mat = new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.75, linewidth: 2 });
+    const mat = new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.85, linewidth: 2 });
     const lines = new THREE.LineSegments(geo, mat);
     group.add(lines);
 
