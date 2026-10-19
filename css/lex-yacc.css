@@ -1,0 +1,260 @@
+/* ==========================================================================
+   LEX & YACC COMPILER DESIGN PRESENTATION - DESIGN SYSTEM
+   Theme: Academic Light (Lecture Hall High-Contrast)
+   Palette: Slate #F1F5F9 | Surface #FFFFFF | Primary Navy #0F172A | Cobalt #2563EB | Emerald #059669
+   ========================================================================== */
+
+/* Token Badges */
+.token-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  border: 1px solid transparent;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.token-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
+}
+
+.token-id {
+  background: rgba(37, 99, 235, 0.1);
+  color: #1D4ED8;
+  border-color: rgba(37, 99, 235, 0.25);
+}
+
+.token-op {
+  background: rgba(217, 119, 6, 0.1);
+  color: #B45309;
+  border-color: rgba(217, 119, 6, 0.25);
+}
+
+.token-num {
+  background: rgba(5, 150, 105, 0.1);
+  color: #047857;
+  border-color: rgba(5, 150, 105, 0.25);
+}
+
+.token-delim {
+  background: rgba(100, 116, 139, 0.12);
+  color: #475569;
+  border-color: rgba(100, 116, 139, 0.25);
+}
+
+.token-kw {
+  background: rgba(124, 58, 237, 0.1);
+  color: #6D28D9;
+  border-color: rgba(124, 58, 237, 0.25);
+}
+
+/* Code Snippet Box */
+.code-box {
+  background: #0F172A;
+  color: #F8FAFC;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid #1E293B;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+  overflow-x: auto;
+}
+
+.code-box .kw { color: #93C5FD; font-weight: 700; }
+.code-box .str { color: #86EFAC; }
+.code-box .num { color: #FDE047; }
+.code-box .comment { color: #94A3B8; font-style: italic; }
+.code-box .op { color: #FCA5A5; }
+.code-box .func { color: #C4B5FD; font-weight: 600; }
+
+/* Interactive Input Controls */
+.interactive-input-group {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  background: #FFFFFF;
+  border: 1.5px solid #CBD5E1;
+  border-radius: var(--radius-md);
+  padding: 0.35rem 0.6rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.interactive-input-group:focus-within {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.interactive-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  color: #0F172A;
+  background: transparent;
+}
+
+/* Parse Tree SVG Container */
+.parse-tree-container {
+  width: 100%;
+  height: 240px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.tree-node-circle {
+  fill: #FFFFFF;
+  stroke: #2563EB;
+  stroke-width: 2.5px;
+  transition: all 0.3s ease;
+}
+
+.tree-node-circle:hover {
+  fill: #EFF6FF;
+  stroke-width: 3.5px;
+}
+
+.tree-node-text {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  fill: #0F172A;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.tree-edge-line {
+  stroke: #94A3B8;
+  stroke-width: 2px;
+  stroke-linecap: round;
+}
+
+/* Student Credential Card on Slide 1 */
+.student-credential-card {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.04), rgba(5, 150, 105, 0.04));
+  border: 1.5px solid rgba(37, 99, 235, 0.18);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+.student-editable-field {
+  display: inline-block;
+  border-bottom: 2px dashed #2563EB;
+  padding: 0.1rem 0.4rem;
+  color: #0F172A;
+  font-weight: 700;
+  cursor: pointer;
+  background: rgba(37, 99, 235, 0.05);
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.student-editable-field:hover {
+  background: rgba(37, 99, 235, 0.12);
+}
+
+/* Error Banner */
+.syntax-error-banner {
+  background: #FEF2F2;
+  border: 1.5px solid #F87171;
+  color: #991B1B;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  font-size: 0.88rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  animation: shakeError 0.4s ease-in-out;
+}
+
+@keyframes shakeError {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-4px); }
+  40%, 80% { transform: translateX(4px); }
+}
+
+/* Phase Flow Pipeline Nodes */
+.compiler-flow-track {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.flow-step-node {
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: var(--radius-md);
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flow-step-node.active-step {
+  border-color: var(--accent-blue);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15);
+  transform: translateY(-2px);
+  background: #EFF6FF;
+}
+
+.flow-step-num {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--accent-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.flow-step-title {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #0F172A;
+}
+
+.flow-step-desc {
+  font-size: 0.78rem;
+  color: #475569;
+  line-height: 1.4;
+}
+
+/* Shift-Reduce Step Log */
+.action-log-container {
+  max-height: 170px;
+  overflow-y: auto;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.5rem;
+  background: #F8FAFC;
+  border-radius: var(--radius-sm);
+  border: 1px solid #E2E8F0;
+}
+
+.action-log-entry {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+}
