@@ -68,11 +68,11 @@ window.lexYaccSlidesData = [
             </div>
 
             <!-- Start Actions -->
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 1rem;">
-              <button class="nav-btn" onclick="lexYaccApp.nextSlide()" style="background: var(--accent-blue); color: #FFF; padding: 0.55rem 1.25rem; font-size: 0.88rem; font-weight: 700; border-radius: var(--radius-md);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 1rem; gap: 0.75rem;">
+              <button type="button" class="btn-action btn-action-primary" onclick="lexYaccApp.nextSlide()" title="Begin presentation">
                 Start Presentation →
               </button>
-              <button class="icon-btn" onclick="lexYaccApp.playTitleAnimation()" style="border: 1px solid #CBD5E1; padding: 0.55rem 0.95rem; font-size: 0.82rem; font-weight: 600;">
+              <button type="button" class="btn-action btn-action-secondary" onclick="lexYaccApp.playTitleAnimation()" title="Replay intro flow">
                 ▶ Replay Title Animation
               </button>
             </div>
@@ -289,16 +289,16 @@ window.lexYaccSlidesData = [
 
             <!-- Step Control Buttons -->
             <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
-              <button class="nav-btn" onclick="lexYaccApp.revealIntroStage(1)" style="flex: 1; font-size: 0.78rem; padding: 0.45rem;">
+              <button type="button" class="btn-action btn-action-secondary" id="btn-intro-1" onclick="lexYaccApp.revealIntroStage(1)" style="flex: 1; font-size: 0.78rem; padding: 0.45rem;">
                 1. Source Code
               </button>
-              <button class="nav-btn" onclick="lexYaccApp.revealIntroStage(2)" style="flex: 1; font-size: 0.78rem; padding: 0.45rem;">
+              <button type="button" class="btn-action btn-action-secondary" id="btn-intro-2" onclick="lexYaccApp.revealIntroStage(2)" style="flex: 1; font-size: 0.78rem; padding: 0.45rem;">
                 2. LEX Tokens
               </button>
-              <button class="nav-btn" onclick="lexYaccApp.revealIntroStage(3)" style="flex: 1; font-size: 0.78rem; padding: 0.45rem;">
+              <button type="button" class="btn-action btn-action-secondary" id="btn-intro-3" onclick="lexYaccApp.revealIntroStage(3)" style="flex: 1; font-size: 0.78rem; padding: 0.45rem;">
                 3. YACC Grammar
               </button>
-              <button class="icon-btn" onclick="lexYaccApp.autoPlayIntroStages()" title="Auto Play All Stages" style="padding: 0.45rem 0.75rem; font-size: 0.8rem;">
+              <button type="button" class="btn-action btn-action-primary" onclick="lexYaccApp.autoPlayIntroStages()" title="Auto Play All Stages" style="padding: 0.45rem 0.75rem; font-size: 0.8rem;">
                 ▶ Auto
               </button>
             </div>
@@ -424,13 +424,13 @@ window.lexYaccSlidesData = [
 
               <!-- Interactive Controls (Previous / Next / Auto) -->
               <div style="display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 0.75rem;">
-                <button class="nav-btn" id="scanner-prev-btn" onclick="lexYaccApp.prevLexToken()" style="font-size: 0.8rem; padding: 0.4rem 0.85rem;">
+                <button type="button" class="btn-action btn-action-secondary" id="scanner-prev-btn" onclick="lexYaccApp.prevLexToken()">
                   ← Previous token
                 </button>
-                <button class="nav-btn" id="scanner-next-btn" onclick="lexYaccApp.nextLexToken()" style="font-size: 0.8rem; padding: 0.4rem 0.85rem; background: var(--accent-blue); color: #FFF;">
+                <button type="button" class="btn-action btn-action-primary" id="scanner-next-btn" onclick="lexYaccApp.nextLexToken()">
                   Next token →
                 </button>
-                <button class="icon-btn" id="scanner-auto-btn" onclick="lexYaccApp.toggleAutoLexScan()" style="font-size: 0.8rem; padding: 0.4rem 0.85rem;">
+                <button type="button" class="btn-action btn-action-secondary" id="scanner-auto-btn" onclick="lexYaccApp.toggleAutoLexScan()">
                   ▶ Auto Scan
                 </button>
               </div>
@@ -536,7 +536,7 @@ window.lexYaccSlidesData = [
               </h3>
 
               <!-- Phase 1: Display token sequence -->
-              <div style="background: #F8FAFC; border: 1px solid #CBD5E1; border-radius: var(--radius-sm); padding: 0.65rem 0.85rem; margin-bottom: 0.6rem;">
+              <div id="yacc-step-1" style="background: #F8FAFC; border: 1px solid #CBD5E1; border-radius: var(--radius-sm); padding: 0.65rem 0.85rem; margin-bottom: 0.6rem; transition: all 0.3s ease;">
                 <div style="font-size: 0.72rem; font-weight: 700; color: #64748B; text-transform: uppercase; margin-bottom: 0.25rem;">
                   1. Token Sequence from LEX
                 </div>
@@ -548,7 +548,7 @@ window.lexYaccSlidesData = [
               </div>
 
               <!-- Phase 2: Reveal grammar rule -->
-              <div style="background: #F8FAFC; border: 1px solid #CBD5E1; border-radius: var(--radius-sm); padding: 0.65rem 0.85rem; margin-bottom: 0.6rem;">
+              <div id="yacc-step-2" style="background: #F8FAFC; border: 1px solid #CBD5E1; border-radius: var(--radius-sm); padding: 0.65rem 0.85rem; margin-bottom: 0.6rem; transition: all 0.3s ease;">
                 <div style="font-size: 0.72rem; font-weight: 700; color: #64748B; text-transform: uppercase; margin-bottom: 0.25rem;">
                   2. Applicable Grammar Rule
                 </div>
@@ -564,7 +564,7 @@ window.lexYaccSlidesData = [
 
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 0.5rem;">
                 <!-- Valid Expression Box -->
-                <div id="yacc-box-valid" class="content-card" style="padding: 0.75rem; border: 1.5px solid #10B981; background: #F0FDF4; display: flex; flex-direction: column; justify-content: space-between;">
+                <div id="yacc-box-valid" class="content-card" style="padding: 0.75rem; border: 1.5px solid #10B981; background: #F0FDF4; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.3s ease;">
                   <div>
                     <div style="font-size: 0.72rem; font-weight: 800; color: #047857; text-transform: uppercase;">
                       Valid expression
@@ -581,7 +581,7 @@ window.lexYaccSlidesData = [
                 </div>
 
                 <!-- Invalid Expression Box -->
-                <div id="yacc-box-invalid" class="content-card" style="padding: 0.75rem; border: 1.5px solid #EF4444; background: #FEF2F2; display: flex; flex-direction: column; justify-content: space-between;">
+                <div id="yacc-box-invalid" class="content-card" style="padding: 0.75rem; border: 1.5px solid #EF4444; background: #FEF2F2; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.3s ease;">
                   <div>
                     <div style="font-size: 0.72rem; font-weight: 800; color: #B91C1C; text-transform: uppercase;">
                       Invalid expression
@@ -599,9 +599,17 @@ window.lexYaccSlidesData = [
               </div>
             </div>
 
-            <!-- Error Explanation Banner -->
-            <div style="background: #FFFBEB; border: 1px solid #F59E0B; border-radius: var(--radius-sm); padding: 0.5rem 0.75rem; font-size: 0.76rem; color: #92400E; line-height: 1.4;">
-              ⚠️ <strong>Why is <code>10 + * 20</code> a syntax error?</strong> Two consecutive operators (<code>+ *</code>) appear without an operand between them, violating <code>expr → expr + term</code>.
+            <!-- Interactive Buttons for Slide 4 Comparison -->
+            <div style="display: flex; gap: 0.45rem; margin-top: 0.5rem; flex-wrap: wrap;">
+              <button type="button" class="btn-action btn-action-secondary" style="flex: 1; border-color: #10B981 !important; color: #047857 !important;" onclick="lexYaccApp.testYaccExpr(true)">
+                ✓ Test 10 + 20
+              </button>
+              <button type="button" class="btn-action btn-action-secondary" style="flex: 1; border-color: #EF4444 !important; color: #B91C1C !important;" onclick="lexYaccApp.testYaccExpr(false)">
+                ✕ Test 10 + * 20
+              </button>
+              <button type="button" class="btn-action btn-action-primary" onclick="lexYaccApp.autoPlayYaccDemo()">
+                ▶ Auto Demo
+              </button>
             </div>
           </div>
         </div>
@@ -702,15 +710,15 @@ window.lexYaccSlidesData = [
 
             <!-- Previous / Next step buttons -->
             <div style="display: flex; gap: 0.5rem; justify-content: space-between; align-items: center; margin-top: 1rem;">
-              <button class="nav-btn" id="calc-prev-btn" onclick="lexYaccApp.prevCalcStep()" style="font-size: 0.82rem; padding: 0.45rem 1rem;">
+              <button type="button" class="btn-action btn-action-secondary" id="calc-prev-btn" onclick="lexYaccApp.prevCalcStep()">
                 ← Previous step
               </button>
               
-              <button class="icon-btn" onclick="lexYaccApp.autoPlayCalcDemo()" style="font-size: 0.8rem; padding: 0.45rem 0.85rem;">
+              <button type="button" class="btn-action btn-action-secondary" onclick="lexYaccApp.autoPlayCalcDemo()">
                 ▶ Auto Play (1 to 4)
               </button>
 
-              <button class="nav-btn" id="calc-next-btn" onclick="lexYaccApp.nextCalcStep()" style="font-size: 0.82rem; padding: 0.45rem 1rem; background: var(--accent-green); color: #FFF;">
+              <button type="button" class="btn-action btn-action-primary" id="calc-next-btn" onclick="lexYaccApp.nextCalcStep()">
                 Next step →
               </button>
             </div>
@@ -796,7 +804,9 @@ window.lexYaccSlidesData = [
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
                 <span style="font-size: 0.76rem; font-weight: 800; color: #2563EB; text-transform: uppercase; letter-spacing: 0.05em;">Simulation / animation</span>
-                <button class="icon-btn" onclick="lexYaccApp.playConclusionAnimation()" style="font-size: 0.72rem; padding: 0.2rem 0.5rem;">▶ Replay Sequence</button>
+                <button type="button" class="btn-action btn-action-secondary" onclick="lexYaccApp.playConclusionAnimation()" style="padding: 0.25rem 0.65rem !important; font-size: 0.75rem !important;">
+                  ▶ Replay Sequence
+                </button>
               </div>
 
               <!-- Animated Sequence Container -->
@@ -838,10 +848,10 @@ window.lexYaccSlidesData = [
 
             <!-- Replay or Finish -->
             <div style="display: flex; justify-content: center; gap: 0.65rem; margin-top: 1rem;">
-              <button class="nav-btn" onclick="lexYaccApp.goToSlide(0)" style="font-size: 0.82rem; padding: 0.45rem 1rem; background: var(--accent-blue); color: #FFF;">
+              <button type="button" class="btn-action btn-action-primary" onclick="lexYaccApp.goToSlide(0)">
                 ⏮ Replay from Slide 1
               </button>
-              <button class="icon-btn" onclick="lexYaccApp.celebratePresentation()" style="font-size: 0.82rem; padding: 0.45rem 1rem; border: 1px solid #CBD5E1;">
+              <button type="button" class="btn-action btn-action-secondary" onclick="lexYaccApp.celebratePresentation()">
                 🎉 Complete
               </button>
             </div>

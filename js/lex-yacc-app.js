@@ -7,19 +7,10 @@ class LexYaccApp {
   constructor() {
     this.slides = window.lexYaccSlidesData || [];
     this.currentIndex = 0;
-    this.stageEl = document.getElementById('slide-stage');
-    this.counterEl = document.getElementById('slide-counter');
-    this.progressBarEl = document.getElementById('progress-bar');
-    this.sectionPillEl = document.getElementById('current-section-pill');
-    this.overviewModal = document.getElementById('overview-modal');
-    this.notesModal = document.getElementById('notes-modal');
-    this.notesBody = document.getElementById('notes-body');
     this.isLaserPointerActive = false;
     this.laserDot = null;
     this.isHeaderHidden = localStorage.getItem('lex_header_hidden') === 'true';
     this.audioEnabled = true;
-
-    // Web Audio Context
     this.audioCtx = null;
 
     // Scanner state for Slide 3
@@ -40,6 +31,16 @@ class LexYaccApp {
   }
 
   init() {
+    // Re-bind DOM elements on init
+    this.slides = window.lexYaccSlidesData || [];
+    this.stageEl = document.getElementById('slide-stage');
+    this.counterEl = document.getElementById('slide-counter');
+    this.progressBarEl = document.getElementById('progress-bar');
+    this.sectionPillEl = document.getElementById('current-section-pill');
+    this.overviewModal = document.getElementById('overview-modal');
+    this.notesModal = document.getElementById('notes-modal');
+    this.notesBody = document.getElementById('notes-body');
+
     const hash = window.location.hash;
     if (hash && hash.startsWith('#slide-')) {
       const num = parseInt(hash.replace('#slide-', ''), 10);
@@ -107,6 +108,14 @@ class LexYaccApp {
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
         osc.start(now);
         osc.stop(now + 0.3);
+      } else if (type === 'error') {
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(220, now);
+        osc.frequency.linearRampToValueAtTime(140, now + 0.18);
+        gain.gain.setValueAtTime(0.1, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+        osc.start(now);
+        osc.stop(now + 0.2);
       } else if (type === 'celebrate') {
         [523.25, 659.25, 783.99, 1046.5].forEach((freq, i) => {
           const o = this.audioCtx.createOscillator();
@@ -136,6 +145,7 @@ class LexYaccApp {
 
   // Laser Pointer
   initLaserPointer() {
+    if (this.laserDot) return;
     this.laserDot = document.createElement('div');
     this.laserDot.id = 'presentation-laser-dot';
     this.laserDot.style.cssText = `
@@ -183,6 +193,9 @@ class LexYaccApp {
 
   // Slide Rendering
   renderSlide(index) {
+    if (!this.slides || this.slides.length === 0) {
+      this.slides = window.lexYaccSlidesData || [];
+    }
     if (index < 0 || index >= this.slides.length) return;
     
     // Clear any active auto intervals
@@ -192,6 +205,9 @@ class LexYaccApp {
     this.currentIndex = index;
     const slide = this.slides[index];
 
+    if (!this.stageEl) {
+      this.stageEl = document.getElementById('slide-stage');
+    }
     if (this.sectionPillEl) {
       this.sectionPillEl.innerText = slide.part || 'Compiler Design';
     }
@@ -213,7 +229,9 @@ class LexYaccApp {
       </div>
     `;
 
-    this.stageEl.innerHTML = html;
+    if (this.stageEl) {
+      this.stageEl.innerHTML = html;
+    }
 
     if (typeof slide.init === 'function') {
       try {
@@ -267,6 +285,9 @@ class LexYaccApp {
   }
 
   nextSlide() {
+    if (!this.slides || this.slides.length === 0) {
+      this.slides = window.lexYaccSlidesData || [];
+    }
     if (this.currentIndex < this.slides.length - 1) {
       this.playSound('nav');
       this.renderSlide(this.currentIndex + 1);
@@ -274,6 +295,9 @@ class LexYaccApp {
   }
 
   prevSlide() {
+    if (!this.slides || this.slides.length === 0) {
+      this.slides = window.lexYaccSlidesData || [];
+    }
     if (this.currentIndex > 0) {
       this.playSound('nav');
       this.renderSlide(this.currentIndex - 1);
@@ -281,6 +305,9 @@ class LexYaccApp {
   }
 
   goToSlide(index) {
+    if (!this.slides || this.slides.length === 0) {
+      this.slides = window.lexYaccSlidesData || [];
+    }
     if (index >= 0 && index < this.slides.length) {
       this.playSound('nav');
       this.renderSlide(index);
@@ -289,30 +316,32 @@ class LexYaccApp {
   }
 
   toggleOverview() {
+    if (!this.overviewModal) this.overviewModal = document.getElementById('overview-modal');
     if (!this.overviewModal) return;
-    const isOpen = this.overviewModal.classList.contains('active');
+    const isOpen = this.overviewModal.classList.contains('show') || this.overviewModal.classList.contains('active');
     if (isOpen) {
-      this.overviewModal.classList.remove('active');
+      this.overviewModal.classList.remove('show', 'active');
     } else {
-      this.overviewModal.classList.add('active');
+      this.overviewModal.classList.add('show', 'active');
     }
     this.playSound('blip');
   }
 
   toggleNotes() {
+    if (!this.notesModal) this.notesModal = document.getElementById('notes-modal');
     if (!this.notesModal) return;
-    const isOpen = this.notesModal.classList.contains('active');
+    const isOpen = this.notesModal.classList.contains('show') || this.notesModal.classList.contains('active');
     if (isOpen) {
-      this.notesModal.classList.remove('active');
+      this.notesModal.classList.remove('show', 'active');
     } else {
-      this.notesModal.classList.add('active');
+      this.notesModal.classList.add('show', 'active');
     }
     this.playSound('blip');
   }
 
   closeModals() {
-    if (this.overviewModal) this.overviewModal.classList.remove('active');
-    if (this.notesModal) this.notesModal.classList.remove('active');
+    if (this.overviewModal) this.overviewModal.classList.remove('show', 'active');
+    if (this.notesModal) this.notesModal.classList.remove('show', 'active');
   }
 
   toggleFullscreen() {
@@ -388,10 +417,6 @@ class LexYaccApp {
 
   // ========================================================================
   // SLIDE 1: Title Simulation / Animation
-  // 1. Display title first.
-  // 2. Reveal "LEX — Lexical Analysis".
-  // 3. Reveal "YACC — Syntax Analysis".
-  // 4. Show arrow connecting the two tools.
   // ========================================================================
   playTitleAnimation() {
     const s1 = document.getElementById('anim-stage-1');
@@ -403,14 +428,12 @@ class LexYaccApp {
 
     if (!s1 || !s2 || !s3) return;
 
-    // Reset initial hidden states
     s1.style.opacity = '0'; s1.style.transform = 'translateY(8px)';
     s2.style.opacity = '0'; s2.style.transform = 'translateY(8px)';
     s3.style.opacity = '0'; s3.style.transform = 'translateY(8px)';
     if (a1) a1.style.opacity = '0';
     if (aConn) aConn.style.opacity = '0';
 
-    // Step 1: Display title first
     setTimeout(() => {
       s1.style.opacity = '1';
       s1.style.transform = 'translateY(0)';
@@ -418,7 +441,6 @@ class LexYaccApp {
       if (status) status.innerHTML = '<span>1. Title Displayed</span>';
     }, 200);
 
-    // Step 2: Reveal "LEX — Lexical Analysis"
     setTimeout(() => {
       if (a1) a1.style.opacity = '1';
       s2.style.opacity = '1';
@@ -427,7 +449,6 @@ class LexYaccApp {
       if (status) status.innerHTML = '<span>2. Revealed LEX — Lexical Analysis</span>';
     }, 800);
 
-    // Step 3: Reveal "YACC — Syntax Analysis"
     setTimeout(() => {
       s3.style.opacity = '1';
       s3.style.transform = 'translateY(0)';
@@ -435,7 +456,6 @@ class LexYaccApp {
       if (status) status.innerHTML = '<span>3. Revealed YACC — Syntax Analysis</span>';
     }, 1400);
 
-    // Step 4: Show arrow connecting the two tools
     setTimeout(() => {
       if (aConn) {
         aConn.style.opacity = '1';
@@ -449,10 +469,6 @@ class LexYaccApp {
 
   // ========================================================================
   // SLIDE 2: Introduction Simulation / Animation
-  // Show stages one by one:
-  // 1. Source code: 10 + 20
-  // 2. LEX: Recognizes tokens -> NUMBER + NUMBER
-  // 3. YACC: Checks grammar -> Valid expression
   // ========================================================================
   revealIntroStage(step) {
     const s1 = document.getElementById('intro-stage-1');
@@ -486,10 +502,6 @@ class LexYaccApp {
 
   // ========================================================================
   // SLIDE 3: LEX Scanner Simulation
-  // Demonstrate lexical analysis as a scanner moving through the input
-  // Input code: total = 10 + 20;
-  // Show one token at a time: total -> IDENTIFIER, etc.
-  // Previous / Next token buttons
   // ========================================================================
   updateLexScannerView() {
     const tape = document.getElementById('lex-code-tape');
@@ -503,7 +515,6 @@ class LexYaccApp {
 
     const cur = this.lexTokensData[this.currentLexIndex];
 
-    // Highlight code tape
     tape.innerHTML = this.lexTokensData.map((item, idx) => {
       const isCur = idx === this.currentLexIndex;
       return `
@@ -524,7 +535,6 @@ class LexYaccApp {
     tokenEl.innerHTML = `<span class="token-badge ${cur.cls}" style="font-size: 1.05rem; padding: 0.35rem 0.95rem;">${cur.type}</span>`;
     if (badgeEl) badgeEl.innerText = `Token ${this.currentLexIndex + 1} of ${this.lexTokensData.length}`;
 
-    // Update table highlights
     this.lexTokensData.forEach((_, i) => {
       const row = document.getElementById(`tbl-row-${i}`);
       if (row) {
@@ -583,11 +593,37 @@ class LexYaccApp {
   }
 
   // ========================================================================
+  // SLIDE 4: YACC Interactive Comparison
+  // ========================================================================
+  testYaccExpr(isValid) {
+    const validBox = document.getElementById('yacc-box-valid');
+    const invalidBox = document.getElementById('yacc-box-invalid');
+    if (!validBox || !invalidBox) return;
+
+    if (isValid) {
+      this.playSound('success');
+      validBox.style.transform = 'scale(1.03)';
+      validBox.style.boxShadow = '0 6px 18px rgba(16, 185, 129, 0.25)';
+      invalidBox.style.transform = 'scale(1)';
+      invalidBox.style.boxShadow = 'none';
+      setTimeout(() => validBox.style.transform = 'scale(1)', 400);
+    } else {
+      this.playSound('error');
+      invalidBox.style.transform = 'scale(1.03)';
+      invalidBox.style.boxShadow = '0 6px 18px rgba(239, 68, 68, 0.25)';
+      validBox.style.transform = 'scale(1)';
+      validBox.style.boxShadow = 'none';
+      setTimeout(() => invalidBox.style.transform = 'scale(1)', 400);
+    }
+  }
+
+  autoPlayYaccDemo() {
+    this.testYaccExpr(true);
+    setTimeout(() => this.testYaccExpr(false), 1200);
+  }
+
+  // ========================================================================
   // SLIDE 5: Calculator Demonstration
-  // 1 of 4, Step 1: User input -> 10 + 20
-  // Step 2: LEX -> Identifies tokens NUMBER(10), PLUS, NUMBER(20)
-  // Step 3: YACC -> Checks valid expression
-  // Step 4: Evaluation -> Evaluates result Output: 30
   // ========================================================================
   updateCalcStepView() {
     const card = document.getElementById('calc-step-card');
@@ -691,10 +727,6 @@ class LexYaccApp {
 
   // ========================================================================
   // SLIDE 6: Conclusion Animation Sequence
-  // 1. Reveal LEX summary
-  // 2. Reveal YACC summary
-  // 3. Display the pipeline: Source Code → LEX → Tokens → YACC → Parser Output
-  // 4. Finish with "Thank You!" and "Questions?"
   // ========================================================================
   playConclusionAnimation() {
     const s1 = document.getElementById('concl-step-1');
@@ -709,25 +741,21 @@ class LexYaccApp {
     s3.style.opacity = '0'; s3.style.transform = 'translateY(6px)';
     s4.style.opacity = '0'; s4.style.transform = 'scale(0.96)';
 
-    // 1. Reveal LEX summary
     setTimeout(() => {
       s1.style.opacity = '1'; s1.style.transform = 'translateY(0)';
       this.playSound('blip');
     }, 200);
 
-    // 2. Reveal YACC summary
     setTimeout(() => {
       s2.style.opacity = '1'; s2.style.transform = 'translateY(0)';
       this.playSound('blip');
     }, 700);
 
-    // 3. Display the pipeline
     setTimeout(() => {
       s3.style.opacity = '1'; s3.style.transform = 'translateY(0)';
       this.playSound('blip');
     }, 1200);
 
-    // 4. Finish with "Thank You!"
     setTimeout(() => {
       s4.style.opacity = '1'; s4.style.transform = 'scale(1)';
       this.playSound('celebrate');
@@ -740,8 +768,18 @@ class LexYaccApp {
   }
 }
 
-// Global initialization
-window.addEventListener('DOMContentLoaded', () => {
-  window.lexYaccApp = new LexYaccApp();
-  window.lexYaccApp.init();
-});
+// Global initialization ensuring it runs regardless of DOM ready state
+const lexYaccApp = new LexYaccApp();
+window.lexYaccApp = lexYaccApp;
+window.app = lexYaccApp;
+
+// Direct window helper shortcuts
+window.nextSlide = () => window.lexYaccApp.nextSlide();
+window.prevSlide = () => window.lexYaccApp.prevSlide();
+window.goToSlide = (idx) => window.lexYaccApp.goToSlide(idx);
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => lexYaccApp.init());
+} else {
+  lexYaccApp.init();
+}
