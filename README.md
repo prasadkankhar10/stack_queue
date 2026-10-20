@@ -8,7 +8,27 @@
 
 ## 🚀 Available Presentation Suites
 
-### 1. 🥽 VR Architecture: From Head Movement to Photons (`vr.html`)
+### 🌟 Central Hub (`index.html`)
+The main entry portal uniting all interactive presentations, slide outlines, and direct PowerPoint downloads with real-time keyword search and category filtering.
+
+---
+
+### 1. 🥞 Stack & Queue: The Logic Behind "Who Comes First?" (`stack-queue.html` & `stack-queue.pptx`)
+A visual, intuition-first data structures presentation exploring LIFO and FIFO pipelines.
+
+- **30 Interactive Slides**:
+  - Interactive Stack Canister (`PUSH`, `POP`, `PEEK`, Overflow/Underflow protection)
+  - Animated Queue Conduit with visible `EXIT` and `ENTRY` portals
+  - Network Print Spooler Simulator with FIFO priority
+  - Emergency Room Priority Triage simulator
+  - Circular Queue Modulo Ring Buffer visualizer (`(rear + 1) % SIZE`)
+  - Live Trace Debugger for stack states
+  - Compiler Parentheses Balance Validator algorithm
+  - Native PowerPoint download available (`stack-queue.pptx`)
+
+---
+
+### 2. 🥽 VR Architecture: From Head Movement to Photons (`vr.html`)
 An end-to-end interactive visual laboratory exploring how modern Virtual Reality systems transform physical human movement into photons in under 20 milliseconds.
 
 - **18 Interactive Slides**:
@@ -18,7 +38,7 @@ An end-to-end interactive visual laboratory exploring how modern Virtual Reality
   4. **Hardware Layer**: Interactive exploded component explorer (IMU, SLAM cameras, SoC, Panels, Pancake Optics, Spatial DSP)
   5. **Head-Coupled Display (HCD)**: 3-DOF vs. 6-DOF simulation with 3D perspective cube and motion parallax
   6. **Tracking Systems**: Inside-Out SLAM vs. Outside-In Lighthouse laser sweeping with occlusion simulation
-  7. **VR Rendering Pipeline**: Step-by-step 9-stage pipeline with frustum culling and Asynchronous TimeWarp (ATW)
+  7. **VR Rendering Pipeline**: Scanline 3D-to-2D rasterizer simulator and fragment shading
   8. **Stereo Rendering & IPD**: Left/Right binocular parallax and live IPD dial (55mm to 72mm)
   9. **Game Engine & Hardware**: Live CPU/GPU frame-time budget simulator (11.1ms @ 90Hz deadline)
   10. **Client-Server Architecture**: Distributed VR topology and latency paradox
@@ -33,17 +53,16 @@ An end-to-end interactive visual laboratory exploring how modern Virtual Reality
 
 ---
 
-### 2. 🥞 Stack & Queue: The Logic Behind "Who Comes First?" (`index.html`)
-A visual, intuition-first data structures presentation exploring LIFO and FIFO pipelines.
+### 3. ⚙️ LEX and YACC: Tools for Compiler Design (`lex-yacc.html`)
+An interactive lecture presentation for **B.Tech CSE — CSE401** at **Maharashtra Institute of Technology**.
 
-- **30 Interactive Slides**:
-  - Interactive Stack Canister (`PUSH`, `POP`, `PEEK`, Overflow/Underflow protection)
-  - Animated Queue Conduit with visible `EXIT` and `ENTRY` portals
-  - Network Print Spooler Simulator with FIFO priority
-  - Emergency Room Priority Triage simulator
-  - Circular Queue Modulo Ring Buffer visualizer (`(rear + 1) % SIZE`)
-  - Live Trace Debugger for stack states
-  - Compiler Parentheses Balance Validator algorithm
+- **6 Interactive Slides**:
+  1. **Title & Editable Student Credentials**: Live editable student name and roll number badge with animated compiler pipeline hero.
+  2. **Introduction & Compiler Pipeline**: 3-stage sandbox (Raw character ASCII stream $\to$ LEX token tuples $\to$ YACC syntax tree).
+  3. **LEX Lexical Analyzer Generator**: Regular expression pattern matcher, DFA rules, and live tokenizer with rule inspection.
+  4. **YACC Syntax Parser**: Context-free grammar validation (`expression → expression + term`), SVG parse tree generation, and live syntax error detection.
+  5. **Real-World Applications**: Live working mini-calculator evaluator demonstrating operator precedence (`*`/`/` before `+`/`-`) alongside industry use cases.
+  6. **Conclusion & Comparison Matrix**: Side-by-side comparison table between LEX and YACC, and classroom wrap-up.
 
 ---
 

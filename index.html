@@ -2,172 +2,417 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Stack & Queue: The Logic Behind "Who Comes First?"</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥞</text></svg>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CS & Engineering Interactive Presentation Hub</title>
+  <meta name="description" content="Central Hub for Interactive Classroom Presentations, WebGL Laboratories, and Teaching Suites in Computer Science and Engineering.">
+  <link rel="stylesheet" href="css/hub.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
 </head>
-<body class="theme-cyber-indigo">
+<body>
 
-  <!-- Accessible Skip Link -->
-  <a href="#slide-stage" class="skip-link">Skip to presentation content</a>
-
-  <!-- Ambient glowing backdrop -->
-  <div class="ambient-glow glow-left" aria-hidden="true"></div>
-  <div class="ambient-glow glow-right" aria-hidden="true"></div>
-
-  <!-- Discreet Floating Trigger Pill to Restore Header when Hidden -->
-  <button class="header-reveal-pill" id="header-reveal-btn" onclick="app.toggleHeader()" title="Show Header Controls (H)" aria-label="Show Header Controls">
-    <span>⌄ Show Header (H)</span>
-  </button>
-
-  <!-- App Header -->
-  <header class="app-header">
-    <div class="header-left">
-      <div class="logo-badge">
-        <span style="font-size: 1.25rem;" aria-hidden="true">🥞</span>
-        <span>DSA Interactive</span>
-      </div>
-      <div class="section-pill" id="current-section-pill">Introduction</div>
-    </div>
-
-    <div class="header-controls">
-      <!-- Theme Switcher Dropdown -->
-      <div class="theme-selector-dropdown">
-        <button class="icon-btn" onclick="app.toggleThemeMenu()" title="Switch Color Theme" aria-label="Change Color Theme">
-          <span>🎨</span>
-          <span class="btn-label-text">Theme</span>
-        </button>
-        <div class="theme-menu" id="theme-menu" role="menu">
-          <button class="theme-option-btn" onclick="app.setTheme('theme-cyber-indigo')">
-            <span class="theme-dot" style="background: #06b6d4;"></span>
-            <span>Cyber Indigo (Dark)</span>
-          </button>
-          <button class="theme-option-btn" onclick="app.setTheme('theme-academic-light')">
-            <span class="theme-dot" style="background: #0284c7;"></span>
-            <span>Academic Light (Lecture)</span>
-          </button>
-          <button class="theme-option-btn" onclick="app.setTheme('theme-sunset-glow')">
-            <span class="theme-dot" style="background: #f97316;"></span>
-            <span>Sunset Glow (Warm)</span>
-          </button>
-          <button class="theme-option-btn" onclick="app.setTheme('theme-matrix-neon')">
-            <span class="theme-dot" style="background: #22c55e;"></span>
-            <span>Matrix Neon (Laser)</span>
-          </button>
+  <!-- Hub Header -->
+  <header class="hub-header">
+    <div class="hub-header-container">
+      <div class="hub-brand">
+        <div class="hub-logo-icon" aria-hidden="true">🎓</div>
+        <div>
+          <h1 class="hub-brand-title">Interactive Lecture Hub</h1>
+          <div class="hub-brand-subtitle">Maharashtra Institute of Technology • Dept. of Computer Science & Engineering</div>
         </div>
       </div>
 
-      <!-- Classroom Laser Pointer -->
-      <button class="icon-btn" id="laser-toggle-btn" onclick="app.toggleLaserPointer()" title="Toggle Laser Pointer (L)" aria-label="Toggle Laser Pointer">
-        <span>🔴</span>
-        <span class="btn-label-text">Laser</span>
-      </button>
-
-      <!-- Audio Mute/Unmute -->
-      <button class="icon-btn active" id="sound-toggle-btn" onclick="app.toggleAudio()" title="Toggle Sound FX (M)" aria-label="Toggle Sound Effects">
-        <span>🔊</span>
-        <span class="btn-label-text">Sound</span>
-      </button>
-
-      <!-- Speaker Notes -->
-      <button class="icon-btn" onclick="app.toggleNotes()" title="Speaker Notes (P)" aria-label="Open Speaker Notes">
-        <span>📝</span>
-        <span class="btn-label-text">Notes</span>
-      </button>
-
-      <!-- Slide Grid Overview -->
-      <button class="icon-btn" onclick="app.toggleOverview()" title="Slide Grid (O or Esc)" aria-label="Open Slide Overview">
-        <span>📑</span>
-        <span class="btn-label-text">Overview</span>
-      </button>
-
-      <!-- Fullscreen -->
-      <button class="icon-btn" onclick="app.toggleFullscreen()" title="Fullscreen (F)" aria-label="Toggle Fullscreen">
-        <span>⛶</span>
-        <span class="btn-label-text">Full</span>
-      </button>
-
-      <!-- Hide Header Toggle -->
-      <button class="icon-btn" onclick="app.toggleHeader()" title="Hide All Header Controls (H)" aria-label="Hide All Header Controls">
-        <span>▲</span>
-        <span class="btn-label-text">Hide Header</span>
-      </button>
+      <div class="hub-presenter-badge">
+        <span>👤</span>
+        <div>
+          <strong style="color: var(--text-primary);">Prasad Kankhar</strong>
+          <span style="color: var(--text-muted); font-size: 0.78rem;"> | B.Tech CSE — CSE401</span>
+        </div>
+      </div>
     </div>
   </header>
 
-  <!-- Presentation Viewport -->
-  <main class="presentation-container">
-    <div class="slide-stage" id="slide-stage" tabindex="-1">
-      <!-- Active slide dynamically injected by app.js -->
+  <!-- Hub Main Content -->
+  <main class="hub-main">
+    
+    <!-- Hero Banner -->
+    <section class="hub-hero">
+      <div class="hero-tag">
+        <span>⚡</span> TACTILE PEDAGOGY & 16:9 LECTURE SUITES
+      </div>
+      <h2 class="hero-title">
+        Computer Science & Systems Interactive Presentations
+      </h2>
+      <p class="hero-lead">
+        Classroom-first visual presentation systems designed to transform abstract algorithms, computer architecture, and compiler front-ends into vivid, intuitive mental models. Built with zero dependencies, 16:9 projection framing, laser pointers, and procedural sound.
+      </p>
+
+      <!-- Stats Grid -->
+      <div class="hub-stats-row">
+        <div class="hub-stat-item">
+          <div class="hub-stat-icon" style="background: rgba(37, 99, 235, 0.1); color: var(--accent-blue);">📚</div>
+          <div>
+            <div class="hub-stat-val">3</div>
+            <div class="hub-stat-lbl">Interactive Suites</div>
+          </div>
+        </div>
+
+        <div class="hub-stat-item">
+          <div class="hub-stat-icon" style="background: rgba(5, 150, 105, 0.1); color: var(--accent-green);">📑</div>
+          <div>
+            <div class="hub-stat-val">54</div>
+            <div class="hub-stat-lbl">Classroom Slides</div>
+          </div>
+        </div>
+
+        <div class="hub-stat-item">
+          <div class="hub-stat-icon" style="background: rgba(124, 58, 237, 0.1); color: var(--accent-purple);">🎮</div>
+          <div>
+            <div class="hub-stat-val">100%</div>
+            <div class="hub-stat-lbl">Live Simulators & 3D</div>
+          </div>
+        </div>
+
+        <div class="hub-stat-item">
+          <div class="hub-stat-icon" style="background: rgba(217, 119, 6, 0.1); color: var(--accent-amber);">⚡</div>
+          <div>
+            <div class="hub-stat-val">0</div>
+            <div class="hub-stat-lbl">External Dependencies</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Toolbar: Category Filters & Search -->
+    <div class="hub-toolbar">
+      <div class="hub-filter-tabs">
+        <button class="hub-tab-btn active" onclick="filterCategory('all', this)">All Presentations (3)</button>
+        <button class="hub-tab-btn" onclick="filterCategory('ds', this)">Data Structures (1)</button>
+        <button class="hub-tab-btn" onclick="filterCategory('systems', this)">Graphics & VR (1)</button>
+        <button class="hub-tab-btn" onclick="filterCategory('compiler', this)">Compiler Design (1)</button>
+      </div>
+
+      <div class="hub-search-box">
+        <span style="font-size: 0.9rem;" aria-hidden="true">🔍</span>
+        <input type="text" id="hub-search-input" class="hub-search-input" placeholder="Search presentations or topics..." oninput="searchPresentations(this.value)">
+      </div>
     </div>
+
+    <!-- Presentation Cards Grid -->
+    <div class="hub-cards-grid" id="presentation-grid">
+
+      <!-- Card 1: Stack & Queue -->
+      <article class="ppt-card" data-category="ds" data-keywords="stack queue lifo fifo data structures algorithms circular buffer spooler recursion call stack">
+        <div>
+          <div class="ppt-card-header">
+            <div class="ppt-card-icon" style="background: rgba(6, 182, 212, 0.1); color: #0891B2;">🥞</div>
+            <div class="ppt-badge-row">
+              <span class="ppt-pill ppt-pill-blue">Data Structures</span>
+              <span class="ppt-pill ppt-pill-slate">30 Slides</span>
+            </div>
+          </div>
+
+          <h3 class="ppt-card-title">Stack & Queue: The Logic Behind "Who Comes First?"</h3>
+          <p class="ppt-card-desc">
+            A visual, intuition-first exploration of LIFO and FIFO pipelines. Features an interactive stack canister, animated queue conduit, circular buffer visualizer, and print spooler emulator.
+          </p>
+
+          <ul class="ppt-features-list">
+            <li>Interactive Stack Canister with Overflow & Underflow detection</li>
+            <li>Real-time Circular Queue modulo ring visualizer: <code>(rear + 1) % SIZE</code></li>
+            <li>Print Spooler FIFO simulator & ER priority triage</li>
+            <li>Compiler Parentheses Balance Validator algorithm</li>
+          </ul>
+        </div>
+
+        <div class="ppt-actions">
+          <a href="stack-queue.html" class="btn-launch" title="Launch Stack & Queue Presentation">
+            <span>🚀</span> Launch Interactive Web
+          </a>
+          <a href="stack-queue.pptx" download class="btn-secondary" title="Download PowerPoint Deck (.pptx)">
+            <span>📥</span> PPTX
+          </a>
+          <button class="btn-secondary" onclick="openOutline('stack-queue')" title="View Slide Outline">
+            <span>📋</span> Outline
+          </button>
+        </div>
+      </article>
+
+      <!-- Card 2: VR Architecture -->
+      <article class="ppt-card" data-category="systems" data-keywords="vr virtual reality architecture head tracking 3d webgl rendering latency buffer atw foveated optics ipd">
+        <div>
+          <div class="ppt-card-header">
+            <div class="ppt-card-icon" style="background: rgba(37, 99, 235, 0.1); color: #2563EB;">🥽</div>
+            <div class="ppt-badge-row">
+              <span class="ppt-pill ppt-pill-purple">System Architecture</span>
+              <span class="ppt-pill ppt-pill-slate">18 Slides</span>
+            </div>
+          </div>
+
+          <h3 class="ppt-card-title">VR Architecture: From Head Movement to Photons</h3>
+          <p class="ppt-card-desc">
+            An end-to-end interactive visual laboratory exploring how modern Virtual Reality systems transform physical head kinematics into photorealistic stereo displays in under 20 milliseconds.
+          </p>
+
+          <ul class="ppt-features-list">
+            <li>Interactive 3D WebGL Headset Exploded View (0% to 100% slider)</li>
+            <li>Motion Parallax Test: 3-DOF rotational vs. 6-DOF translation</li>
+            <li>Scanline Rasterizer: 3D geometry projected to 2D pixel grid</li>
+            <li>Motion-to-Photon &lt;20ms Latency Waterfall and ATW warp simulator</li>
+          </ul>
+        </div>
+
+        <div class="ppt-actions">
+          <a href="vr.html" class="btn-launch" style="background: #1D4ED8;" title="Launch VR Architecture Presentation">
+            <span>🚀</span> Launch 3D Web Presentation
+          </a>
+          <button class="btn-secondary" onclick="openOutline('vr')" title="View Slide Outline">
+            <span>📋</span> Slide Outline (18)
+          </button>
+        </div>
+      </article>
+
+      <!-- Card 3: LEX & YACC -->
+      <article class="ppt-card" data-category="compiler" data-keywords="lex yacc compiler design cse401 lexical analysis syntax parsing dfa lalr bnf token ast calculator mit">
+        <div>
+          <div class="ppt-card-header">
+            <div class="ppt-card-icon" style="background: rgba(5, 150, 105, 0.1); color: #059669;">⚙️</div>
+            <div class="ppt-badge-row">
+              <span class="ppt-pill ppt-pill-emerald">Compiler Design (CSE401)</span>
+              <span class="ppt-pill ppt-pill-slate">6 Slides</span>
+            </div>
+          </div>
+
+          <h3 class="ppt-card-title">LEX and YACC: Tools for Compiler Design</h3>
+          <p class="ppt-card-desc">
+            Automating lexical analysis and syntax parsing in modern compiler construction. Demonstrates how regular expressions and context-free grammars replace thousands of lines of handwritten C.
+          </p>
+
+          <ul class="ppt-features-list">
+            <li>Interactive LEX Regex Tokenizer with rule inspector</li>
+            <li>YACC LALR(1) Syntax Tree Generator & missing operand detection</li>
+            <li>Working Mini-Calculator Evaluator with operator precedence</li>
+            <li>Editable student presenter card for MIT classroom lectures</li>
+          </ul>
+        </div>
+
+        <div class="ppt-actions">
+          <a href="lex-yacc.html" class="btn-launch" style="background: #059669;" title="Launch LEX & YACC Presentation">
+            <span>🚀</span> Launch Interactive Web
+          </a>
+          <button class="btn-secondary" onclick="openOutline('lex-yacc')" title="View Slide Outline">
+            <span>📋</span> Slide Outline (6)
+          </button>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Classroom Shortcuts Cheatsheet -->
+    <section class="hub-cheatsheet">
+      <h3 class="cheatsheet-title">
+        <span>⌨️</span> Universal Classroom Presentation Controls
+      </h3>
+      <p style="font-size: 0.85rem; color: var(--text-muted);">
+        Every interactive presentation in this suite shares these standardized classroom keyboard shortcuts:
+      </p>
+
+      <div class="cheatsheet-grid">
+        <div class="cheatsheet-item">
+          <kbd>→</kbd> <kbd>Space</kbd>
+          <span>Advance to next slide</span>
+        </div>
+        <div class="cheatsheet-item">
+          <kbd>←</kbd> <kbd>Backspace</kbd>
+          <span>Return to previous slide</span>
+        </div>
+        <div class="cheatsheet-item">
+          <kbd>H</kbd>
+          <span><strong>Hide / Show Header (Zen Mode)</strong></span>
+        </div>
+        <div class="cheatsheet-item">
+          <kbd>L</kbd>
+          <span><strong>Toggle Classroom Laser Pointer</strong></span>
+        </div>
+        <div class="cheatsheet-item">
+          <kbd>M</kbd>
+          <span>Toggle procedural sound effects</span>
+        </div>
+        <div class="cheatsheet-item">
+          <kbd>P</kbd> or <kbd>N</kbd>
+          <span>Open presenter speaker notes</span>
+        </div>
+        <div class="cheatsheet-item">
+          <kbd>O</kbd> or <kbd>Esc</kbd>
+          <span>Open slide overview grid</span>
+        </div>
+        <div class="cheatsheet-item">
+          <kbd>F</kbd>
+          <span>Toggle fullscreen lecture mode</span>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <!-- Navigation Footer -->
-  <footer class="app-footer">
-    <!-- Smooth linear progress bar -->
-    <div class="progress-container">
-      <div class="progress-bar" id="progress-bar"></div>
+  <!-- Slide Outline Modal -->
+  <div class="hub-modal-overlay" id="outline-modal" onclick="if(event.target === this) closeOutline()">
+    <div class="hub-modal">
+      <div class="hub-modal-header">
+        <div style="font-size: 1.15rem; font-weight: 800; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;" id="modal-title">
+          <span>📋</span> Slide Outline
+        </div>
+        <button class="btn-secondary" onclick="closeOutline()" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;">✕ Close</button>
+      </div>
+      <div class="hub-modal-body">
+        <ul class="hub-modal-list" id="modal-list">
+          <!-- Populated by JavaScript -->
+        </ul>
+      </div>
     </div>
+  </div>
 
-    <div class="slide-counter tabular-nums" id="slide-counter">
-      SLIDE <b>01</b> / 30
+  <!-- Hub Footer -->
+  <footer class="hub-footer">
+    <div>
+      <strong>Interactive Computer Science Lecture Presentation Hub</strong> • Maharashtra Institute of Technology
     </div>
-
-    <!-- Toggle Header Visibility from Footer -->
-    <button class="icon-btn" id="footer-header-toggle-btn" onclick="app.toggleHeader()" title="Toggle Header Controls (H)" aria-label="Toggle Header Controls" style="font-size: 0.76rem; padding: 0.3rem 0.6rem;">
-      <span>👁️</span>
-      <span class="btn-label-text">Header (H)</span>
-    </button>
-
-    <div class="nav-buttons">
-      <button class="nav-btn" id="prev-btn" onclick="app.prevSlide()" title="Previous Slide (Left Arrow / Backspace)" aria-label="Previous Slide">
-        ←
-      </button>
-      <button class="nav-btn" id="next-btn" onclick="app.nextSlide()" title="Next Slide (Right Arrow / Spacebar)" aria-label="Next Slide">
-        →
-      </button>
+    <div style="margin-top: 0.35rem; font-size: 0.78rem;">
+      Engineered with high contrast for classroom projectors • Vanilla HTML5 / ES6 JavaScript • Zero Build Step
     </div>
   </footer>
 
-  <!-- Slide Overview Grid Modal -->
-  <div class="modal-overlay" id="overview-modal" onclick="if(event.target === this) app.closeModals()" role="dialog" aria-modal="true" aria-label="All 30 Slides Overview">
-    <div class="modal-content">
-      <div class="modal-header">
-        <div style="font-size: 1.25rem; font-weight: 800; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
-          <span aria-hidden="true">📑</span>
-          <span>All 30 Slides Overview</span>
-        </div>
-        <button class="icon-btn" onclick="app.closeModals()" aria-label="Close overview">✕ Close</button>
-      </div>
-      <div class="modal-body">
-        <div class="overview-grid" id="overview-grid">
-          <!-- Populated by app.js -->
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- Script for Filtering, Searching, and Outlines -->
+  <script>
+    const outlinesData = {
+      'stack-queue': {
+        title: '🥞 Stack & Queue (30 Slides)',
+        file: 'stack-queue.html',
+        slides: [
+          { num: '01', name: 'Introduction: The Logic Behind "Who Comes First?"' },
+          { num: '02', name: 'Part 1: The Stack — Last-In, First-Out (LIFO)' },
+          { num: '03', name: 'Real-World Stack Analogies (Cafeteria Trays & Browser History)' },
+          { num: '04', name: 'Core Stack Operations (PUSH, POP, PEEK/TOP)' },
+          { num: '05', name: 'Interactive Stack Canister Simulator' },
+          { num: '06', name: 'Stack Underflow & Overflow Protection' },
+          { num: '07', name: 'Array Implementation of Stack' },
+          { num: '08', name: 'Stack Application 1: Function Call Stack & Recursion' },
+          { num: '09', name: 'Stack Application 2: Parentheses Balancing Algorithm' },
+          { num: '10', name: 'Stack Application 3: Infix to Postfix Conversion' },
+          { num: '11', name: 'Part 2: The Queue — First-In, First-Out (FIFO)' },
+          { num: '12', name: 'Real-World Queue Analogies (Ticket Counters & Supermarkets)' },
+          { num: '13', name: 'Core Queue Operations (ENQUEUE, DEQUEUE, FRONT/REAR)' },
+          { num: '14', name: 'Interactive Queue Conduit Simulator' },
+          { num: '15', name: 'Linear Queue Problem: False Overflow' },
+          { num: '16', name: 'The Solution: Circular Queue (Modulo Arithmetic)' },
+          { num: '17', name: 'Interactive Circular Queue Ring Buffer' },
+          { num: '18', name: 'Queue Application 1: CPU Task Scheduling' },
+          { num: '19', name: 'Queue Application 2: Printer Spooler Simulator' },
+          { num: '20', name: 'Queue Application 3: Breadth-First Search (BFS)' },
+          { num: '21', name: 'Double-Ended Queue (Deque)' },
+          { num: '22', name: 'Priority Queue & ER Triage Simulator' },
+          { num: '23', name: 'Monotonic Stack & Next Greater Element' },
+          { num: '24', name: 'Implementing a Queue using Two Stacks' },
+          { num: '25', name: 'Time & Space Complexity Summary Matrix' },
+          { num: '26', name: 'Memory Layout: Dynamic Arrays vs. Linked Nodes' },
+          { num: '27', name: 'Common Student Misconceptions & Pitfalls' },
+          { num: '28', name: 'Interactive Debugger: Trace Code Operations' },
+          { num: '29', name: 'Classroom Challenge: Which Data Structure Fits?' },
+          { num: '30', name: 'Conclusion & Pedagogical Takeaways' }
+        ]
+      },
+      'vr': {
+        title: '🥽 VR Architecture: From Head Movement to Photons (18 Slides)',
+        file: 'vr.html',
+        slides: [
+          { num: '01', name: 'Inside a VR System: Interactive 3D Room & Headset' },
+          { num: '02', name: 'What Happens When You Move Your Head? (6-Stage Pipeline)' },
+          { num: '03', name: 'VR System Architecture: 5 Core Layers' },
+          { num: '04', name: 'VR Hardware Layer: Exploded 3D Assembly Explorer' },
+          { num: '05', name: 'Head-Coupled Displays: 3-DOF vs. 6-DOF Motion Parallax' },
+          { num: '06', name: 'Tracking Systems: Inside-Out SLAM vs. Outside-In Lighthouse' },
+          { num: '07', name: 'Interactive 3D to 2D Scanline Rasterizer Simulator' },
+          { num: '08', name: 'Stereo Rendering: Left/Right Binocular Parallax & IPD' },
+          { num: '09', name: 'Game Engine & Hardware: 11.1ms CPU/GPU Budget' },
+          { num: '10', name: 'Client-Server Distributed VR Architecture' },
+          { num: '11', name: 'Multiplayer VR Synchronization & Dead Reckoning' },
+          { num: '12', name: 'Cluster Rendering: Multi-GPU Master/Worker Nodes' },
+          { num: '13', name: 'Cluster Rendering Example: 3-Screen CAVE Simulator' },
+          { num: '14', name: 'Latency Budget: Motion-to-Photon (<20ms Waterfall)' },
+          { num: '15', name: 'Asynchronous TimeWarp (ATW) & SpaceWarp (ASW)' },
+          { num: '16', name: 'Foveated Rendering & Eye Gaze Detail Optimization' },
+          { num: '17', name: 'System Performance Bottlenecks & Triage Matrix' },
+          { num: '18', name: 'Conclusion & The Grand VR Mental Model' }
+        ]
+      },
+      'lex-yacc': {
+        title: '⚙️ LEX and YACC: Tools for Compiler Design (6 Slides)',
+        file: 'lex-yacc.html',
+        slides: [
+          { num: '01', name: 'Title & Credentials: Tools for Compiler Design' },
+          { num: '02', name: 'Introduction: The Compiler Front-End Pipeline' },
+          { num: '03', name: 'LEX: Lexical Analyzer Generator & Regex Matcher' },
+          { num: '04', name: 'YACC: Syntax Parser & Parse Tree Generator' },
+          { num: '05', name: 'Real-World Applications: Mini-Calculator Evaluator' },
+          { num: '06', name: 'Conclusion: Architectural Summary & Thank You' }
+        ]
+      }
+    };
 
-  <!-- Speaker Notes Modal -->
-  <div class="modal-overlay" id="notes-modal" onclick="if(event.target === this) app.closeModals()" role="dialog" aria-modal="true" aria-label="Presenter Notes">
-    <div class="modal-content" style="max-width: 600px;">
-      <div class="modal-header">
-        <div style="font-size: 1.2rem; font-weight: 800; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
-          <span aria-hidden="true">📝</span>
-          <span>Speaker & Presenter Notes</span>
-        </div>
-        <button class="icon-btn" onclick="app.closeModals()" aria-label="Close notes">✕ Close</button>
-      </div>
-      <div class="modal-body" id="notes-body">
-        <!-- Injected dynamically -->
-      </div>
-    </div>
-  </div>
+    function filterCategory(cat, btn) {
+      document.querySelectorAll('.hub-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
 
-  <!-- Scripts -->
-  <script src="js/audio.js"></script>
-  <script src="js/slides.js"></script>
-  <script src="js/app.js"></script>
+      const cards = document.querySelectorAll('.ppt-card');
+      cards.forEach(card => {
+        if (cat === 'all' || card.dataset.category === cat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
 
+    function searchPresentations(query) {
+      const q = query.toLowerCase().trim();
+      const cards = document.querySelectorAll('.ppt-card');
+      cards.forEach(card => {
+        const text = (card.innerText + ' ' + (card.dataset.keywords || '')).toLowerCase();
+        if (!q || text.includes(q)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function openOutline(key) {
+      const data = outlinesData[key];
+      if (!data) return;
+
+      document.getElementById('modal-title').innerHTML = `<span>📋</span> ${data.title}`;
+      const list = document.getElementById('modal-list');
+      list.innerHTML = data.slides.map(s => `
+        <li class="hub-modal-item">
+          <div>
+            <strong style="color: var(--accent-blue); margin-right: 0.5rem;">Slide ${s.num}:</strong>
+            <span>${s.name}</span>
+          </div>
+          <a href="${data.file}#slide-${parseInt(s.num, 10)}" class="btn-secondary" style="font-size: 0.76rem; padding: 0.25rem 0.55rem; text-decoration: none;">
+            Jump →
+          </a>
+        </li>
+      `).join('');
+
+      document.getElementById('outline-modal').classList.add('active');
+    }
+
+    function closeOutline() {
+      document.getElementById('outline-modal').classList.remove('active');
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeOutline();
+    });
+  </script>
 </body>
 </html>

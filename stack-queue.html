@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Stack & Queue: The Logic Behind "Who Comes First?"</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥞</text></svg>">
+</head>
+<body class="theme-cyber-indigo">
+
+  <!-- Accessible Skip Link -->
+  <a href="#slide-stage" class="skip-link">Skip to presentation content</a>
+
+  <!-- Ambient glowing backdrop -->
+  <div class="ambient-glow glow-left" aria-hidden="true"></div>
+  <div class="ambient-glow glow-right" aria-hidden="true"></div>
+
+  <!-- Discreet Floating Trigger Pill to Restore Header when Hidden -->
+  <button class="header-reveal-pill" id="header-reveal-btn" onclick="app.toggleHeader()" title="Show Header Controls (H)" aria-label="Show Header Controls">
+    <span>⌄ Show Header (H)</span>
+  </button>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="logo-badge">
+        <span style="font-size: 1.25rem;" aria-hidden="true">🥞</span>
+        <span>DSA Interactive</span>
+      </div>
+      <div class="section-pill" id="current-section-pill">Introduction</div>
+    </div>
+
+    <div class="header-controls">
+      <!-- Theme Switcher Dropdown -->
+      <div class="theme-selector-dropdown">
+        <button class="icon-btn" onclick="app.toggleThemeMenu()" title="Switch Color Theme" aria-label="Change Color Theme">
+          <span>🎨</span>
+          <span class="btn-label-text">Theme</span>
+        </button>
+        <div class="theme-menu" id="theme-menu" role="menu">
+          <button class="theme-option-btn" onclick="app.setTheme('theme-cyber-indigo')">
+            <span class="theme-dot" style="background: #06b6d4;"></span>
+            <span>Cyber Indigo (Dark)</span>
+          </button>
+          <button class="theme-option-btn" onclick="app.setTheme('theme-academic-light')">
+            <span class="theme-dot" style="background: #0284c7;"></span>
+            <span>Academic Light (Lecture)</span>
+          </button>
+          <button class="theme-option-btn" onclick="app.setTheme('theme-sunset-glow')">
+            <span class="theme-dot" style="background: #f97316;"></span>
+            <span>Sunset Glow (Warm)</span>
+          </button>
+          <button class="theme-option-btn" onclick="app.setTheme('theme-matrix-neon')">
+            <span class="theme-dot" style="background: #22c55e;"></span>
+            <span>Matrix Neon (Laser)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Classroom Laser Pointer -->
+      <button class="icon-btn" id="laser-toggle-btn" onclick="app.toggleLaserPointer()" title="Toggle Laser Pointer (L)" aria-label="Toggle Laser Pointer">
+        <span>🔴</span>
+        <span class="btn-label-text">Laser</span>
+      </button>
+
+      <!-- Audio Mute/Unmute -->
+      <button class="icon-btn active" id="sound-toggle-btn" onclick="app.toggleAudio()" title="Toggle Sound FX (M)" aria-label="Toggle Sound Effects">
+        <span>🔊</span>
+        <span class="btn-label-text">Sound</span>
+      </button>
+
+      <!-- Speaker Notes -->
+      <button class="icon-btn" onclick="app.toggleNotes()" title="Speaker Notes (P)" aria-label="Open Speaker Notes">
+        <span>📝</span>
+        <span class="btn-label-text">Notes</span>
+      </button>
+
+      <!-- Slide Grid Overview -->
+      <button class="icon-btn" onclick="app.toggleOverview()" title="Slide Grid (O or Esc)" aria-label="Open Slide Overview">
+        <span>📑</span>
+        <span class="btn-label-text">Overview</span>
+      </button>
+
+      <!-- Fullscreen -->
+      <button class="icon-btn" onclick="app.toggleFullscreen()" title="Fullscreen (F)" aria-label="Toggle Fullscreen">
+        <span>⛶</span>
+        <span class="btn-label-text">Full</span>
+      </button>
+
+      <!-- Hide Header Toggle -->
+      <button class="icon-btn" onclick="app.toggleHeader()" title="Hide All Header Controls (H)" aria-label="Hide All Header Controls">
+        <span>▲</span>
+        <span class="btn-label-text">Hide Header</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Presentation Viewport -->
+  <main class="presentation-container">
+    <div class="slide-stage" id="slide-stage" tabindex="-1">
+      <!-- Active slide dynamically injected by app.js -->
+    </div>
+  </main>
+
+  <!-- Navigation Footer -->
+  <footer class="app-footer">
+    <!-- Smooth linear progress bar -->
+    <div class="progress-container">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
+    <div class="slide-counter tabular-nums" id="slide-counter">
+      SLIDE <b>01</b> / 30
+    </div>
+
+    <!-- Toggle Header Visibility from Footer -->
+    <button class="icon-btn" id="footer-header-toggle-btn" onclick="app.toggleHeader()" title="Toggle Header Controls (H)" aria-label="Toggle Header Controls" style="font-size: 0.76rem; padding: 0.3rem 0.6rem;">
+      <span>👁️</span>
+      <span class="btn-label-text">Header (H)</span>
+    </button>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" id="prev-btn" onclick="app.prevSlide()" title="Previous Slide (Left Arrow / Backspace)" aria-label="Previous Slide">
+        ←
+      </button>
+      <button class="nav-btn" id="next-btn" onclick="app.nextSlide()" title="Next Slide (Right Arrow / Spacebar)" aria-label="Next Slide">
+        →
+      </button>
+    </div>
+  </footer>
+
+  <!-- Slide Overview Grid Modal -->
+  <div class="modal-overlay" id="overview-modal" onclick="if(event.target === this) app.closeModals()" role="dialog" aria-modal="true" aria-label="All 30 Slides Overview">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div style="font-size: 1.25rem; font-weight: 800; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
+          <span aria-hidden="true">📑</span>
+          <span>All 30 Slides Overview</span>
+        </div>
+        <button class="icon-btn" onclick="app.closeModals()" aria-label="Close overview">✕ Close</button>
+      </div>
+      <div class="modal-body">
+        <div class="overview-grid" id="overview-grid">
+          <!-- Populated by app.js -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Speaker Notes Modal -->
+  <div class="modal-overlay" id="notes-modal" onclick="if(event.target === this) app.closeModals()" role="dialog" aria-modal="true" aria-label="Presenter Notes">
+    <div class="modal-content" style="max-width: 600px;">
+      <div class="modal-header">
+        <div style="font-size: 1.2rem; font-weight: 800; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
+          <span aria-hidden="true">📝</span>
+          <span>Speaker & Presenter Notes</span>
+        </div>
+        <button class="icon-btn" onclick="app.closeModals()" aria-label="Close notes">✕ Close</button>
+      </div>
+      <div class="modal-body" id="notes-body">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/audio.js"></script>
+  <script src="js/slides.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
