@@ -1,659 +1,726 @@
 // ==========================================================================
-// LEX & YACC COMPILER DESIGN - 6 SLIDES DATA SPECIFICATION
-// Academic Light Theme | 16:9 Presentation Format | High Interaction
+// LEX & YACC COMPILER DESIGN - 6 SLIDES COMPLETE SPECIFICATION
+// Theme: Academic Light (Lecture Hall High-Contrast) | 16:9 Presentation Format
+// Precise Academic Content & Interactive Step-by-Step Simulations
 // ==========================================================================
 
 window.lexYaccSlidesData = [
   // ========================================================================
-  // SLIDE 1: Title
+  // SLIDE 1: Title Slide
   // ========================================================================
   {
     id: 'slide-1',
-    part: 'Title',
+    part: 'Title Slide',
     partNumber: 'SLIDE 01',
-    title: 'LEX and YACC: Tools for Compiler Design',
-    subtitle: 'Automating Lexical Analysis & Syntax Parsing in Modern Compiler Construction',
-    notes: 'Welcome everyone. Today we will explore LEX and YACC, two foundational Unix tools that revolutionized compiler construction by replacing thousands of lines of handwritten, bug-prone scanning and parsing logic with clean, declarative grammar and regular expression specifications.',
+    title: 'LEX and YACC',
+    subtitle: 'Tools for Lexical Analysis and Syntax Analysis',
+    duration: '20 seconds',
+    notes: `
+      <div style="background: rgba(37,99,235,0.06); padding: 0.6rem 0.85rem; border-radius: 6px; margin-bottom: 0.75rem; border-left: 3px solid #2563EB;">
+        <strong>⏱️ Narration — Approximately 20 seconds:</strong>
+      </div>
+      <p style="font-style: italic; font-size: 0.95rem; line-height: 1.6; color: #1E293B;">
+        “Hello everyone. I am Prasad Anil Kankhar from the Department of Computer Science and Engineering. Today, I am going to explain two important compiler design tools, LEX and YACC. I will discuss their purpose, how they work, and how they can be used in a real-world calculator application.”
+      </p>
+    `,
     render: function() {
       return `
         <div class="split-layout" style="grid-template-columns: 1.15fr 0.85fr; height: 100%; align-items: stretch;">
-          <!-- Left: Overview & Credentials -->
+          <!-- Left: Institutional Information & Credentials -->
           <div class="content-card" style="display: flex; flex-direction: column; justify-content: space-between;">
             <div>
-              <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(37, 99, 235, 0.08); color: var(--accent-blue); padding: 0.35rem 0.75rem; border-radius: 999px; font-weight: 700; font-size: 0.82rem; margin-bottom: 1rem; border: 1px solid rgba(37, 99, 235, 0.2);">
-                <span>⚙️</span> COMPILER DESIGN AUTOMATION
+              <div style="font-size: 0.82rem; font-weight: 800; color: #1E3A8A; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.35rem;">
+                G.S. Mandal's Maharashtra Institute of Technology, Chhatrapati Sambhajinagar
               </div>
-              
-              <h2 style="font-size: 1.6rem; font-weight: 800; color: #0F172A; line-height: 1.25; margin-bottom: 0.75rem;">
-                LEX and YACC: Tools for Compiler Design
-              </h2>
-              
-              <p style="font-size: 0.92rem; color: #475569; line-height: 1.5; margin-bottom: 1.25rem;">
-                From high-level human syntax to verified Abstract Syntax Trees (AST). Learn how declarative regular expressions and LALR(1) grammars power modern language engineering.
-              </p>
+              <div style="font-size: 0.78rem; font-weight: 700; color: #2563EB; margin-bottom: 1rem;">
+                Department of Computer Science and Engineering
+              </div>
 
-              <!-- Student Credentials Box (Editable) -->
-              <div class="student-credential-card" style="margin-bottom: 1rem;">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
-                  <span style="font-size: 0.75rem; font-weight: 800; color: #2563EB; text-transform: uppercase; letter-spacing: 0.05em;">Presenter Information</span>
-                  <span style="font-size: 0.72rem; color: #64748B;">✏️ Click text to edit</span>
+              <div style="border-left: 4px solid #2563EB; padding-left: 1rem; margin-bottom: 1.25rem;">
+                <h2 style="font-size: 2.1rem; font-weight: 900; color: #0F172A; line-height: 1.15; letter-spacing: -0.02em;">
+                  LEX and YACC
+                </h2>
+                <div style="font-size: 1.05rem; font-weight: 700; color: #334155; margin-top: 0.35rem;">
+                  Tools for Lexical Analysis and Syntax Analysis
                 </div>
-                
-                <div style="font-size: 1.05rem; font-weight: 800; color: #0F172A; margin-bottom: 0.35rem;">
-                  👤 <span class="student-editable-field" id="student-name-field" contenteditable="true" title="Click to edit name">Prasad Kankhar</span>
-                  <span style="color: #94A3B8; margin: 0 0.3rem;">|</span>
-                  <span style="font-size: 0.88rem; font-weight: 600; color: #475569;">Roll: </span>
-                  <span class="student-editable-field" id="student-roll-field" contenteditable="true" title="Click to edit roll number">CSE-401</span>
+              </div>
+
+              <!-- Academic Details Card -->
+              <div style="background: #F8FAFC; border: 1.5px solid #E2E8F0; border-radius: var(--radius-md); padding: 1rem 1.25rem; display: flex; flex-direction: column; gap: 0.45rem;">
+                <div style="display: flex; justify-content: space-between; font-size: 0.86rem;">
+                  <span style="color: #64748B; font-weight: 600;">Course:</span>
+                  <strong style="color: #0F172A;">Compiler Design (CSE401)</strong>
                 </div>
-                
-                <div style="font-size: 0.88rem; font-weight: 600; color: #334155; margin-bottom: 0.2rem;">
-                  🎓 <strong>B.Tech CSE — CSE401</strong> (Compiler Design)
+                <div style="display: flex; justify-content: space-between; font-size: 0.86rem;">
+                  <span style="color: #64748B; font-weight: 600;">Academic Year:</span>
+                  <strong style="color: #0F172A;">2026–27</strong>
                 </div>
-                
-                <div style="font-size: 0.82rem; color: #64748B;">
-                  🏛️ <strong>Maharashtra Institute of Technology</strong>
+                <div style="height: 1px; background: #E2E8F0; margin: 0.25rem 0;"></div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.88rem;">
+                  <span style="color: #64748B; font-weight: 600;">Presented by:</span>
+                  <strong style="color: #2563EB;">Prasad Anil Kankhar</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.86rem;">
+                  <span style="color: #64748B; font-weight: 600;">Class:</span>
+                  <strong style="color: #0F172A;">B.Tech CSE</strong>
                 </div>
               </div>
             </div>
 
-            <!-- Quick Start Action -->
-            <div style="display: flex; gap: 0.75rem; align-items: center;">
-              <button class="nav-btn" onclick="lexYaccApp.nextSlide()" style="background: var(--accent-blue); color: #FFF; padding: 0.6rem 1.25rem; font-size: 0.88rem; font-weight: 700; border-radius: var(--radius-md); box-shadow: 0 4px 12px rgba(37,99,235,0.25);">
-                Begin Presentation →
+            <!-- Start Actions -->
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 1rem;">
+              <button class="nav-btn" onclick="lexYaccApp.nextSlide()" style="background: var(--accent-blue); color: #FFF; padding: 0.55rem 1.25rem; font-size: 0.88rem; font-weight: 700; border-radius: var(--radius-md);">
+                Start Presentation →
               </button>
-              <button class="icon-btn" onclick="lexYaccApp.testHeroPipeline()" style="border: 1px solid #CBD5E1; padding: 0.6rem 1rem; font-size: 0.84rem; font-weight: 600;">
-                ⚡ Test Pipeline Simulation
+              <button class="icon-btn" onclick="lexYaccApp.playTitleAnimation()" style="border: 1px solid #CBD5E1; padding: 0.55rem 0.95rem; font-size: 0.82rem; font-weight: 600;">
+                ▶ Replay Title Animation
               </button>
             </div>
           </div>
 
-          <!-- Right: Hero Visual Pipeline -->
-          <div class="content-card" style="display: flex; flex-direction: column; justify-content: space-between; background: #F8FAFC;">
+          <!-- Right: Title Simulation / Animation Card -->
+          <div class="content-card" style="display: flex; flex-direction: column; justify-content: space-between; background: linear-gradient(135deg, #FFFFFF, #F8FAFC);">
             <div>
-              <div style="font-size: 0.78rem; font-weight: 800; color: #2563EB; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 0.05em;">
-                Front-End Compilation Architecture
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                <span style="font-size: 0.76rem; font-weight: 800; color: #2563EB; text-transform: uppercase; letter-spacing: 0.05em;">Interactive Flow Animation</span>
+                <span class="token-badge token-kw" style="font-size: 0.72rem;">Sequence Demo</span>
               </div>
-              <h3 style="font-size: 1.15rem; font-weight: 800; color: #0F172A; margin-bottom: 0.75rem;">
-                From Characters to Parse Tree
+              <h3 style="font-size: 1.15rem; font-weight: 800; color: #0F172A; margin-bottom: 0.5rem;">
+                The Two Pillars of Compiler Front-End
               </h3>
+              <p style="font-size: 0.82rem; color: #64748B; margin-bottom: 1.25rem;">
+                LEX and YACC operate hand-in-hand to transform raw characters into structured grammatical trees:
+              </p>
             </div>
 
-            <!-- Pipeline Stack Visual -->
-            <div style="display: flex; flex-direction: column; gap: 0.65rem;" id="hero-pipeline-nodes">
-              <!-- Node 1: Source -->
-              <div class="flow-step-node" id="hero-node-1">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                  <span class="flow-step-num">Input Stream</span>
-                  <span class="token-badge token-delim" style="font-size: 0.72rem;">Source Characters</span>
-                </div>
-                <div class="flow-step-title">Source Code: <code style="color: #2563EB;">total = 10 + 20;</code></div>
-                <div class="flow-step-desc">Stream of raw characters, newlines, and whitespace from file.</div>
+            <!-- Animated Stages 1 -> 2 -> 3 -> 4 -->
+            <div style="display: flex; flex-direction: column; gap: 0.75rem; align-items: stretch;" id="title-anim-container">
+              <!-- Stage 1: Main Title Banner -->
+              <div id="anim-stage-1" class="flow-step-node" style="border-left: 4px solid #2563EB; transition: all 0.4s ease;">
+                <div class="flow-step-num">Step 1 — Title</div>
+                <div class="flow-step-title" style="font-size: 1.05rem;">LEX and YACC</div>
+                <div class="flow-step-desc">Automated tools for Compiler Design & Language Processing.</div>
               </div>
 
-              <!-- Node 2: LEX -->
-              <div class="flow-step-node" id="hero-node-2">
+              <!-- Connecting Arrow Down 1 -->
+              <div style="text-align: center; color: #2563EB; font-weight: 800; font-size: 1.2rem; line-height: 0.5;" id="anim-arrow-1">↓</div>
+
+              <!-- Stage 2: LEX -->
+              <div id="anim-stage-2" class="flow-step-node" style="border-left: 4px solid #0284C7; transition: all 0.4s ease;">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
-                  <span class="flow-step-num">Step 1 — Scanning</span>
-                  <span class="token-badge token-id" style="font-size: 0.72rem;">LEX (yylex)</span>
+                  <span class="flow-step-num">Step 2 — Scanner Generator</span>
+                  <span class="token-badge token-id">Token Recognizer</span>
                 </div>
-                <div class="flow-step-title">Lexical Analysis (Regular Expressions)</div>
-                <div class="flow-step-desc">Groups characters into tokens: <code>&lt;ID&gt;</code>, <code>&lt;ASSIGN&gt;</code>, <code>&lt;NUM&gt;</code>, <code>&lt;PLUS&gt;</code>.</div>
+                <div class="flow-step-title" style="color: #0284C7;">LEX — Lexical Analysis</div>
+                <div class="flow-step-desc">Reads characters, uses regular expressions, and emits tokens.</div>
               </div>
 
-              <!-- Node 3: YACC -->
-              <div class="flow-step-node" id="hero-node-3">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                  <span class="flow-step-num">Step 2 — Parsing</span>
-                  <span class="token-badge token-kw" style="font-size: 0.72rem;">YACC (yyparse)</span>
-                </div>
-                <div class="flow-step-title">Syntax Analysis (Context-Free Grammar)</div>
-                <div class="flow-step-desc">Verifies grammar rules and creates the Parse Tree / AST structure.</div>
+              <!-- Connecting Arrow Down 2 (Connecting LEX to YACC) -->
+              <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem;" id="anim-arrow-connect">
+                <span style="font-size: 0.74rem; font-weight: 700; color: #64748B; font-family: var(--font-mono); background: #FFFFFF; border: 1px solid #CBD5E1; padding: 0.15rem 0.5rem; border-radius: 999px;">
+                  passes tokens via yylex() ➔
+                </span>
+                <span style="color: #7C3AED; font-weight: 900; font-size: 1.2rem;">↓</span>
               </div>
 
-              <!-- Node 4: Output -->
-              <div class="flow-step-node" id="hero-node-4">
+              <!-- Stage 3: YACC -->
+              <div id="anim-stage-3" class="flow-step-node" style="border-left: 4px solid #7C3AED; transition: all 0.4s ease;">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
-                  <span class="flow-step-num">Output</span>
-                  <span class="token-badge token-num" style="font-size: 0.72rem;">Target Code / AST</span>
+                  <span class="flow-step-num">Step 3 — Parser Generator</span>
+                  <span class="token-badge token-kw">Grammar Verifier</span>
                 </div>
-                <div class="flow-step-title">Intermediate Code & Evaluation</div>
-                <div class="flow-step-desc">Ready for semantic analysis, optimization, and code generation.</div>
+                <div class="flow-step-title" style="color: #7C3AED;">YACC — Syntax Analysis</div>
+                <div class="flow-step-desc">Receives tokens, enforces grammar rules, and constructs the parse tree.</div>
               </div>
             </div>
 
-            <!-- Status Banner -->
-            <div id="hero-status-pill" style="margin-top: 0.5rem; background: #FFFFFF; border: 1px solid #E2E8F0; padding: 0.5rem 0.75rem; border-radius: var(--radius-sm); font-size: 0.8rem; color: #475569; display: flex; align-items: center; justify-content: space-between;">
-              <span>Status: <strong>Ready to Teach</strong></span>
-              <span style="color: #059669; font-weight: 700;">● Engine Online</span>
+            <!-- Animation Controls Bar -->
+            <div style="margin-top: 1rem; display: flex; align-items: center; justify-content: space-between; background: #FFFFFF; border: 1px solid #E2E8F0; padding: 0.5rem 0.75rem; border-radius: var(--radius-sm); font-size: 0.78rem;">
+              <span id="title-anim-status" style="color: #059669; font-weight: 700;">● Simulation Loaded</span>
+              <span style="color: #64748B;">Duration: ~20s Narration</span>
             </div>
           </div>
         </div>
       `;
     },
     init: function() {
-      // Restore cached student info if any
-      const savedName = localStorage.getItem('lex_student_name');
-      const savedRoll = localStorage.getItem('lex_student_roll');
-      const nameEl = document.getElementById('student-name-field');
-      const rollEl = document.getElementById('student-roll-field');
-      if (savedName && nameEl) nameEl.innerText = savedName;
-      if (savedRoll && rollEl) rollEl.innerText = savedRoll;
-
-      if (nameEl) {
-        nameEl.addEventListener('blur', () => {
-          localStorage.setItem('lex_student_name', nameEl.innerText.trim());
-        });
-      }
-      if (rollEl) {
-        rollEl.addEventListener('blur', () => {
-          localStorage.setItem('lex_student_roll', rollEl.innerText.trim());
-        });
-      }
+      lexYaccApp.playTitleAnimation();
     }
   },
 
   // ========================================================================
-  // SLIDE 2: Introduction
+  // SLIDE 2: Introduction to LEX and YACC
   // ========================================================================
   {
     id: 'slide-2',
     part: 'Foundations',
     partNumber: 'SLIDE 02',
-    title: 'Introduction: The Compiler Pipeline',
-    subtitle: 'From High-Level Source Characters to Grammatically Verified Machine Representations',
-    notes: 'Before LEX and YACC, developers had to manually write huge switch-case state machines in C. Lexical analysis strips whitespace and packages raw characters into meaningful atomic tokens. Syntax analysis then enforces grammar rules, rejecting malformed statements before any code generation occurs.',
+    title: 'Introduction to LEX and YACC',
+    subtitle: 'From Source Code to Lexical Tokens and Grammatical Syntax Structure',
+    duration: '30 seconds',
+    notes: `
+      <div style="background: rgba(37,99,235,0.06); padding: 0.6rem 0.85rem; border-radius: 6px; margin-bottom: 0.75rem; border-left: 3px solid #2563EB;">
+        <strong>⏱️ Narration — Approximately 30 seconds:</strong>
+      </div>
+      <p style="font-style: italic; font-size: 0.95rem; line-height: 1.6; color: #1E293B;">
+        “A compiler processes a program through different phases. Lexical analysis identifies meaningful units called tokens. Syntax analysis checks whether those tokens follow the grammar of the language. LEX is used to generate a lexical analyzer, while YACC is used to generate a parser. In a typical workflow, LEX passes tokens to YACC, and YACC checks their structure.”
+      </p>
+    `,
     render: function() {
       return `
         <div class="split-layout" style="grid-template-columns: 1fr 1fr; height: 100%; align-items: stretch;">
-          <!-- Left: Theoretical Principles -->
+          <!-- Left: On-Slide Text -->
           <div class="content-card" style="display: flex; flex-direction: column; justify-content: space-between;">
             <div>
               <div style="font-size: 0.78rem; font-weight: 800; color: #2563EB; text-transform: uppercase; margin-bottom: 0.35rem; letter-spacing: 0.05em;">
-                Core Principles
+                Theoretical Foundation
               </div>
-              <h3 style="font-size: 1.25rem; font-weight: 800; color: #0F172A; margin-bottom: 1rem;">
-                What Does a Compiler Do?
+              <h3 style="font-size: 1.25rem; font-weight: 800; color: #0F172A; margin-bottom: 0.65rem;">
+                Introduction to LEX and YACC
               </h3>
+              
+              <p style="font-size: 0.88rem; color: #334155; line-height: 1.5; margin-bottom: 1rem; padding: 0.5rem 0.75rem; background: #F8FAFC; border-radius: var(--radius-sm); border-left: 3px solid #2563EB;">
+                A compiler translates source code into another form, commonly machine code.
+              </p>
 
-              <div style="display: flex; flex-direction: column; gap: 0.85rem;">
-                <!-- Bullet 1 -->
-                <div style="display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.75rem; background: #F8FAFC; border-radius: var(--radius-md); border-left: 4px solid #2563EB;">
-                  <span style="font-size: 1.25rem;">🔄</span>
-                  <div>
-                    <div style="font-weight: 800; color: #0F172A; font-size: 0.95rem;">Translation Function</div>
-                    <div style="font-size: 0.85rem; color: #475569; line-height: 1.45; margin-top: 0.2rem;">
-                      A compiler translates source code into another form, commonly machine code or bytecode for execution.
-                    </div>
+              <!-- Two Phase Cards -->
+              <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem;">
+                <!-- Lexical Analysis -->
+                <div style="padding: 0.75rem 1rem; background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: var(--radius-md); border-left: 4px solid #0284C7;">
+                  <div style="font-weight: 800; color: #0284C7; font-size: 0.95rem; margin-bottom: 0.35rem;">
+                    Lexical Analysis
                   </div>
+                  <ul style="padding-left: 1.2rem; font-size: 0.82rem; color: #334155; display: flex; flex-direction: column; gap: 0.25rem;">
+                    <li>Reads source code as characters.</li>
+                    <li>Groups characters into meaningful tokens.</li>
+                    <li>Commonly generated using <strong>LEX</strong>.</li>
+                  </ul>
                 </div>
 
-                <!-- Bullet 2 -->
-                <div style="display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.75rem; background: #F8FAFC; border-radius: var(--radius-md); border-left: 4px solid #059669;">
-                  <span style="font-size: 1.25rem;">🔍</span>
-                  <div>
-                    <div style="font-weight: 800; color: #0F172A; font-size: 0.95rem;">Lexical Analysis (Scanning)</div>
-                    <div style="font-size: 0.85rem; color: #475569; line-height: 1.45; margin-top: 0.2rem;">
-                      Lexical analysis converts raw characters into categorized, meaningful <strong>tokens</strong> (keywords, identifiers, numbers, operators) while discarding whitespace and comments.
-                    </div>
+                <!-- Syntax Analysis -->
+                <div style="padding: 0.75rem 1rem; background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: var(--radius-md); border-left: 4px solid #7C3AED;">
+                  <div style="font-weight: 800; color: #7C3AED; font-size: 0.95rem; margin-bottom: 0.35rem;">
+                    Syntax Analysis
                   </div>
-                </div>
-
-                <!-- Bullet 3 -->
-                <div style="display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.75rem; background: #F8FAFC; border-radius: var(--radius-md); border-left: 4px solid #7C3AED;">
-                  <span style="font-size: 1.25rem;">🌲</span>
-                  <div>
-                    <div style="font-weight: 800; color: #0F172A; font-size: 0.95rem;">Syntax Analysis (Parsing)</div>
-                    <div style="font-size: 0.85rem; color: #475569; line-height: 1.45; margin-top: 0.2rem;">
-                      Syntax analysis checks grammatical structure according to formal grammar rules, constructing a hierarchical <strong>Parse Tree</strong>.
-                    </div>
-                  </div>
+                  <ul style="padding-left: 1.2rem; font-size: 0.82rem; color: #334155; display: flex; flex-direction: column; gap: 0.25rem;">
+                    <li>Processes tokens.</li>
+                    <li>Checks grammar rules.</li>
+                    <li>Commonly generated using <strong>YACC</strong>.</li>
+                  </ul>
                 </div>
               </div>
             </div>
 
-            <!-- Manual vs Automated Comparison Callout -->
-            <div style="background: rgba(37, 99, 235, 0.05); border: 1px solid rgba(37, 99, 235, 0.2); border-radius: var(--radius-md); padding: 0.75rem 1rem;">
-              <div style="font-weight: 700; font-size: 0.82rem; color: #2563EB; margin-bottom: 0.2rem;">💡 Why Automate with LEX & YACC?</div>
-              <div style="font-size: 0.78rem; color: #475569; line-height: 1.4;">
-                Handwriting state-machines requires thousands of C lines prone to edge-case bugs. LEX & YACC generate mathematically proven, optimal C scanners and parsers from simple rule files!
+            <!-- Compiler Flow Banner -->
+            <div style="background: #F8FAFC; border: 1.5px solid #CBD5E1; border-radius: var(--radius-md); padding: 0.75rem 1rem;">
+              <div style="font-size: 0.74rem; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 0.35rem;">
+                Compiler Flow:
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between; font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700;">
+                <span style="color: #0F172A;">Source Code</span>
+                <span style="color: #2563EB;">→</span>
+                <span class="token-badge token-id" style="font-size: 0.74rem;">LEX</span>
+                <span style="color: #2563EB;">→</span>
+                <span class="token-badge token-num" style="font-size: 0.74rem;">Tokens</span>
+                <span style="color: #2563EB;">→</span>
+                <span class="token-badge token-kw" style="font-size: 0.74rem;">YACC</span>
+                <span style="color: #2563EB;">→</span>
+                <span style="color: #059669;">Syntax Structure</span>
               </div>
             </div>
           </div>
 
-          <!-- Right: Interactive Pipeline Simulator -->
+          <!-- Right: Simulation / Animation (One-by-One Stages) -->
           <div class="content-card" style="display: flex; flex-direction: column; justify-content: space-between;">
             <div>
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-                <div style="font-size: 0.78rem; font-weight: 800; color: #2563EB; text-transform: uppercase; letter-spacing: 0.05em;">Interactive Demonstration</div>
-                <span class="token-badge token-kw" style="font-size: 0.75rem;">Step-by-Step Flow</span>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                <span style="font-size: 0.76rem; font-weight: 800; color: #2563EB; text-transform: uppercase; letter-spacing: 0.05em;">Simulation / Animation</span>
+                <span class="token-badge token-num" style="font-size: 0.72rem;">Live Pipeline</span>
               </div>
-              <h3 style="font-size: 1.15rem; font-weight: 800; color: #0F172A; margin-bottom: 0.5rem;">
-                Watch Characters Become a Parse Tree
+              <h3 style="font-size: 1.15rem; font-weight: 800; color: #0F172A; margin-bottom: 0.4rem;">
+                Sequential Stage Demonstration
               </h3>
-              <p style="font-size: 0.82rem; color: #64748B; margin-bottom: 0.75rem;">
-                Select a transformation phase below to observe how the statement is processed:
+              <p style="font-size: 0.82rem; color: #64748B; margin-bottom: 0.85rem;">
+                Click below to reveal each stage one by one:
               </p>
 
-              <!-- Phase Step Buttons -->
-              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-bottom: 1rem;">
-                <button class="nav-btn active" id="btn-phase-raw" onclick="lexYaccApp.showIntroPhase('raw')" style="font-size: 0.78rem; padding: 0.45rem;">
-                  1. Raw Stream
-                </button>
-                <button class="nav-btn" id="btn-phase-lex" onclick="lexYaccApp.showIntroPhase('lex')" style="font-size: 0.78rem; padding: 0.45rem;">
-                  2. LEX Tokens
-                </button>
-                <button class="nav-btn" id="btn-phase-yacc" onclick="lexYaccApp.showIntroPhase('yacc')" style="font-size: 0.78rem; padding: 0.45rem;">
-                  3. YACC Tree
-                </button>
-              </div>
+              <!-- Stage Cards Container -->
+              <div style="display: flex; flex-direction: column; gap: 0.65rem;" id="intro-step-nodes">
+                <!-- Step 1: Source code -->
+                <div class="flow-step-node" id="intro-stage-1" style="transition: all 0.3s ease;">
+                  <div style="display: flex; justify-content: space-between;">
+                    <span class="flow-step-num">Stage 1</span>
+                    <span class="token-badge token-delim" style="font-size: 0.7rem;">Input Text</span>
+                  </div>
+                  <div class="flow-step-title">Source code: <code style="color: #2563EB; font-size: 1rem;">10 + 20</code></div>
+                  <div class="flow-step-desc">Stream of raw characters: '1', '0', ' ', '+', ' ', '2', '0'.</div>
+                </div>
 
-              <!-- Interactive Display Box -->
-              <div id="intro-phase-display" style="background: #F8FAFC; border: 1.5px solid #E2E8F0; border-radius: var(--radius-md); padding: 1rem; min-height: 180px; display: flex; flex-direction: column; justify-content: center;">
-                <!-- Populated dynamically -->
+                <!-- Step 2: LEX Recognizes tokens -->
+                <div class="flow-step-node" id="intro-stage-2" style="transition: all 0.3s ease; opacity: 0.4;">
+                  <div style="display: flex; justify-content: space-between;">
+                    <span class="flow-step-num">Stage 2</span>
+                    <span class="token-badge token-id" style="font-size: 0.7rem;">LEX Scanner</span>
+                  </div>
+                  <div class="flow-step-title">LEX: Recognizes tokens</div>
+                  <div style="margin-top: 0.25rem; display: flex; gap: 0.4rem; align-items: center;">
+                    <span style="font-size: 0.8rem; font-weight: 700; color: #475569;">Tokens:</span>
+                    <span class="token-badge token-num">NUMBER (10)</span>
+                    <span class="token-badge token-op">+</span>
+                    <span class="token-badge token-num">NUMBER (20)</span>
+                  </div>
+                </div>
+
+                <!-- Step 3: YACC Checks grammar -->
+                <div class="flow-step-node" id="intro-stage-3" style="transition: all 0.3s ease; opacity: 0.4;">
+                  <div style="display: flex; justify-content: space-between;">
+                    <span class="flow-step-num">Stage 3</span>
+                    <span class="token-badge token-kw" style="font-size: 0.7rem;">YACC Parser</span>
+                  </div>
+                  <div class="flow-step-title">YACC: Checks grammar</div>
+                  <div style="margin-top: 0.25rem;">
+                    <span class="token-badge token-num" style="background: #ECFDF5; color: #047857; border-color: #A7F3D0; font-size: 0.84rem;">
+                      ✅ Valid expression (Matches rule: expr → expr + term)
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <!-- Dynamic Phase Explanation -->
-            <div id="intro-phase-desc" style="font-size: 0.82rem; color: #334155; background: #FFFFFF; border: 1px solid #E2E8F0; padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); margin-top: 0.5rem;">
-              <strong>Step 1: Raw Characters</strong> — Source file is read as an array of ASCII chars: <code>p, o, s, i, t, i, o, n, =, 1, 0, +, 2, 0, ;</code>.
+            <!-- Step Control Buttons -->
+            <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
+              <button class="nav-btn" onclick="lexYaccApp.revealIntroStage(1)" style="flex: 1; font-size: 0.78rem; padding: 0.45rem;">
+                1. Source Code
+              </button>
+              <button class="nav-btn" onclick="lexYaccApp.revealIntroStage(2)" style="flex: 1; font-size: 0.78rem; padding: 0.45rem;">
+                2. LEX Tokens
+              </button>
+              <button class="nav-btn" onclick="lexYaccApp.revealIntroStage(3)" style="flex: 1; font-size: 0.78rem; padding: 0.45rem;">
+                3. YACC Grammar
+              </button>
+              <button class="icon-btn" onclick="lexYaccApp.autoPlayIntroStages()" title="Auto Play All Stages" style="padding: 0.45rem 0.75rem; font-size: 0.8rem;">
+                ▶ Auto
+              </button>
             </div>
           </div>
         </div>
       `;
     },
     init: function() {
-      lexYaccApp.showIntroPhase('raw');
+      lexYaccApp.revealIntroStage(1);
     }
   },
 
   // ========================================================================
-  // SLIDE 3: LEX
+  // SLIDE 3: LEX: Tool for Lexical Analysis
   // ========================================================================
   {
     id: 'slide-3',
     part: 'Lexical Analysis',
     partNumber: 'SLIDE 03',
-    title: 'LEX: Lexical Analyzer Generator',
-    subtitle: 'Pattern Recognition & Token Generation Using Deterministic Finite Automata (DFA)',
-    notes: 'LEX takes a .l specification file containing regex rules. It compiles those patterns into a Deterministic Finite Automata (DFA) state machine inside lex.yy.c. Every time yylex() is invoked, it scans the longest matching lexeme and returns an integer token code.',
+    title: 'LEX: Tool for Lexical Analysis',
+    subtitle: 'LEX — Lexical Analyzer Generator',
+    duration: '45 seconds',
+    notes: `
+      <div style="background: rgba(37,99,235,0.06); padding: 0.6rem 0.85rem; border-radius: 6px; margin-bottom: 0.75rem; border-left: 3px solid #2563EB;">
+        <strong>⏱️ Narration — Approximately 45 seconds:</strong>
+      </div>
+      <p style="font-style: italic; font-size: 0.95rem; line-height: 1.6; color: #1E293B;">
+        “LEX stands for a lexical analyzer generator. It generates a scanner that identifies tokens using patterns, commonly expressed as regular expressions. Consider the statement total equals ten plus twenty. LEX recognizes total as an identifier, the equals sign as an assignment operator, ten and twenty as numbers, and the plus sign as an arithmetic operator. It also recognizes the semicolon. These tokens are then passed to the syntax analyzer. This automated process reduces the effort of writing a scanner manually.”
+      </p>
+    `,
     render: function() {
       return `
         <div class="split-layout" style="grid-template-columns: 1fr 1fr; height: 100%; align-items: stretch;">
-          <!-- Left: Theory & Specification Architecture -->
+          <!-- Left: On-Slide Text & Lexeme Table -->
           <div class="content-card" style="display: flex; flex-direction: column; justify-content: space-between;">
             <div>
-              <div style="font-size: 0.78rem; font-weight: 800; color: #2563EB; text-transform: uppercase; margin-bottom: 0.35rem; letter-spacing: 0.05em;">
-                Tool Overview
+              <div style="font-size: 0.78rem; font-weight: 800; color: #0284C7; text-transform: uppercase; margin-bottom: 0.25rem; letter-spacing: 0.05em;">
+                Lexical Analyzer Generator
               </div>
-              <h3 style="font-size: 1.25rem; font-weight: 800; color: #0F172A; margin-bottom: 0.75rem;">
-                What is LEX?
+              <h3 style="font-size: 1.2rem; font-weight: 800; color: #0F172A; margin-bottom: 0.35rem;">
+                LEX — Lexical Analyzer Generator
               </h3>
+              
+              <p style="font-size: 0.84rem; color: #334155; margin-bottom: 0.65rem; background: #F0F9FF; border-left: 3px solid #0284C7; padding: 0.4rem 0.65rem; border-radius: 4px;">
+                <strong>Definition:</strong> LEX is a tool that generates a lexical analyzer or scanner.
+              </p>
 
-              <div style="display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 1rem;">
-                <div style="display: flex; gap: 0.5rem; align-items: flex-start;">
-                  <span style="color: #2563EB; font-weight: 800;">●</span>
-                  <div style="font-size: 0.88rem; color: #334155; line-height: 1.45;">
-                    <strong>A tool for generating lexical analyzers</strong> (scanners) automatically in C.
-                  </div>
-                </div>
+              <div style="font-size: 0.78rem; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 0.25rem;">
+                Main functions
+              </div>
+              <ul style="padding-left: 1.15rem; font-size: 0.8rem; color: #334155; display: flex; flex-direction: column; gap: 0.2rem; margin-bottom: 0.65rem;">
+                <li>Reads source code character by character.</li>
+                <li>Identifies tokens using patterns and regular expressions.</li>
+                <li>Classifies identifiers, numbers, operators, and symbols.</li>
+                <li>Passes tokens to the parser.</li>
+              </ul>
 
-                <div style="display: flex; gap: 0.5rem; align-items: flex-start;">
-                  <span style="color: #2563EB; font-weight: 800;">●</span>
-                  <div style="font-size: 0.88rem; color: #334155; line-height: 1.45;">
-                    <strong>Recognizes tokens</strong> using patterns defined by <strong>regular expressions</strong>.
-                  </div>
-                </div>
-
-                <div style="display: flex; gap: 0.5rem; align-items: flex-start;">
-                  <span style="color: #2563EB; font-weight: 800;">●</span>
-                  <div style="font-size: 0.88rem; color: #334155; line-height: 1.45;">
-                    Matches characters via a generated <strong>DFA</strong>, returning token codes and lexeme values (<code>yylval</code>).
-                  </div>
-                </div>
+              <div style="font-size: 0.78rem; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 0.25rem;">
+                Example input: <code style="color: #2563EB;">total = 10 + 20;</code>
               </div>
 
-              <!-- LEX Specification File Structure -->
-              <div style="margin-top: 0.5rem;">
-                <div style="font-size: 0.78rem; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 0.35rem;">
-                  LEX Specification File Structure (<code>scanner.l</code>)
-                </div>
-                <div class="code-box" style="padding: 0.65rem 0.85rem; font-size: 0.78rem;">
-<span class="comment">/* 1. Definitions & Headers */</span>
-%{
-  #include "y.tab.h"
-%}
-<span class="kw">%%</span>
-<span class="comment">/* 2. Rules: Regex Pattern -> Action */</span>
-[0-9]+             { yylval = atoi(yytext); return NUMBER; }
-[a-zA-Z_][a-zA-Z0-9_]* { return IDENTIFIER; }
-"+"                { return PLUS; }
-"="                { return ASSIGN; }
-";"                { return SEMICOLON; }
-[ \\t\\n]           { <span class="comment">/* skip whitespace */</span> }
-<span class="kw">%%</span>
-<span class="comment">/* 3. User Auxiliary C Code */</span>
-int yywrap() { return 1; }
-                </div>
-              </div>
+              <!-- Lexeme Table -->
+              <table class="academic-table" style="font-size: 0.78rem;">
+                <thead>
+                  <tr>
+                    <th>Lexeme</th>
+                    <th>Token type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr id="tbl-row-0"><td><code>total</code></td><td><span class="token-badge token-id" style="font-size: 0.72rem;">IDENTIFIER</span></td></tr>
+                  <tr id="tbl-row-1"><td><code>=</code></td><td><span class="token-badge token-op" style="font-size: 0.72rem;">ASSIGN</span></td></tr>
+                  <tr id="tbl-row-2"><td><code>10</code></td><td><span class="token-badge token-num" style="font-size: 0.72rem;">NUMBER</span></td></tr>
+                  <tr id="tbl-row-3"><td><code>+</code></td><td><span class="token-badge token-op" style="font-size: 0.72rem;">PLUS</span></td></tr>
+                  <tr id="tbl-row-4"><td><code>20</code></td><td><span class="token-badge token-num" style="font-size: 0.72rem;">NUMBER</span></td></tr>
+                  <tr id="tbl-row-5"><td><code>;</code></td><td><span class="token-badge token-delim" style="font-size: 0.72rem;">SEMICOLON</span></td></tr>
+                </tbody>
+              </table>
             </div>
 
-            <!-- LEX Toolchain Flow -->
-            <div style="display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: var(--radius-sm); padding: 0.45rem 0.75rem; font-size: 0.75rem; font-family: var(--font-mono);">
-              <span style="color: #2563EB; font-weight: 700;">scanner.l</span>
-              <span>→ lex →</span>
-              <span style="color: #059669; font-weight: 700;">lex.yy.c</span>
-              <span>→ gcc →</span>
-              <span style="color: #7C3AED; font-weight: 700;">yylex()</span>
+            <div style="font-size: 0.74rem; color: #64748B; margin-top: 0.4rem;">
+              Generated function: <code>int yylex(void)</code> • Scanner file: <code>lex.yy.c</code>
             </div>
           </div>
 
-          <!-- Right: Interactive LEX Tokenizer Demo -->
+          <!-- Right: Interactive One-by-One Token Scanner -->
           <div class="content-card" style="display: flex; flex-direction: column; justify-content: space-between;">
             <div>
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                <div style="font-size: 0.78rem; font-weight: 800; color: #2563EB; text-transform: uppercase; letter-spacing: 0.05em;">Interactive Scanner</div>
-                <span class="token-badge token-num" style="font-size: 0.72rem;">Live Regex Matcher</span>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+                <span style="font-size: 0.76rem; font-weight: 800; color: #0284C7; text-transform: uppercase; letter-spacing: 0.05em;">Simulation / Animation</span>
+                <span class="token-badge token-id" style="font-size: 0.72rem;" id="scanner-step-badge">Token 1 of 6</span>
               </div>
               
-              <h3 style="font-size: 1.15rem; font-weight: 800; color: #0F172A; margin-bottom: 0.4rem;">
-                Example: <code>total = 10 + 20;</code>
+              <h3 style="font-size: 1.1rem; font-weight: 800; color: #0F172A; margin-bottom: 0.35rem;">
+                Scanner Moving Through Input
               </h3>
               
-              <p style="font-size: 0.82rem; color: #475569; margin-bottom: 0.75rem;">
-                Type or select an expression to see LEX identify and classify tokens:
-              </p>
+              <!-- Input Code Tape Visualizer -->
+              <div style="margin-bottom: 0.85rem;">
+                <div style="font-size: 0.74rem; font-weight: 700; color: #64748B; text-transform: uppercase; margin-bottom: 0.25rem;">
+                  Input code
+                </div>
+                <div id="lex-code-tape" style="display: flex; gap: 0.35rem; padding: 0.65rem 0.85rem; background: #0F172A; border-radius: var(--radius-md); font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; overflow-x: auto;">
+                  <!-- Filled dynamically with highlighted lexemes -->
+                </div>
+              </div>
 
-              <!-- Expression Input & Preset Buttons -->
-              <div class="interactive-input-group" style="margin-bottom: 0.5rem;">
-                <span style="font-family: var(--font-mono); font-size: 0.85rem; color: #64748B;">code:</span>
-                <input type="text" id="lex-input-code" class="interactive-input" value="total = 10 + 20;" placeholder="Enter statement..." />
-                <button class="nav-btn" onclick="lexYaccApp.runLexTokenizer()" style="font-size: 0.78rem; padding: 0.35rem 0.75rem; background: var(--accent-blue); color: #FFF; border-radius: 4px;">
-                  Scan Tokens
+              <!-- Current Token Reveal Box -->
+              <div style="background: #F8FAFC; border: 1.5px solid #CBD5E1; border-radius: var(--radius-md); padding: 1rem; text-align: center; margin-bottom: 0.85rem;">
+                <div style="font-size: 0.76rem; font-weight: 700; color: #64748B; text-transform: uppercase; margin-bottom: 0.3rem;">
+                  Show one token at a time
+                </div>
+                <div id="scanner-current-lexeme" style="font-size: 1.7rem; font-family: var(--font-mono); font-weight: 900; color: #0F172A; margin-bottom: 0.4rem;">
+                  total
+                </div>
+                <div style="font-size: 0.76rem; font-weight: 700; color: #64748B; text-transform: uppercase; margin-bottom: 0.3rem;">
+                  Recognized token
+                </div>
+                <div id="scanner-current-token">
+                  <span class="token-badge token-id" style="font-size: 1.1rem; padding: 0.35rem 0.95rem;">IDENTIFIER</span>
+                </div>
+              </div>
+
+              <!-- Interactive Controls (Previous / Next / Auto) -->
+              <div style="display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 0.75rem;">
+                <button class="nav-btn" id="scanner-prev-btn" onclick="lexYaccApp.prevLexToken()" style="font-size: 0.8rem; padding: 0.4rem 0.85rem;">
+                  ← Previous token
                 </button>
-              </div>
-
-              <!-- Presets -->
-              <div style="display: flex; gap: 0.4rem; margin-bottom: 0.85rem;">
-                <button class="icon-btn" onclick="lexYaccApp.setLexPreset('total = 10 + 20;')" style="font-size: 0.72rem; padding: 0.2rem 0.5rem;">Preset 1: total = 10 + 20;</button>
-                <button class="icon-btn" onclick="lexYaccApp.setLexPreset('count = count + 1;')" style="font-size: 0.72rem; padding: 0.2rem 0.5rem;">Preset 2: count = count + 1;</button>
-                <button class="icon-btn" onclick="lexYaccApp.setLexPreset('val = 42 * 7;')" style="font-size: 0.72rem; padding: 0.2rem 0.5rem;">Preset 3: val = 42 * 7;</button>
-              </div>
-
-              <!-- Token Output Grid -->
-              <div style="font-size: 0.78rem; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 0.35rem;">
-                Tokens Recognized by LEX:
-              </div>
-              <div id="lex-token-stream" style="display: flex; flex-wrap: wrap; gap: 0.5rem; min-height: 60px; padding: 0.65rem; background: #F8FAFC; border: 1.5px solid #E2E8F0; border-radius: var(--radius-md); align-items: center;">
-                <!-- Filled dynamically -->
+                <button class="nav-btn" id="scanner-next-btn" onclick="lexYaccApp.nextLexToken()" style="font-size: 0.8rem; padding: 0.4rem 0.85rem; background: var(--accent-blue); color: #FFF;">
+                  Next token →
+                </button>
+                <button class="icon-btn" id="scanner-auto-btn" onclick="lexYaccApp.toggleAutoLexScan()" style="font-size: 0.8rem; padding: 0.4rem 0.85rem;">
+                  ▶ Auto Scan
+                </button>
               </div>
             </div>
 
-            <!-- Token Details Inspector -->
-            <div id="lex-token-inspector" style="background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: var(--radius-sm); padding: 0.65rem 0.85rem; font-size: 0.8rem; margin-top: 0.5rem;">
-              <span style="color: #64748B;">ℹ️ Click any token badge above to inspect its Regular Expression and DFA rule.</span>
+            <!-- Helpful Pedagogical Note from Prompt -->
+            <div style="font-size: 0.76rem; color: #475569; background: #FFFFFF; border: 1px solid #E2E8F0; padding: 0.55rem 0.8rem; border-radius: var(--radius-sm); line-height: 1.4;">
+              💡 <em>Use this interactive example to understand the sequence. In your actual presentation, animate the tokens automatically or reveal them one by one.</em>
             </div>
           </div>
         </div>
       `;
     },
     init: function() {
-      lexYaccApp.runLexTokenizer();
+      lexYaccApp.currentLexIndex = 0;
+      lexYaccApp.updateLexScannerView();
     }
   },
 
   // ========================================================================
-  // SLIDE 4: YACC
+  // SLIDE 4: YACC: Tool for Syntax Analysis
   // ========================================================================
   {
     id: 'slide-4',
     part: 'Syntax Parsing',
     partNumber: 'SLIDE 04',
-    title: 'YACC: Yet Another Compiler-Compiler',
-    subtitle: 'Context-Free Grammar Parsing and Syntax Error Detection with LALR(1) Automata',
-    notes: 'YACC builds an LALR(1) pushdown automaton parser. It repeatedly calls yylex() to fetch the next token and performs shift or reduce operations. If an unexpected token arrives, such as end-of-file right after a plus operator, it immediately halts and triggers yyerror().',
+    title: 'YACC: Tool for Syntax Analysis',
+    subtitle: 'YACC — Parser Generator',
+    duration: '45 seconds',
+    notes: `
+      <div style="background: rgba(37,99,235,0.06); padding: 0.6rem 0.85rem; border-radius: 6px; margin-bottom: 0.75rem; border-left: 3px solid #2563EB;">
+        <strong>⏱️ Narration — Approximately 45 seconds:</strong>
+      </div>
+      <p style="font-style: italic; font-size: 0.95rem; line-height: 1.6; color: #1E293B;">
+        “YACC stands for Yet Another Compiler-Compiler. It generates a parser from grammar rules. The parser receives tokens from LEX and checks whether they form a valid expression or statement. For example, ten plus twenty is a valid arithmetic expression. However, ten plus multiplication twenty violates the usual expression grammar because two operators appear consecutively without an operand between them. YACC can report this as a syntax error. Therefore, YACC focuses on grammatical structure rather than identifying individual characters.”
+      </p>
+    `,
     render: function() {
       return `
         <div class="split-layout" style="grid-template-columns: 1fr 1fr; height: 100%; align-items: stretch;">
-          <!-- Left: Principles & Grammar Rules -->
+          <!-- Left: On-Slide Text -->
           <div class="content-card" style="display: flex; flex-direction: column; justify-content: space-between;">
             <div>
-              <div style="font-size: 0.78rem; font-weight: 800; color: #2563EB; text-transform: uppercase; margin-bottom: 0.35rem; letter-spacing: 0.05em;">
+              <div style="font-size: 0.78rem; font-weight: 800; color: #7C3AED; text-transform: uppercase; margin-bottom: 0.25rem; letter-spacing: 0.05em;">
                 Parser Generator
               </div>
-              <h3 style="font-size: 1.25rem; font-weight: 800; color: #0F172A; margin-bottom: 0.75rem;">
-                What is YACC?
+              <h3 style="font-size: 1.2rem; font-weight: 800; color: #0F172A; margin-bottom: 0.35rem;">
+                YACC — Parser Generator
               </h3>
-
-              <div style="display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 1rem;">
-                <div style="display: flex; gap: 0.5rem; align-items: flex-start;">
-                  <span style="color: #7C3AED; font-weight: 800;">●</span>
-                  <div style="font-size: 0.88rem; color: #334155; line-height: 1.45;">
-                    <strong>A tool for generating syntax parsers</strong> using LALR(1) parsing algorithms.
-                  </div>
-                </div>
-
-                <div style="display: flex; gap: 0.5rem; align-items: flex-start;">
-                  <span style="color: #7C3AED; font-weight: 800;">●</span>
-                  <div style="font-size: 0.88rem; color: #334155; line-height: 1.45;">
-                    <strong>Uses grammar rules</strong> written in BNF (Backus-Naur Form) to recognize valid syntactic structures.
-                  </div>
-                </div>
-
-                <div style="display: flex; gap: 0.5rem; align-items: flex-start;">
-                  <span style="color: #7C3AED; font-weight: 800;">●</span>
-                  <div style="font-size: 0.88rem; color: #334155; line-height: 1.45;">
-                    <strong>Detects syntax errors</strong> such as missing operands, unexpected tokens, or mismatched parentheses.
-                  </div>
-                </div>
+              
+              <div style="font-size: 0.82rem; color: #334155; margin-bottom: 0.55rem; background: #FAF5FF; border-left: 3px solid #7C3AED; padding: 0.35rem 0.65rem; border-radius: 4px;">
+                <strong>Full form:</strong> Yet Another Compiler-Compiler
               </div>
 
-              <!-- Grammar Specification Box -->
-              <div style="margin-top: 0.25rem;">
-                <div style="font-size: 0.78rem; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 0.35rem;">
-                  Example Grammar Rules (<code>parser.y</code>)
+              <div style="font-size: 0.78rem; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 0.25rem;">
+                Main functions
+              </div>
+              <ul style="padding-left: 1.15rem; font-size: 0.8rem; color: #334155; display: flex; flex-direction: column; gap: 0.2rem; margin-bottom: 0.65rem;">
+                <li>Generates a parser from grammar rules.</li>
+                <li>Receives tokens from the lexical analyzer.</li>
+                <li>Checks the grammatical structure of expressions and statements.</li>
+                <li>Reports syntax errors when the input violates the grammar.</li>
+              </ul>
+
+              <!-- Example Grammar Box -->
+              <div style="font-size: 0.78rem; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 0.25rem;">
+                Example grammar:
+              </div>
+              <div class="code-box" style="padding: 0.65rem 0.85rem; font-size: 0.8rem; margin-bottom: 0.65rem;">
+<span class="func">expr</span> → <span class="func">expr</span> + <span class="func">term</span>
+<span class="func">expr</span> → <span class="func">term</span>
+<span class="func">term</span> → <span class="num">NUMBER</span>
+              </div>
+
+              <!-- Valid vs Invalid Comparison Labels -->
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                <div style="background: #ECFDF5; border: 1px solid #10B981; border-radius: var(--radius-sm); padding: 0.45rem 0.65rem;">
+                  <div style="font-size: 0.72rem; font-weight: 800; color: #047857; text-transform: uppercase;">Valid Input</div>
+                  <div style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 800; color: #065F46;">10 + 20</div>
                 </div>
-                <div class="code-box" style="padding: 0.65rem 0.85rem; font-size: 0.78rem;">
-<span class="kw">%token</span> NUMBER IDENTIFIER PLUS ASSIGN
-<span class="kw">%%</span>
-<span class="func">statement</span>   : IDENTIFIER ASSIGN expression ;
-<span class="func">expression</span>  : expression PLUS term  <span class="comment">/* e.g., expression + term */</span>
-            | term
-            ;
-<span class="func">term</span>        : NUMBER | IDENTIFIER ;
-<span class="kw">%%</span>
-<span class="kw">void</span> <span class="func">yyerror</span>(<span class="kw">char</span> *s) { printf(<span class="str">"Syntax Error: %s\\n"</span>, s); }
+                <div style="background: #FEF2F2; border: 1px solid #EF4444; border-radius: var(--radius-sm); padding: 0.45rem 0.65rem;">
+                  <div style="font-size: 0.72rem; font-weight: 800; color: #B91C1C; text-transform: uppercase;">Invalid Input</div>
+                  <div style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 800; color: #991B1B;">10 + * 20</div>
                 </div>
               </div>
             </div>
 
-            <!-- YACC Toolchain Flow -->
-            <div style="display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: var(--radius-sm); padding: 0.45rem 0.75rem; font-size: 0.75rem; font-family: var(--font-mono);">
-              <span style="color: #7C3AED; font-weight: 700;">parser.y</span>
-              <span>→ yacc -d →</span>
-              <span style="color: #059669; font-weight: 700;">y.tab.c + y.tab.h</span>
-              <span>→ gcc →</span>
-              <span style="color: #2563EB; font-weight: 700;">yyparse()</span>
+            <div style="font-size: 0.74rem; color: #64748B; margin-top: 0.4rem;">
+              Generated function: <code>int yyparse(void)</code> • Error routine: <code>void yyerror(char *s)</code>
             </div>
           </div>
 
-          <!-- Right: Interactive YACC Parser & Tree Generator -->
+          <!-- Right: Simulation / Animation (Token Seq -> Rule -> Valid vs Invalid) -->
           <div class="content-card" style="display: flex; flex-direction: column; justify-content: space-between;">
             <div>
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                <div style="font-size: 0.78rem; font-weight: 800; color: #7C3AED; text-transform: uppercase; letter-spacing: 0.05em;">Interactive Grammar Validator</div>
-                <span class="token-badge token-kw" style="font-size: 0.72rem;">LALR(1) Parsing</span>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+                <span style="font-size: 0.76rem; font-weight: 800; color: #7C3AED; text-transform: uppercase; letter-spacing: 0.05em;">Simulation / Animation</span>
+                <span class="token-badge token-kw" style="font-size: 0.72rem;">Grammar Check</span>
               </div>
               
-              <h3 style="font-size: 1.15rem; font-weight: 800; color: #0F172A; margin-bottom: 0.35rem;">
-                Rule: <code>expression → expression + term</code>
+              <h3 style="font-size: 1.1rem; font-weight: 800; color: #0F172A; margin-bottom: 0.4rem;">
+                Token Sequence & Rule Verification
               </h3>
-              
-              <p style="font-size: 0.82rem; color: #475569; margin-bottom: 0.65rem;">
-                Test valid structures and observe how YACC detects syntax errors:
-              </p>
 
-              <!-- Expression Input & Parse Button -->
-              <div class="interactive-input-group" style="margin-bottom: 0.5rem;">
-                <span style="font-family: var(--font-mono); font-size: 0.85rem; color: #64748B;">expr:</span>
-                <input type="text" id="yacc-input-expr" class="interactive-input" value="10 + 20" placeholder="e.g. 10 + 20 or 10 +" />
-                <button class="nav-btn" onclick="lexYaccApp.runYaccParser()" style="font-size: 0.78rem; padding: 0.35rem 0.75rem; background: var(--accent-purple); color: #FFF; border-radius: 4px;">
-                  Parse with YACC
-                </button>
+              <!-- Phase 1: Display token sequence -->
+              <div style="background: #F8FAFC; border: 1px solid #CBD5E1; border-radius: var(--radius-sm); padding: 0.65rem 0.85rem; margin-bottom: 0.6rem;">
+                <div style="font-size: 0.72rem; font-weight: 700; color: #64748B; text-transform: uppercase; margin-bottom: 0.25rem;">
+                  1. Token Sequence from LEX
+                </div>
+                <div style="display: flex; gap: 0.4rem; align-items: center; font-family: var(--font-mono); font-weight: 700;">
+                  <span class="token-badge token-num">NUMBER</span>
+                  <span class="token-badge token-op">+</span>
+                  <span class="token-badge token-num">NUMBER</span>
+                </div>
               </div>
 
-              <!-- Test Preset Buttons -->
-              <div style="display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.75rem;">
-                <button class="icon-btn" onclick="lexYaccApp.setYaccPreset('10 + 20')" style="font-size: 0.72rem; padding: 0.2rem 0.45rem;">✅ Valid: 10 + 20</button>
-                <button class="icon-btn" onclick="lexYaccApp.setYaccPreset('total + term')" style="font-size: 0.72rem; padding: 0.2rem 0.45rem;">✅ Valid: total + term</button>
-                <button class="icon-btn" onclick="lexYaccApp.setYaccPreset('10 + ')" style="font-size: 0.72rem; padding: 0.2rem 0.45rem; color: #DC2626; border-color: #FCA5A5;">❌ Error: 10 + (Missing Operand)</button>
-                <button class="icon-btn" onclick="lexYaccApp.setYaccPreset('+ 20')" style="font-size: 0.72rem; padding: 0.2rem 0.45rem; color: #DC2626; border-color: #FCA5A5;">❌ Error: + 20</button>
+              <!-- Phase 2: Reveal grammar rule -->
+              <div style="background: #F8FAFC; border: 1px solid #CBD5E1; border-radius: var(--radius-sm); padding: 0.65rem 0.85rem; margin-bottom: 0.6rem;">
+                <div style="font-size: 0.72rem; font-weight: 700; color: #64748B; text-transform: uppercase; margin-bottom: 0.25rem;">
+                  2. Applicable Grammar Rule
+                </div>
+                <div style="font-family: var(--font-mono); font-size: 0.95rem; font-weight: 800; color: #7C3AED;">
+                  expr → expr + term
+                </div>
               </div>
 
-              <!-- Parse Output Display / Visual Parse Tree -->
-              <div id="yacc-result-container" class="parse-tree-container">
-                <!-- SVG Parse Tree rendered here -->
+              <!-- Phase 3: Compare Valid vs Invalid Expressions -->
+              <div style="font-size: 0.74rem; font-weight: 700; color: #64748B; text-transform: uppercase; margin-bottom: 0.35rem;">
+                3. Compare Two Expressions:
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 0.5rem;">
+                <!-- Valid Expression Box -->
+                <div id="yacc-box-valid" class="content-card" style="padding: 0.75rem; border: 1.5px solid #10B981; background: #F0FDF4; display: flex; flex-direction: column; justify-content: space-between;">
+                  <div>
+                    <div style="font-size: 0.72rem; font-weight: 800; color: #047857; text-transform: uppercase;">
+                      Valid expression
+                    </div>
+                    <div style="font-family: var(--font-mono); font-size: 1.15rem; font-weight: 800; color: #065F46; margin: 0.2rem 0;">
+                      10 + 20
+                    </div>
+                  </div>
+                  <div style="margin-top: 0.35rem;">
+                    <span class="token-badge" style="background: #10B981; color: #FFFFFF; font-size: 0.72rem;">
+                      ✓ Grammar accepted
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Invalid Expression Box -->
+                <div id="yacc-box-invalid" class="content-card" style="padding: 0.75rem; border: 1.5px solid #EF4444; background: #FEF2F2; display: flex; flex-direction: column; justify-content: space-between;">
+                  <div>
+                    <div style="font-size: 0.72rem; font-weight: 800; color: #B91C1C; text-transform: uppercase;">
+                      Invalid expression
+                    </div>
+                    <div style="font-family: var(--font-mono); font-size: 1.15rem; font-weight: 800; color: #991B1B; margin: 0.2rem 0;">
+                      10 + * 20
+                    </div>
+                  </div>
+                  <div style="margin-top: 0.35rem;">
+                    <span class="token-badge" style="background: #EF4444; color: #FFFFFF; font-size: 0.72rem;">
+                      ✕ Syntax error
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <!-- Dynamic Error / Success Status Bar -->
-            <div id="yacc-status-bar" style="margin-top: 0.5rem;">
-              <!-- Populated dynamically -->
+            <!-- Error Explanation Banner -->
+            <div style="background: #FFFBEB; border: 1px solid #F59E0B; border-radius: var(--radius-sm); padding: 0.5rem 0.75rem; font-size: 0.76rem; color: #92400E; line-height: 1.4;">
+              ⚠️ <strong>Why is <code>10 + * 20</code> a syntax error?</strong> Two consecutive operators (<code>+ *</code>) appear without an operand between them, violating <code>expr → expr + term</code>.
             </div>
           </div>
         </div>
       `;
     },
     init: function() {
-      lexYaccApp.runYaccParser();
+      // YACC slide init
     }
   },
 
   // ========================================================================
-  // SLIDE 5: Real-World Applications
+  // SLIDE 5: Real-World Application
   // ========================================================================
   {
     id: 'slide-5',
     part: 'Applications',
     partNumber: 'SLIDE 05',
-    title: 'Real-World Applications & Collaboration',
-    subtitle: 'LEX Recognizes the Tokens; YACC Checks How They Fit Together',
-    notes: 'The synergy between LEX and YACC is standard practice. LEX handles the low-level micro-syntax (stripping whitespace, recognizing numbers and strings), while YACC handles high-level macro-syntax (ensuring parentheses balance and operator precedence is respected).',
+    title: 'Real-World Application: Calculator',
+    subtitle: 'From User Expression to Evaluation with LEX and YACC',
+    duration: '40 seconds',
+    notes: `
+      <div style="background: rgba(37,99,235,0.06); padding: 0.6rem 0.85rem; border-radius: 6px; margin-bottom: 0.75rem; border-left: 3px solid #2563EB;">
+        <strong>⏱️ Narration — Approximately 40 seconds:</strong>
+      </div>
+      <p style="font-style: italic; font-size: 0.95rem; line-height: 1.6; color: #1E293B;">
+        “A simple real-world application is a calculator that accepts arithmetic expressions. When the user enters ten plus twenty, LEX identifies the numbers and the plus operator as tokens. YACC checks whether those tokens form a valid expression. After successful parsing, the calculator's evaluation logic calculates the result, which is thirty. Similar techniques are used in programming language compilers, interpreters, command-processing tools, and domain-specific languages.”
+      </p>
+    `,
     render: function() {
       return `
         <div class="split-layout" style="grid-template-columns: 1fr 1fr; height: 100%; align-items: stretch;">
-          <!-- Left: 3 Core Domains & Collaboration Model -->
+          <!-- Left: On-Slide Text & Other Applications -->
           <div class="content-card" style="display: flex; flex-direction: column; justify-content: space-between;">
             <div>
-              <div style="font-size: 0.78rem; font-weight: 800; color: #2563EB; text-transform: uppercase; margin-bottom: 0.35rem; letter-spacing: 0.05em;">
-                Industry Use-Cases
+              <div style="font-size: 0.78rem; font-weight: 800; color: #059669; text-transform: uppercase; margin-bottom: 0.25rem; letter-spacing: 0.05em;">
+                Production Implementation
               </div>
-              <h3 style="font-size: 1.25rem; font-weight: 800; color: #0F172A; margin-bottom: 0.75rem;">
-                Where are LEX & YACC Used?
+              <h3 style="font-size: 1.2rem; font-weight: 800; color: #0F172A; margin-bottom: 0.5rem;">
+                Real-World Application: Calculator
               </h3>
 
-              <div style="display: flex; flex-direction: column; gap: 0.65rem;">
-                <!-- App 1: Calculators -->
-                <div style="padding: 0.65rem 0.85rem; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: var(--radius-md); border-left: 4px solid #2563EB;">
-                  <div style="font-weight: 800; color: #0F172A; font-size: 0.92rem; display: flex; align-items: center; gap: 0.4rem;">
-                    <span>🧮</span> Calculator & Expression Evaluators
-                  </div>
-                  <div style="font-size: 0.8rem; color: #475569; margin-top: 0.2rem; line-height: 1.4;">
-                    Unix <code>bc</code>, <code>dc</code>, spreadsheet formula evaluators (Excel/Sheets), financial math parsers.
-                  </div>
+              <div style="background: #F8FAFC; border: 1.5px solid #E2E8F0; border-radius: var(--radius-md); padding: 0.75rem 1rem; margin-bottom: 0.75rem;">
+                <div style="font-size: 0.82rem; font-weight: 800; color: #2563EB; margin-bottom: 0.25rem;">
+                  Input: <code>10 + 20</code>
                 </div>
 
-                <!-- App 2: Compilers -->
-                <div style="padding: 0.65rem 0.85rem; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: var(--radius-md); border-left: 4px solid #059669;">
-                  <div style="font-weight: 800; color: #0F172A; font-size: 0.92rem; display: flex; align-items: center; gap: 0.4rem;">
-                    <span>💻</span> Programming Language Compilers
-                  </div>
-                  <div style="font-size: 0.8rem; color: #475569; margin-top: 0.2rem; line-height: 1.4;">
-                    Early C, Pascal, SQL query parsers (PostgreSQL), and grammar parsers for transpilers.
-                  </div>
+                <div style="font-size: 0.82rem; color: #334155; margin-bottom: 0.4rem;">
+                  <strong>Step 1 — LEX</strong><br>
+                  Identifies the tokens: <code style="color: #0284C7; font-weight: 700;">NUMBER(10), PLUS, NUMBER(20)</code>
                 </div>
 
-                <!-- App 3: DSLs & Command Interpreters -->
-                <div style="padding: 0.65rem 0.85rem; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: var(--radius-md); border-left: 4px solid #7C3AED;">
-                  <div style="font-weight: 800; color: #0F172A; font-size: 0.92rem; display: flex; align-items: center; gap: 0.4rem;">
-                    <span>🛠️</span> Command Interpreters & DSLs
-                  </div>
-                  <div style="font-size: 0.8rem; color: #475569; margin-top: 0.2rem; line-height: 1.4;">
-                    Network configuration languages, Unix shell interpreters (Bash/Zsh), JSON/XML validators.
-                  </div>
+                <div style="font-size: 0.82rem; color: #334155; margin-bottom: 0.4rem;">
+                  <strong>Step 2 — YACC</strong><br>
+                  Checks whether the tokens form a valid arithmetic expression.
+                </div>
+
+                <div style="font-size: 0.82rem; color: #334155;">
+                  <strong>Step 3 — Evaluation</strong><br>
+                  The calculator evaluates the accepted expression.<br>
+                  <strong style="color: #059669; font-size: 0.95rem;">Output: 30</strong>
                 </div>
               </div>
+
+              <!-- Other applications -->
+              <div style="font-size: 0.78rem; font-weight: 800; color: #475569; text-transform: uppercase; margin-bottom: 0.35rem;">
+                Other applications
+              </div>
+              <ul style="padding-left: 1.2rem; font-size: 0.82rem; color: #334155; display: flex; flex-direction: column; gap: 0.25rem;">
+                <li>Programming language compilers</li>
+                <li>Interpreters</li>
+                <li>Command interpreters</li>
+                <li>Domain-specific languages</li>
+              </ul>
             </div>
 
-            <!-- Collaboration Formula Banner -->
-            <div style="background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(124,58,237,0.08)); border: 1.5px solid rgba(37,99,235,0.2); border-radius: var(--radius-md); padding: 0.75rem 1rem;">
-              <div style="font-size: 0.85rem; font-weight: 800; color: #1E3A8A; margin-bottom: 0.25rem;">
-                🤝 The Golden Collaboration Rule:
-              </div>
-              <div style="font-size: 0.82rem; color: #334155; line-height: 1.45;">
-                <strong>LEX</strong> recognizes the individual tokens;<br>
-                <strong>YACC</strong> checks how they fit together to form meaningful structures!
-              </div>
+            <div style="font-size: 0.74rem; color: #64748B;">
+              Real-world examples: Unix <code>bc</code>, <code>awk</code>, SQL query parsers, and configuration checkers.
             </div>
           </div>
 
-          <!-- Right: Live Working Mini-Calculator Simulator -->
+          <!-- Right: Calculator Demonstration (1 of 4, Step 1..4) -->
           <div class="content-card" style="display: flex; flex-direction: column; justify-content: space-between;">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                <div style="font-size: 0.78rem; font-weight: 800; color: #059669; text-transform: uppercase; letter-spacing: 0.05em;">Live Working Demo</div>
-                <span class="token-badge token-num" style="font-size: 0.72rem;">LEX + YACC Calculator</span>
+                <span style="font-size: 0.76rem; font-weight: 800; color: #059669; text-transform: uppercase; letter-spacing: 0.05em;">Simulation / animation</span>
+                <span class="token-badge token-num" id="calc-step-counter" style="font-size: 0.76rem; font-weight: 800;">1 of 4</span>
               </div>
               
-              <h3 style="font-size: 1.15rem; font-weight: 800; color: #0F172A; margin-bottom: 0.35rem;">
-                Interactive Expression Evaluator
+              <h3 style="font-size: 1.15rem; font-weight: 800; color: #0F172A; margin-bottom: 0.65rem;">
+                Calculator demonstration
               </h3>
-              
-              <p style="font-size: 0.82rem; color: #475569; margin-bottom: 0.65rem;">
-                See LEX tokenize and YACC calculate with operator precedence:
-              </p>
 
-              <!-- Calculator Input -->
-              <div class="interactive-input-group" style="margin-bottom: 0.5rem;">
-                <span style="font-family: var(--font-mono); font-size: 0.85rem; color: #64748B;">calc:</span>
-                <input type="text" id="calc-input-expr" class="interactive-input" value="(10 + 20) * 3" placeholder="Enter math formula..." />
-                <button class="nav-btn" onclick="lexYaccApp.runCalculatorDemo()" style="font-size: 0.78rem; padding: 0.35rem 0.75rem; background: var(--accent-green); color: #FFF; border-radius: 4px;">
-                  Evaluate
-                </button>
-              </div>
-
-              <!-- Quick Math Presets -->
-              <div style="display: flex; gap: 0.35rem; margin-bottom: 0.75rem;">
-                <button class="icon-btn" onclick="lexYaccApp.setCalcPreset('(10 + 20) * 3')" style="font-size: 0.72rem; padding: 0.2rem 0.45rem;">(10 + 20) * 3</button>
-                <button class="icon-btn" onclick="lexYaccApp.setCalcPreset('15 + 25 / 5')" style="font-size: 0.72rem; padding: 0.2rem 0.45rem;">15 + 25 / 5</button>
-                <button class="icon-btn" onclick="lexYaccApp.setCalcPreset('100 - 40 * 2')" style="font-size: 0.72rem; padding: 0.2rem 0.45rem;">100 - 40 * 2</button>
-              </div>
-
-              <!-- Stage 1: LEX Tokens -->
-              <div style="font-size: 0.75rem; font-weight: 800; color: #2563EB; text-transform: uppercase; margin-bottom: 0.25rem;">
-                1. LEX Token Stream:
-              </div>
-              <div id="calc-lex-tokens" style="display: flex; flex-wrap: wrap; gap: 0.35rem; padding: 0.5rem; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: var(--radius-sm); margin-bottom: 0.6rem; min-height: 40px; align-items: center;">
-                <!-- Tokens rendered here -->
-              </div>
-
-              <!-- Stage 2: YACC Evaluation & Result -->
-              <div style="font-size: 0.75rem; font-weight: 800; color: #059669; text-transform: uppercase; margin-bottom: 0.25rem;">
-                2. YACC Evaluation & Semantic Action:
-              </div>
-              <div id="calc-eval-output" style="padding: 0.65rem 0.85rem; background: #FFFFFF; border: 1.5px solid #059669; border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 0.88rem;">
-                <!-- Result rendered here -->
+              <!-- Interactive Step Display Card -->
+              <div id="calc-step-card" style="background: #F8FAFC; border: 1.5px solid #CBD5E1; border-radius: var(--radius-md); padding: 1.25rem; min-height: 180px; display: flex; flex-direction: column; justify-content: center;">
+                <!-- Filled dynamically by updateCalcStepView -->
               </div>
             </div>
 
-            <div style="font-size: 0.75rem; color: #64748B; background: #F8FAFC; padding: 0.45rem 0.75rem; border-radius: var(--radius-sm); border: 1px solid #E2E8F0; margin-top: 0.5rem;">
-              ⚡ <strong>Precedence Rule in YACC:</strong> <code>*</code> and <code>/</code> have higher precedence than <code>+</code> and <code>-</code>. Parentheses override precedence.
+            <!-- Previous / Next step buttons -->
+            <div style="display: flex; gap: 0.5rem; justify-content: space-between; align-items: center; margin-top: 1rem;">
+              <button class="nav-btn" id="calc-prev-btn" onclick="lexYaccApp.prevCalcStep()" style="font-size: 0.82rem; padding: 0.45rem 1rem;">
+                ← Previous step
+              </button>
+              
+              <button class="icon-btn" onclick="lexYaccApp.autoPlayCalcDemo()" style="font-size: 0.8rem; padding: 0.45rem 0.85rem;">
+                ▶ Auto Play (1 to 4)
+              </button>
+
+              <button class="nav-btn" id="calc-next-btn" onclick="lexYaccApp.nextCalcStep()" style="font-size: 0.82rem; padding: 0.45rem 1rem; background: var(--accent-green); color: #FFF;">
+                Next step →
+              </button>
             </div>
           </div>
         </div>
       `;
     },
     init: function() {
-      lexYaccApp.runCalculatorDemo();
+      lexYaccApp.currentCalcStep = 1;
+      lexYaccApp.updateCalcStepView();
     }
   },
 
@@ -662,122 +729,120 @@ int yywrap() { return 1; }
   // ========================================================================
   {
     id: 'slide-6',
-    part: 'Summary',
+    part: 'Conclusion',
     partNumber: 'SLIDE 06',
-    title: 'Conclusion: The Power of LEX & YACC',
-    subtitle: 'LEX = Lexical Analysis | YACC = Syntax Analysis | Simplifying Modern Compiler Construction',
-    notes: 'In conclusion, LEX and YACC allow developers to construct robust, enterprise-grade language front-ends in hours rather than months. By separating lexical concerns from grammar rules, compilers become modular, maintainable, and mathematically verified. Thank you, and I look forward to your questions!',
+    title: 'Conclusion',
+    subtitle: 'LEX and YACC: Symbiotic Tools for Language-Processing Engineering',
+    duration: '20 seconds',
+    notes: `
+      <div style="background: rgba(37,99,235,0.06); padding: 0.6rem 0.85rem; border-radius: 6px; margin-bottom: 0.75rem; border-left: 3px solid #2563EB;">
+        <strong>⏱️ Narration — Approximately 20 seconds:</strong>
+      </div>
+      <p style="font-style: italic; font-size: 0.95rem; line-height: 1.6; color: #1E293B;">
+        “To conclude, LEX identifies tokens during lexical analysis, while YACC checks grammatical structure during syntax analysis. Both tools work together to simplify compiler construction and language processing. Thank you for watching my presentation.”
+      </p>
+    `,
     render: function() {
       return `
         <div class="split-layout" style="grid-template-columns: 1.1fr 0.9fr; height: 100%; align-items: stretch;">
-          <!-- Left: Key Takeaways & Comparison Matrix -->
+          <!-- Left: On-Slide Text & Summary Points -->
           <div class="content-card" style="display: flex; flex-direction: column; justify-content: space-between;">
             <div>
               <div style="font-size: 0.78rem; font-weight: 800; color: #2563EB; text-transform: uppercase; margin-bottom: 0.35rem; letter-spacing: 0.05em;">
-                Summary of Roles
+                Executive Summary
               </div>
-              <h3 style="font-size: 1.25rem; font-weight: 800; color: #0F172A; margin-bottom: 0.75rem;">
-                LEX vs. YACC at a Glance
+              <h3 style="font-size: 1.3rem; font-weight: 800; color: #0F172A; margin-bottom: 0.85rem;">
+                Conclusion
               </h3>
 
-              <!-- Academic Comparison Table -->
-              <table class="academic-table" style="font-size: 0.82rem; margin-bottom: 0.85rem;">
-                <thead>
-                  <tr>
-                    <th>Feature</th>
-                    <th style="color: #2563EB;">LEX (Flex)</th>
-                    <th style="color: #7C3AED;">YACC (Bison)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><strong>Core Purpose</strong></td>
-                    <td><strong>Lexical Analysis</strong> (Tokenization)</td>
-                    <td><strong>Syntax Analysis</strong> (Parsing)</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Specification</strong></td>
-                    <td>Regular Expressions (<code>.l</code> file)</td>
-                    <td>Context-Free Grammar (<code>.y</code> file)</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Internal Model</strong></td>
-                    <td>DFA (Finite State Automata)</td>
-                    <td>LALR(1) Pushdown Automata</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Primary Function</strong></td>
-                    <td><code>yylex()</code> → returns token int</td>
-                    <td><code>yyparse()</code> → validates & builds AST</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Error Handled</strong></td>
-                    <td>Unrecognized characters/lexemes</td>
-                    <td>Malformed syntax / unexpected tokens</td>
-                  </tr>
-                </tbody>
-              </table>
+              <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem;">
+                <!-- LEX Box -->
+                <div style="padding: 0.75rem 1rem; background: #F0F9FF; border: 1.5px solid #BAE6FD; border-radius: var(--radius-md); border-left: 4px solid #0284C7;">
+                  <div style="font-weight: 800; color: #0284C7; font-size: 0.95rem; margin-bottom: 0.25rem;">
+                    LEX
+                  </div>
+                  <ul style="padding-left: 1.2rem; font-size: 0.82rem; color: #334155; display: flex; flex-direction: column; gap: 0.2rem;">
+                    <li>Performs lexical analysis.</li>
+                    <li>Identifies tokens using patterns.</li>
+                  </ul>
+                </div>
 
-              <!-- 3 Bullet Takeaways -->
-              <div style="display: flex; flex-direction: column; gap: 0.45rem;">
-                <div style="display: flex; gap: 0.5rem; align-items: center; font-size: 0.85rem; color: #0F172A;">
-                  <span style="color: #059669; font-weight: 800;">✓</span>
-                  <span><strong>LEX = lexical analysis</strong>: chops raw code into classified tokens.</span>
+                <!-- YACC Box -->
+                <div style="padding: 0.75rem 1rem; background: #FAF5FF; border: 1.5px solid #E9D5FF; border-radius: var(--radius-md); border-left: 4px solid #7C3AED;">
+                  <div style="font-weight: 800; color: #7C3AED; font-size: 0.95rem; margin-bottom: 0.25rem;">
+                    YACC
+                  </div>
+                  <ul style="padding-left: 1.2rem; font-size: 0.82rem; color: #334155; display: flex; flex-direction: column; gap: 0.2rem;">
+                    <li>Performs syntax analysis.</li>
+                    <li>Checks tokens against grammar rules.</li>
+                  </ul>
                 </div>
-                <div style="display: flex; gap: 0.5rem; align-items: center; font-size: 0.85rem; color: #0F172A;">
-                  <span style="color: #059669; font-weight: 800;">✓</span>
-                  <span><strong>YACC = syntax analysis</strong>: validates token arrangements into a parse tree.</span>
-                </div>
-                <div style="display: flex; gap: 0.5rem; align-items: center; font-size: 0.85rem; color: #0F172A;">
-                  <span style="color: #059669; font-weight: 800;">✓</span>
-                  <span><strong>Both help simplify compiler construction</strong>, saving thousands of lines of manual code.</span>
+
+                <!-- Together -->
+                <div style="padding: 0.65rem 0.85rem; background: #ECFDF5; border: 1.5px solid #A7F3D0; border-radius: var(--radius-md); border-left: 4px solid #059669; font-size: 0.84rem; color: #065F46; font-weight: 700;">
+                  Together: LEX and YACC simplify the construction of language-processing tools.
                 </div>
               </div>
             </div>
 
-            <!-- Workflow Summary Footer -->
-            <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: var(--radius-sm); padding: 0.5rem 0.75rem; font-size: 0.76rem; color: #475569; display: flex; align-items: center; justify-content: space-between;">
-              <span>Source Chars → <strong>LEX (yylex)</strong> → Tokens → <strong>YACC (yyparse)</strong> → Target AST</span>
-              <span style="color: #059669; font-weight: 700;">Complete Pipeline</span>
+            <div style="display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 0.5rem 0.75rem; border-radius: var(--radius-sm); font-size: 0.76rem; color: #475569;">
+              <span>Automated Compilers • Robust Scanners & Parsers</span>
+              <span style="color: #059669; font-weight: 800;">✓ Ready to Deploy</span>
             </div>
           </div>
 
-          <!-- Right: Thank You & Q&A Interactive Card -->
-          <div class="content-card" style="display: flex; flex-direction: column; justify-content: space-between; background: linear-gradient(135deg, #FFFFFF, #F8FAFC); border: 2px solid rgba(37, 99, 235, 0.2); text-align: center; padding: 2rem 1.5rem;">
+          <!-- Right: Simulation / Animation (1 -> 2 -> 3 -> 4) & Thank You Card -->
+          <div class="content-card" style="display: flex; flex-direction: column; justify-content: space-between; text-align: center;">
             <div>
-              <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(37, 99, 235, 0.1); color: var(--accent-blue); font-size: 1.8rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15);">
-                🎓
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                <span style="font-size: 0.76rem; font-weight: 800; color: #2563EB; text-transform: uppercase; letter-spacing: 0.05em;">Simulation / animation</span>
+                <button class="icon-btn" onclick="lexYaccApp.playConclusionAnimation()" style="font-size: 0.72rem; padding: 0.2rem 0.5rem;">▶ Replay Sequence</button>
               </div>
 
-              <h2 style="font-size: 2rem; font-weight: 900; color: #0F172A; margin-bottom: 0.5rem; letter-spacing: -0.02em;">
-                Thank You!
-              </h2>
-
-              <p style="font-size: 0.95rem; color: #475569; line-height: 1.5; margin-bottom: 1.5rem;">
-                Any Questions or Discussion on LEX, YACC, & Compiler Design?
-              </p>
-
-              <!-- Presenter Reminder Badge -->
-              <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: var(--radius-md); padding: 0.85rem; max-width: 340px; margin: 0 auto 1rem auto; box-shadow: 0 4px 12px rgba(15,23,42,0.04);">
-                <div style="font-size: 0.92rem; font-weight: 800; color: #0F172A;" id="thankyou-name-display">
-                  Prasad Kankhar
+              <!-- Animated Sequence Container -->
+              <div id="conclusion-anim-box" style="display: flex; flex-direction: column; gap: 0.6rem; text-align: left; margin-bottom: 1rem;">
+                <!-- 1. Reveal LEX Summary -->
+                <div id="concl-step-1" class="flow-step-node" style="border-left: 3px solid #0284C7; transition: all 0.3s ease;">
+                  <div class="flow-step-num">1. LEX Summary</div>
+                  <div class="flow-step-title" style="font-size: 0.88rem;">Lexical Analysis via Regular Expressions</div>
                 </div>
-                <div style="font-size: 0.8rem; font-weight: 600; color: #2563EB;">
-                  B.Tech CSE — CSE401
+
+                <!-- 2. Reveal YACC Summary -->
+                <div id="concl-step-2" class="flow-step-node" style="border-left: 3px solid #7C3AED; transition: all 0.3s ease;">
+                  <div class="flow-step-num">2. YACC Summary</div>
+                  <div class="flow-step-title" style="font-size: 0.88rem;">Syntax Analysis via Context-Free Grammars</div>
                 </div>
-                <div style="font-size: 0.75rem; color: #64748B;">
-                  Maharashtra Institute of Technology
+
+                <!-- 3. Display Pipeline -->
+                <div id="concl-step-3" class="flow-step-node" style="border-left: 3px solid #059669; transition: all 0.3s ease;">
+                  <div class="flow-step-num">3. The Complete Pipeline</div>
+                  <div style="font-family: var(--font-mono); font-size: 0.74rem; font-weight: 700; color: #0F172A; margin-top: 0.2rem;">
+                    Source Code → LEX → Tokens → YACC → Parser Output
+                  </div>
+                </div>
+              </div>
+
+              <!-- 4. Finish with "Thank You!" and "Questions?" -->
+              <div id="concl-step-4" style="background: linear-gradient(135deg, #FFFFFF, #EFF6FF); border: 2px solid rgba(37, 99, 235, 0.25); border-radius: var(--radius-md); padding: 1.25rem 1rem; box-shadow: 0 4px 14px rgba(37,99,235,0.08);">
+                <div style="font-size: 2.2rem; font-weight: 900; color: #0F172A; margin-bottom: 0.25rem; letter-spacing: -0.02em;">
+                  Thank You!
+                </div>
+                <div style="font-size: 1.15rem; font-weight: 800; color: #2563EB; margin-bottom: 0.75rem;">
+                  Questions?
+                </div>
+                <div style="font-size: 0.8rem; color: #475569;">
+                  Prasad Anil Kankhar • Department of CSE • MIT
                 </div>
               </div>
             </div>
 
-            <!-- Interactive Presentation Controls -->
-            <div style="display: flex; justify-content: center; gap: 0.75rem;">
-              <button class="nav-btn" onclick="lexYaccApp.goToSlide(0)" style="font-size: 0.82rem; padding: 0.5rem 1rem; background: var(--accent-blue); color: #FFF;">
+            <!-- Replay or Finish -->
+            <div style="display: flex; justify-content: center; gap: 0.65rem; margin-top: 1rem;">
+              <button class="nav-btn" onclick="lexYaccApp.goToSlide(0)" style="font-size: 0.82rem; padding: 0.45rem 1rem; background: var(--accent-blue); color: #FFF;">
                 ⏮ Replay from Slide 1
               </button>
-              <button class="icon-btn" onclick="lexYaccApp.celebratePresentation()" style="font-size: 0.82rem; padding: 0.5rem 1rem; border: 1px solid #CBD5E1;">
-                🎉 Lecture Complete
+              <button class="icon-btn" onclick="lexYaccApp.celebratePresentation()" style="font-size: 0.82rem; padding: 0.45rem 1rem; border: 1px solid #CBD5E1;">
+                🎉 Complete
               </button>
             </div>
           </div>
@@ -785,12 +850,7 @@ int yywrap() { return 1; }
       `;
     },
     init: function() {
-      // Sync student name onto thank-you badge
-      const savedName = localStorage.getItem('lex_student_name');
-      const target = document.getElementById('thankyou-name-display');
-      if (savedName && target) {
-        target.innerText = savedName;
-      }
+      lexYaccApp.playConclusionAnimation();
     }
   }
 ];
