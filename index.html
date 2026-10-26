@@ -51,7 +51,7 @@
         <div class="hub-stat-item">
           <div class="hub-stat-icon" style="background: rgba(37, 99, 235, 0.1); color: var(--accent-blue);">📚</div>
           <div>
-            <div class="hub-stat-val">3</div>
+            <div class="hub-stat-val">4</div>
             <div class="hub-stat-lbl">Interactive Suites</div>
           </div>
         </div>
@@ -59,7 +59,7 @@
         <div class="hub-stat-item">
           <div class="hub-stat-icon" style="background: rgba(5, 150, 105, 0.1); color: var(--accent-green);">📑</div>
           <div>
-            <div class="hub-stat-val">54</div>
+            <div class="hub-stat-val">60</div>
             <div class="hub-stat-lbl">Classroom Slides</div>
           </div>
         </div>
@@ -85,10 +85,11 @@
     <!-- Toolbar: Category Filters & Search -->
     <div class="hub-toolbar">
       <div class="hub-filter-tabs">
-        <button class="hub-tab-btn active" onclick="filterCategory('all', this)">All Presentations (3)</button>
-        <button class="hub-tab-btn" onclick="filterCategory('ds', this)">Data Structures (1)</button>
-        <button class="hub-tab-btn" onclick="filterCategory('systems', this)">Graphics & VR (1)</button>
+        <button class="hub-tab-btn active" onclick="filterCategory('all', this)">All Presentations (4)</button>
+        <button class="hub-tab-btn" onclick="filterCategory('nlp', this)">Speech & NLP (1)</button>
         <button class="hub-tab-btn" onclick="filterCategory('compiler', this)">Compiler Design (1)</button>
+        <button class="hub-tab-btn" onclick="filterCategory('systems', this)">Graphics & VR (1)</button>
+        <button class="hub-tab-btn" onclick="filterCategory('ds', this)">Data Structures (1)</button>
       </div>
 
       <div class="hub-search-box">
@@ -200,6 +201,43 @@
             <span>🚀</span> Launch Interactive Web
           </a>
           <button class="btn-secondary" onclick="openOutline('lex-yacc')" title="View Slide Outline">
+            <span>📋</span> Slide Outline (6)
+          </button>
+        </div>
+      </article>
+
+      <!-- Card 4: Speech to Text (ASR) & NLP -->
+      <article class="ppt-card" data-category="nlp" data-keywords="speech to text stt asr nlp audio mfcc mel spectrogram acoustic model language model bayes hmm conformer whisper wer levenshtein decoding mit">
+        <div>
+          <div class="ppt-card-header">
+            <div class="ppt-card-icon" style="background: rgba(37, 99, 235, 0.1); color: #2563EB;">🎙️</div>
+            <div class="ppt-badge-row">
+              <span class="ppt-pill ppt-pill-blue">NLP & Speech AI (CSE402)</span>
+              <span class="ppt-pill ppt-pill-slate">6 Slides</span>
+            </div>
+          </div>
+
+          <h3 class="ppt-card-title">Speech to Text Conversion: Automatic Speech Recognition (ASR)</h3>
+          <p class="ppt-card-desc">
+            Transforming continuous acoustic pressure waves into discrete linguistic tokens. Demonstrates the complete pipeline from 39D MFCC feature vectors and Bayes' Decision Rule to modern End-to-End Whisper transformers and Word Error Rate (WER) decoding.
+          </p>
+
+          <ul class="ppt-features-list">
+            <li>Interactive Bayes' Decision Rule Homophone Resolver: <code>P(A|W) &times; P(W)</code></li>
+            <li>Real-time Waveform Canvas & 80-channel Mel Filterbank Visualizer</li>
+            <li>Classical Triad (HMM-GMM + ARPAbet) vs. Modern E2E Transformers (Whisper)</li>
+            <li>Live Audio Stream Transcription Simulator with Word Error Rate (WER) Matrix</li>
+          </ul>
+        </div>
+
+        <div class="ppt-actions">
+          <a href="stt.html" class="btn-launch" style="background: #2563EB;" title="Launch Speech to Text Presentation">
+            <span>🚀</span> Launch Interactive Web
+          </a>
+          <a href="stt.pptx" download class="btn-secondary" title="Download PowerPoint Deck (.pptx)">
+            <span>📥</span> PPTX
+          </a>
+          <button class="btn-secondary" onclick="openOutline('stt')" title="View Slide Outline">
             <span>📋</span> Slide Outline (6)
           </button>
         </div>
@@ -354,6 +392,18 @@
           { num: '04', name: 'YACC: Syntax Parser & Parse Tree Generator' },
           { num: '05', name: 'Real-World Applications: Mini-Calculator Evaluator' },
           { num: '06', name: 'Conclusion: Architectural Summary & Thank You' }
+        ]
+      },
+      'stt': {
+        title: '🎙️ Speech to Text Conversion in NLP (6 Slides)',
+        file: 'stt.html',
+        slides: [
+          { num: '01', name: 'Title & Credentials: Automatic Speech Recognition & NLP' },
+          { num: '02', name: 'Introduction: Bayes\' Decision Rule & Homophone Disambiguation' },
+          { num: '03', name: 'Acoustic Processing: MFCC Pipeline & Mel-Spectrogram Simulator' },
+          { num: '04', name: 'ASR Architectures: Classical Modular Triad vs. Modern End-to-End' },
+          { num: '05', name: 'Evaluation: Viterbi Beam Search, Alignment & Word Error Rate (WER)' },
+          { num: '06', name: 'Conclusion: Architectural Summary, Emerging Frontiers & Discussion' }
         ]
       }
     };

@@ -1,0 +1,144 @@
+/* ==========================================================================
+   SPEECH TO TEXT (STT / ASR) PRESENTATION - DESIGN SYSTEM
+   Theme: Academic Light (Lecture Hall High-Contrast)
+   Palette: Slate #F1F5F9 | Surface #FFFFFF | Primary Navy #0F172A | Cobalt #2563EB | Cyan #0284C7 | Emerald #059669
+   ========================================================================== */
+
+/* Universal Interactive Content Action Buttons */
+.btn-action,
+.btn-primary,
+.slide button.btn-action,
+.slide button.nav-btn {
+  width: auto !important;
+  min-width: fit-content;
+  height: auto !important;
+  min-height: 36px;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1.15rem !important;
+  border-radius: var(--radius-md) !important;
+  font-family: var(--font-main);
+  font-size: 0.86rem !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  user-select: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 5px rgba(15, 23, 42, 0.08);
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 25;
+}
+
+.btn-action-primary,
+.slide button.btn-action-primary {
+  background: var(--accent-blue) !important;
+  color: #FFFFFF !important;
+  border: 1px solid var(--accent-blue) !important;
+}
+
+.btn-action-primary:hover:not(:disabled) {
+  background: #1D4ED8 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 14px rgba(37, 99, 235, 0.3);
+}
+
+.btn-action-secondary,
+.slide button.btn-action-secondary {
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+  border: 1.5px solid #CBD5E1 !important;
+}
+
+.btn-action-secondary:hover:not(:disabled) {
+  background: #F8FAFC !important;
+  border-color: #2563EB !important;
+  color: #2563EB !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
+}
+
+.btn-action:disabled,
+.slide button.btn-action:disabled {
+  opacity: 0.45 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Audio Waveform Canvas */
+.audio-wave-container {
+  background: #0F172A;
+  border-radius: var(--radius-md);
+  padding: 0.75rem;
+  border: 1px solid #1E293B;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.4);
+}
+
+.spectrogram-box {
+  height: 90px;
+  background: linear-gradient(180deg, #1E1B4B 0%, #312E81 25%, #4338CA 50%, #06B6D4 75%, #10B981 100%);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Badges */
+.asr-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: 1px solid transparent;
+  user-select: none;
+}
+
+.asr-badge-acoustic {
+  background: rgba(37, 99, 235, 0.1);
+  color: #1D4ED8;
+  border-color: rgba(37, 99, 235, 0.25);
+}
+
+.asr-badge-pronunciation {
+  background: rgba(124, 58, 237, 0.1);
+  color: #7C3AED;
+  border-color: rgba(124, 58, 237, 0.25);
+}
+
+.asr-badge-language {
+  background: rgba(5, 150, 105, 0.1);
+  color: #047857;
+  border-color: rgba(5, 150, 105, 0.25);
+}
+
+.asr-badge-audio {
+  background: rgba(217, 119, 6, 0.1);
+  color: #B45309;
+  border-color: rgba(217, 119, 6, 0.25);
+}
+
+/* Step Flow Box */
+.step-card-asr {
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  transition: all 0.25s ease;
+}
+
+.step-card-asr.active-step {
+  border-color: var(--accent-blue);
+  background: #EFF6FF;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12);
+  transform: translateY(-2px);
+}

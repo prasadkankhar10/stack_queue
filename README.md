@@ -66,6 +66,20 @@ An interactive lecture presentation for **B.Tech CSE — CSE401** at **Maharasht
 
 ---
 
+### 4. 🎙️ Speech to Text Conversion (`stt.html` & `stt.pptx`)
+An interactive lecture presentation and simulation laboratory for **Natural Language Processing (CSE402)** at **Maharashtra Institute of Technology, Chhatrapati Sambhajinagar**. Presented by **Prasad Anil Kankhar**.
+
+- **6 Comprehensive Slides**:
+  1. **Title Slide & Course Credentials**: Academic credentials, course information, and interactive audio-to-text flow animation.
+  2. **Introduction & Bayes' Decision Rule**: The core mathematical objective $\hat{W} = \arg\max_W P(X \mid W) \cdot P(W)$ with an interactive Bayes homophone disambiguation lab (*"wreck a nice beach"* vs. *"recognize speech"*).
+  3. **Acoustic Signal Processing & The MFCC Pipeline**: 5-stage feature extraction (Pre-emphasis, Framing 25ms/10ms, FFT, Mel Filterbank, DCT $\to$ 39D vector) with a real-time animated waveform canvas and 80-channel Mel-spectrogram visualizer.
+  4. **ASR Architectures — Classical Triad vs. Modern End-to-End**: Interactive architecture toggle comparing the classical modular pipeline ($AM \times L \times LM$) vs. modern unified End-to-End Deep Neural Transformers (Conformer, OpenAI Whisper).
+  5. **Evaluation & Decoding**: Viterbi Beam Search, Alignment Matrix, and a live audio stream decoder with step-by-step token emissions and Word Error Rate (WER) formula calculation: $\text{WER} = \frac{S + D + I}{N} \times 100\%$.
+  6. **Conclusion & Emerging Frontiers**: Summary of the 4 core pillars, multilingual zero-shot transfer, low-latency on-device processing, emotion/paralinguistic recognition, and presentation celebration.
+- **Companion Deck**: Includes native Microsoft PowerPoint deck (`stt.pptx`) formatted in matching 16:9 widescreen layout with embedded presenter notes.
+
+---
+
 ## 🎨 Classroom Presentation Features
 
 - **Strict 16:9 Aspect Ratio**: Engineered to lock cleanly into standard 16:9 presentation dimensions on projectors, smartboards, and laptop displays without vertical scrollbars.
