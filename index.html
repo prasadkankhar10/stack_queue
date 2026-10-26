@@ -59,7 +59,7 @@
         <div class="hub-stat-item">
           <div class="hub-stat-icon" style="background: rgba(5, 150, 105, 0.1); color: var(--accent-green);">📑</div>
           <div>
-            <div class="hub-stat-val">60</div>
+            <div class="hub-stat-val">66</div>
             <div class="hub-stat-lbl">Classroom Slides</div>
           </div>
         </div>
@@ -207,26 +207,28 @@
       </article>
 
       <!-- Card 4: Speech to Text (ASR) & NLP -->
-      <article class="ppt-card" data-category="nlp" data-keywords="speech to text stt asr nlp audio mfcc mel spectrogram acoustic model language model bayes hmm conformer whisper wer levenshtein decoding mit">
+      <article class="ppt-card" data-category="nlp" data-keywords="speech to text stt asr nlp audio mfcc mel spectrogram acoustic model language model bayes hmm conformer whisper wer levenshtein decoding ctc phonetics mit">
         <div>
           <div class="ppt-card-header">
             <div class="ppt-card-icon" style="background: rgba(37, 99, 235, 0.1); color: #2563EB;">🎙️</div>
             <div class="ppt-badge-row">
               <span class="ppt-pill ppt-pill-blue">NLP & Speech AI (CSE402)</span>
-              <span class="ppt-pill ppt-pill-slate">6 Slides</span>
+              <span class="ppt-pill ppt-pill-slate">12 Slides</span>
             </div>
           </div>
 
-          <h3 class="ppt-card-title">Speech to Text Conversion: Automatic Speech Recognition (ASR)</h3>
+          <h3 class="ppt-card-title">Speech to Text (STT) Conversion: Automatic Speech Recognition</h3>
           <p class="ppt-card-desc">
-            Transforming continuous acoustic pressure waves into discrete linguistic tokens. Demonstrates the complete pipeline from 39D MFCC feature vectors and Bayes' Decision Rule to modern End-to-End Whisper transformers and Word Error Rate (WER) decoding.
+            A comprehensive, deep-dive curriculum exploring speech recognition from the physics of acoustic sound pressure waves and signal digitization to 80-channel Mel filterbanks, classical HMM-GMMs, CTC alignment, modern Conformer/Whisper transformers, and NLP language model decoding.
           </p>
 
           <ul class="ppt-features-list">
-            <li>Interactive Bayes' Decision Rule Homophone Resolver: <code>P(A|W) &times; P(W)</code></li>
-            <li>Real-time Waveform Canvas & 80-channel Mel Filterbank Visualizer</li>
-            <li>Classical Triad (HMM-GMM + ARPAbet) vs. Modern E2E Transformers (Whisper)</li>
-            <li>Live Audio Stream Transcription Simulator with Word Error Rate (WER) Matrix</li>
+            <li>Acoustic Physics, Source-Filter Model & 16 kHz / 16-bit ADC sampling</li>
+            <li>Phonetics, ARPAbet (39 phonemes), Formants (F1/F2) & Co-articulation</li>
+            <li>5-Stage MFCC & 80-Channel Log-Mel Filterbank real-time audio canvas</li>
+            <li>Connectionist Temporal Classification (CTC) alignment & collapse operator</li>
+            <li>Conformer (CNN + Self-Attention) & OpenAI Whisper multi-task decoder tokens</li>
+            <li>NLP Language Model Fusion, Homophone Disambiguation & Live WER Simulator</li>
           </ul>
         </div>
 
@@ -235,10 +237,10 @@
             <span>🚀</span> Launch Interactive Web
           </a>
           <a href="stt.pptx" download class="btn-secondary" title="Download PowerPoint Deck (.pptx)">
-            <span>📥</span> PPTX
+            <span>📥</span> PPTX (12 Slides)
           </a>
           <button class="btn-secondary" onclick="openOutline('stt')" title="View Slide Outline">
-            <span>📋</span> Slide Outline (6)
+            <span>📋</span> Slide Outline (12)
           </button>
         </div>
       </article>
@@ -395,15 +397,21 @@
         ]
       },
       'stt': {
-        title: '🎙️ Speech to Text Conversion in NLP (6 Slides)',
+        title: '🎙️ Speech to Text (STT) Conversion (12 Slides)',
         file: 'stt.html',
         slides: [
-          { num: '01', name: 'Title & Credentials: Automatic Speech Recognition & NLP' },
-          { num: '02', name: 'Introduction: Bayes\' Decision Rule & Homophone Disambiguation' },
-          { num: '03', name: 'Acoustic Processing: MFCC Pipeline & Mel-Spectrogram Simulator' },
-          { num: '04', name: 'ASR Architectures: Classical Modular Triad vs. Modern End-to-End' },
-          { num: '05', name: 'Evaluation: Viterbi Beam Search, Alignment & Word Error Rate (WER)' },
-          { num: '06', name: 'Conclusion: Architectural Summary, Emerging Frontiers & Discussion' }
+          { num: '01', name: 'Title & Credentials: Speech to Text (STT) Conversion' },
+          { num: '02', name: 'Foundations: The Acoustic-Phonetic Inverse Problem' },
+          { num: '03', name: 'Physics & Signal Processing: Vocal Tract & 16 kHz Digitization' },
+          { num: '04', name: 'Phonetics & Phonology: ARPAbet 39 Phonemes & Co-Articulation' },
+          { num: '05', name: 'Feature Extraction: STFT, 80-Channel Filterbanks & 39D MFCC' },
+          { num: '06', name: 'Classical Architecture: HMM-GMM/DNN & WFST Viterbi Search' },
+          { num: '07', name: 'Temporal Alignment: Sequence Mismatch & CTC Loss Collapse' },
+          { num: '08', name: 'Deep Learning Architectures: LAS, RNN-T & The Conformer' },
+          { num: '09', name: 'Foundation Models: OpenAI Whisper & Self-Supervised Speech' },
+          { num: '10', name: 'NLP Integration: Language Model Fusion & Inverse Text Normalization' },
+          { num: '11', name: 'Evaluation & Benchmarks: Word Error Rate (WER) & Production Challenges' },
+          { num: '12', name: 'Grand Mental Model: The 6 Pipeline Stages & Future Horizons' }
         ]
       }
     };

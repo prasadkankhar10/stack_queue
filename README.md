@@ -66,17 +66,23 @@ An interactive lecture presentation for **B.Tech CSE — CSE401** at **Maharasht
 
 ---
 
-### 4. 🎙️ Speech to Text Conversion (`stt.html` & `stt.pptx`)
-An interactive lecture presentation and simulation laboratory for **Natural Language Processing (CSE402)** at **Maharashtra Institute of Technology, Chhatrapati Sambhajinagar**. Presented by **Prasad Anil Kankhar**.
+### 4. 🎙️ Speech to Text (STT) Conversion (`stt.html` & `stt.pptx`)
+A comprehensive, deep-dive lecture presentation and simulation laboratory for **Natural Language Processing (CSE402)** at **Maharashtra Institute of Technology, Chhatrapati Sambhajinagar**. Presented by **Prasad Anil Kankhar**, B.Tech CSE.
 
-- **6 Comprehensive Slides**:
-  1. **Title Slide & Course Credentials**: Academic credentials, course information, and interactive audio-to-text flow animation.
-  2. **Introduction & Bayes' Decision Rule**: The core mathematical objective $\hat{W} = \arg\max_W P(X \mid W) \cdot P(W)$ with an interactive Bayes homophone disambiguation lab (*"wreck a nice beach"* vs. *"recognize speech"*).
-  3. **Acoustic Signal Processing & The MFCC Pipeline**: 5-stage feature extraction (Pre-emphasis, Framing 25ms/10ms, FFT, Mel Filterbank, DCT $\to$ 39D vector) with a real-time animated waveform canvas and 80-channel Mel-spectrogram visualizer.
-  4. **ASR Architectures — Classical Triad vs. Modern End-to-End**: Interactive architecture toggle comparing the classical modular pipeline ($AM \times L \times LM$) vs. modern unified End-to-End Deep Neural Transformers (Conformer, OpenAI Whisper).
-  5. **Evaluation & Decoding**: Viterbi Beam Search, Alignment Matrix, and a live audio stream decoder with step-by-step token emissions and Word Error Rate (WER) formula calculation: $\text{WER} = \frac{S + D + I}{N} \times 100\%$.
-  6. **Conclusion & Emerging Frontiers**: Summary of the 4 core pillars, multilingual zero-shot transfer, low-latency on-device processing, emotion/paralinguistic recognition, and presentation celebration.
-- **Companion Deck**: Includes native Microsoft PowerPoint deck (`stt.pptx`) formatted in matching 16:9 widescreen layout with embedded presenter notes.
+- **12 Comprehensive Classroom Slides**:
+  1. **Title & Credentials**: Academic credentials, course information, and interactive audio-to-text flow animation.
+  2. **What is Speech to Text?**: The acoustic-phonetic inverse problem, absence of physical word boundaries, and continuous vs. discrete gap.
+  3. **Physics of Speech & Digitization**: Source-filter theory (glottal excitation $F_0$, vocal tract formant filters $F_1, F_2, F_3$), Nyquist-Shannon sampling theorem (16 kHz), and 16-bit linear PCM quantization.
+  4. **Phonetics & Phonology**: Phones, phonemes, graphemes, English ARPAbet (39 phonemes: 15 vowels, 24 consonants), and the co-articulation challenge.
+  5. **Audio Feature Extraction**: The 5-stage MFCC pipeline (Pre-emphasis, Hamming framing 25ms/10ms, FFT, Mel filterbanks, DCT $\to$ 39D vector) with real-time waveform canvas and 80-channel Mel-spectrogram visualizer.
+  6. **Classical ASR Architecture**: Bayes' Decision Rule $\hat{W} = \arg\max_W P(X \mid W) P(W)$, the three pillars (AM, Lexicon CMUdict, N-gram LM), 3-state HMM trellis simulator, and WFST composition ($H \circ C \circ L \circ G$).
+  7. **Temporal Alignment & CTC Loss**: The sequence length mismatch ($T \gg U$), special blank symbol $\epsilon$, collapse operator $\mathcal{B}$, and dynamic programming alignment grid.
+  8. **Modern End-to-End Architectures**: Evolutionary generations (DNN-HMM $\to$ LAS $\to$ RNN-Transducer $\to$ Conformer), and Macaron-style CNN + Self-Attention block breakdown.
+  9. **Foundation Models (OpenAI Whisper)**: 680,000 hours weak supervision, Transformer encoder-decoder, prompt sequence tokens (`<|startoftranscript|>`, `<|en|>`, `<|transcribe|>`, `<|notimestamps|>`), and self-supervised models (Wav2Vec 2.0 / HuBERT).
+  10. **Where NLP Meets STT**: Language model fusion ($\alpha \log P_{\text{LM}} + \beta |W|$), two-pass LLM rescoring, homophone disambiguation, and Inverse Text Normalization (ITN).
+  11. **Evaluation & Production Challenges**: Levenshtein Word Error Rate ($\text{WER} = \frac{S + D + I}{N} \times 100\%$), Real-Time Factor (RTF $\le 1.0$), speaker diarization, cocktail party effect, and live WER transcription decoder.
+  12. **The Grand Mental Model & Future Horizons**: Synthesis of the 6 pipeline stages, universal zero-shot multilingualism, on-device edge NPU accelerators, paralinguistic voice AI, and presentation celebration.
+- **Companion Deck**: Includes native Microsoft PowerPoint deck (`stt.pptx`) formatted in matching 16:9 widescreen layout with embedded presenter notes for all 12 slides.
 
 ---
 

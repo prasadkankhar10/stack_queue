@@ -142,3 +142,64 @@
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12);
   transform: translateY(-2px);
 }
+
+/* CTC Alignment Table & Grid */
+.ctc-grid-container {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0.35rem;
+  background: #F8FAFC;
+  border: 1.5px solid #CBD5E1;
+  border-radius: var(--radius-md);
+  padding: 0.75rem;
+}
+
+.ctc-cell {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 4px;
+  padding: 0.4rem 0.2rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  transition: all 0.2s ease;
+}
+
+.ctc-cell.highlight {
+  background: #EFF6FF;
+  border-color: #2563EB;
+  color: #1E3A8A;
+  font-weight: 800;
+  box-shadow: 0 2px 6px rgba(37,99,235,0.2);
+}
+
+.ctc-cell.blank-token {
+  color: #94A3B8;
+  background: #F1F5F9;
+}
+
+/* Feature Comparison Table */
+.stt-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
+
+.stt-table th {
+  background: #F1F5F9;
+  color: #0F172A;
+  font-weight: 800;
+  padding: 0.45rem 0.65rem;
+  text-align: left;
+  border-bottom: 2px solid #CBD5E1;
+}
+
+.stt-table td {
+  padding: 0.45rem 0.65rem;
+  border-bottom: 1px solid #E2E8F0;
+  color: #334155;
+}
+
+.stt-table tr:hover td {
+  background: #F8FAFC;
+}
